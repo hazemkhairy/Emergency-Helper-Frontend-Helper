@@ -3,9 +3,8 @@ import { Text, View, StyleSheet, TextInput, Dimensions, TouchableOpacity } from 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { connect, Provider } from 'react-redux';
 import { Button } from 'react-native-elements';
-import { AntDesign } from '@expo/vector-icons'
+import { AntDesign ,Feather} from '@expo/vector-icons'
 import { createStore } from 'redux';
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 const { width, height } = Dimensions.get('window');
 
@@ -63,19 +62,21 @@ class login extends Component {
 
     }
 
-    render() { 
+    render() {
         return (
             <Provider store={this.store}>
                 <View style={{ backgroundColor: '#F1F0F2', flex: 1 }}>
-                    <View style={{ backgroundColor: '#7598BA', flex:0.34, borderBottomLeftRadius: 75 }}>
+                    <View style={{ backgroundColor: '#7598BA', flex: 0.34, borderBottomLeftRadius: 75 }}>
+                        {/* <Button type="clear" style={{ position: 'absolute', marginTop: height * 0.0689, marginLeft: width * 0.064 }}
+                            icon={<AntDesign name="arrowleft" size={20} color="white" />} onPress={() => this.props.navigation.navigate('Home')} /> */}
                         <Button type="clear" style={{ position: 'absolute', marginTop: height * 0.0689, marginLeft: width * 0.064 }}
-                            icon={<AntDesign name="arrowleft" size={20} color="white" />} onPress={() => this.props.navigation.navigate('Home')} />
+                            icon={<Feather name="arrow-left" size={20} color="white" />} onPress={() => this.props.navigation.navigate('Home')} />
 
                         <View style={{ flexDirection: 'row', marginTop: height * 0.1009, justifyContent: 'center' }}>
                             <Button title='SIGN IN' titleStyle={{ color: 'white', fontSize: 12, marginRight: 50 }} type='clear' />
                             <Button title='SIGN UP' titleStyle={{ color: '#C0CDDC', fontSize: 12 }} type='clear' onPress={() => this.props.navigation.navigate('SignUpScreen')} />
                         </View>
-                        <View style={styles.container}>
+                        <View style={styles.form}>
                             <Loginform
                                 placeholder="Email"
                                 placeholderTextColor='#B9B3BD'
@@ -92,10 +93,10 @@ class login extends Component {
                             // onChangeText={(value)=>this.setSate({password:value})}
                             />
                         </View>
-                        <TouchableOpacity style={styles.Contunie}  >
+                        <TouchableOpacity style={styles.Continuebutton}  >
                             <Text style={{ color: 'white', fontSize: 14 }} onPress={() => this.props}>CONTINUE</Text>
                         </TouchableOpacity>
-                        <Button type='clear' style={styles.button2} title='FORGOT PASSWORD' titleStyle={{ color: '#132641', fontSize: 12, fontWeight: '500' }} type='clear'
+                        <Button type='clear'  title='FORGOT PASSWORD' titleStyle={{ color: '#132641', fontSize: 12, fontWeight: '500' }} 
                             onPress={() => { }}
                         />
                     </View>
@@ -108,8 +109,8 @@ class login extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        borderRadius: 4,
+    form: {
+        borderRadius: 35,
         borderWidth: 0.5,
         borderColor: '#d6d7da',
         backgroundColor: '#fff',
@@ -118,6 +119,8 @@ const styles = StyleSheet.create({
         marginLeft: 24,
         borderRadius: 35,
         justifyContent: 'center',
+        marginRight: 24,
+        
     },
     input: {
         height: hp('5%'),
@@ -136,31 +139,20 @@ const styles = StyleSheet.create({
         color: '#DDDDDD',
         fontSize: 12,
         position: 'relative',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     Continuebutton: {
         backgroundColor: '#132641',
-        height: 52,
-        width: 327,
-        borderRadius: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginVertical: 28,
-        marginLeft: width * 0.064,
-        marginTop: 25,
-        marginBottom: 10
-    },
-    Contunie: {
-        backgroundColor: '#132641',
         height: hp('7%'),
-        marginHorizontal: 20,
         borderRadius: 35,
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: 5,
-        marginLeft: '5%',
-        marginRight: '5%',
-        marginTop: 20
+        marginLeft: 24,
+        marginRight: 24,
+        marginTop: 20,
+        width: wp('90%'),
     }
+   
 });
 export default login;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ImageBackground, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
 
 import { Button } from 'react-native-elements';
 
@@ -31,8 +31,7 @@ const First = ({ navigation }) => {
                 </Text>
             </View>
             <View style={{ borderTopLeftRadius: 60, backgroundColor: '#7598BA', height: hp("10%") }}>
-
-                <Button style={styles.button1} title="LOG IN" titleStyle={{ color: 'white', fontSize: 14, fontWeight: '500' }} onPress={() => navigation.navigate('Login')} type="clear" >
+                <Button  title="LOG IN" titleStyle={{ color: 'white', fontSize: 14, fontWeight: '500' }} onPress={() => navigation.navigate('Login')} type="clear" >
 
                 </Button>
 
@@ -45,45 +44,46 @@ const First = ({ navigation }) => {
     );
 }
 const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 80
-    },
-    text: {
-        color: 'white',
-        fontSize: 32,
-        marginBottom: 20,
+main: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 80
+},
+text: {
+    color: 'white',
+    fontSize: 32,
+    marginBottom: 20,
     // fontFamily: 'light',
-        fontWeight: 'bold',
-    },
-    text1: {
-        color: 'white',
-        fontSize: 32,
-        fontWeight: 'bold',
-        //fontFamily: 'Montserrat-Bold'
-    },
-    text2: {
-        color: 'white',
-        fontSize: 12,
-        fontWeight: '200',
-       // fontFamily: 'light'
-    },
+    fontWeight: 'bold',
+},
+text1: {
+    color: 'white',
+    fontSize: 32,
+    fontWeight: 'bold',
+    //fontFamily: 'Montserrat-Bold'
+},
+text2: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: '200',
+    // fontFamily: 'light'
+},
     button1: {
         backgroundColor: '#7598BA',
-        height: '80%',
-        borderTopLeftRadius: 60,
+        height: '50s%',
+        borderTopLeftRadius: 120,
         justifyContent: 'center',
-        alignItems: 'center'
     },
     button2: {
         backgroundColor: '#132641',
         height: '100%',
-       
+
         borderTopLeftRadius: 60,
         justifyContent: 'center',
-        alignItems: 'center'
+
     }
 });
+
+   
 export default First;

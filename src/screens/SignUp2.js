@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     },
     inputs: {
 
+        
         height: hp('5%'),
         backgroundColor: '#ffffff00',
         marginHorizontal: 25,
@@ -134,14 +135,14 @@ const styles = StyleSheet.create({
     Contunie: {
         backgroundColor: '#132641',
         height: hp('7%'),
-        marginHorizontal: 20,
         borderRadius: 35,
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: 5,
-        marginLeft: '5%',
-        marginRight: '5%',
-        marginTop: 20
+        marginLeft: 24,
+        marginRight: 24,
+        marginTop: 20,
+        width: wp('90%'),
 
     },
     Button: {
