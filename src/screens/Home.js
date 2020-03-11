@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
-
 import { Button } from 'react-native-elements';
 
 import image from '../images/image.png';
@@ -31,7 +30,7 @@ const First = ({ navigation }) => {
                 </Text>
             </View>
             <View style={{ borderTopLeftRadius: 60, backgroundColor: '#7598BA', height: hp("10%") }}>
-                <Button  title="LOG IN" titleStyle={{ color: 'white', fontSize: 14, fontWeight: '500' }} onPress={() => navigation.navigate('Login')} type="clear" >
+                <Button  title="LOG IN" titleStyle={{ color: 'white', fontSize: 14, fontWeight: '500' }} onPress={() => navigation.navigate('SignInScreen')}  type="clear" >
 
                 </Button>
 

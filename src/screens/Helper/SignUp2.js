@@ -6,23 +6,24 @@ import * as Font from "expo-font";
 import * as DocumentPicker from 'expo-document-picker';
 import * as ImagePicker from 'expo-image-picker';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/AntDesign';
+ import {signUpAction} from '../../store/User/SignUp-Helper/actions';
 
- 
 const SignUp2 = ({ navigation }) => {
     
     return (
         <View style={styles.MainContainer}>
             <View style={styles.Container}>
-{/* 
+
             <View>
                     <Button type="clear"
                         style={{ position: 'absolute', height: 50, width: 50, paddingTop: 20, fontWeight: '700' }}
                         icon={<AntDesign name="arrowleft" size={15} color="white" />}
                         onPress={() => {navigation.navigate('SignUpScreen')}} />
-                </View> */}
+                </View> 
                 <View style={styles.line}>
                     <TouchableOpacity >
-                        <Text style={{ color: 'white', fontSize: 12, color: '#C0CDDC', marginRight: 50 }}onPress={()=>navigation.navigate('Login')} >SIGN IN</Text>
+                        <Text style={{ color: 'white', fontSize: 12, color: '#C0CDDC', marginRight: 50 }}onPress={()=>navigation.navigate('SignInScreen')} >SIGN IN</Text>
                     </TouchableOpacity>
                     <TouchableOpacity >
                         <Text style={{ color: 'white', fontSize: 12 }} >SIGN UP</Text>
@@ -81,7 +82,11 @@ const SignUp2 = ({ navigation }) => {
                 </View>
 
                 <View >
-                    <TouchableOpacity style={styles.Contunie}>
+                    <TouchableOpacity style={styles.Contunie} onPress={() => {
+                            disptach(signup(new SignInUser(email,
+                                password)))
+                        }
+                        }>
                         <Text style={{ color: 'white', fontSize: 14, fontWeight: '700' }}>CONTINUE</Text>
                     </TouchableOpacity>
                 </View>
