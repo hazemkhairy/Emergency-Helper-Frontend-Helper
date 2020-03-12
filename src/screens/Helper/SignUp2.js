@@ -6,26 +6,30 @@ import * as Font from "expo-font";
 import * as DocumentPicker from 'expo-document-picker';
 import * as ImagePicker from 'expo-image-picker';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { signUpAction } from '../../store/User/SignUp-Helper/actions';
 
- 
 const SignUp2 = ({ navigation }) => {
-    
+
     return (
         <View style={styles.MainContainer}>
             <View style={styles.Container}>
-{/* 
-            <View>
-                    <Button type="clear"
-                        style={{ position: 'absolute', height: 50, width: 50, paddingTop: 20, fontWeight: '700' }}
-                        icon={<AntDesign name="arrowleft" size={15} color="white" />}
-                        onPress={() => {navigation.navigate('SignUpScreen')}} />
-                </View> */}
+
+                <View>
+                <TouchableOpacity
+                        onPress={() => navigation.navigate('Home')}
+                        style={styles.backbutton} >
+                        <Text>
+                            <Icon name="arrowleft" style={styles.iconstyle} />
+                        </Text>
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.line}>
                     <TouchableOpacity >
-                        <Text style={{ color: 'white', fontSize: 12, color: '#C0CDDC', marginRight: 50 }}onPress={()=>navigation.navigate('Login')} >SIGN IN</Text>
+                        <Text style={styles.textSignIn}   onPress={() => navigation.navigate('SignInScreen')} >SIGN IN</Text>
                     </TouchableOpacity>
                     <TouchableOpacity >
-                        <Text style={{ color: 'white', fontSize: 12 }} >SIGN UP</Text>
+                        <Text style={styles.textSignUp}  >SIGN UP</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -74,18 +78,22 @@ const SignUp2 = ({ navigation }) => {
                     />
 
                     <View style={{ paddingTop: 20 }}>
-                        <Text style={{ color: '#767676' }, { paddingTop: 50 }, { textAlign: 'center' }}>  By clicking continue you are confirming  </Text>
-                        <Text style={{ color: '#767676' }, { marginLeft: 10 }, { textAlign: 'center' }}>  all details are correct </Text>
+                        <Text style={styles.text1}>  By clicking continue you are confirming  </Text>
+                        <Text style={styles.text2}>  all details are correct </Text>
                     </View>
 
                 </View>
 
                 <View >
-                    <TouchableOpacity style={styles.Contunie}>
-                        <Text style={{ color: 'white', fontSize: 14, fontWeight: '700' }}>CONTINUE</Text>
+                    <TouchableOpacity style={styles.Contunie} onPress={() => {
+                        disptach(signup(new SignInUser(email,
+                            password)))
+                    }
+                    }>
+                        <Text style={styles.ContunieText}>CONTINUE</Text>
                     </TouchableOpacity>
                 </View>
-                
+
             </View>
         </View>
     )
@@ -99,50 +107,80 @@ const styles = StyleSheet.create({
     },
     Container: {
         backgroundColor: '#7598BA',
-        flex: 0.35,
+        flex: 0.34,
         borderBottomLeftRadius: 110
 
     },
     inputs: {
 
-        
-        height: hp('5%'),
+        height: '9%',
         backgroundColor: '#ffffff00',
-        marginHorizontal: 25,
-        marginVertical: 15,
+        marginLeft: '7%',
+        marginRight: '7%',
         borderBottomColor: '#DDDDDD',
         borderBottomWidth: 1,
-        marginBottom: 20,
-        marginTop: 5,
+        marginBottom: '2%',
+        marginTop: '2%',
         fontSize: 16,
         fontWeight: '500'
-        // fontFamily: 'light'
 
     },
     form: {
-        borderRadius: 4,
-        borderWidth: 0.5,
+        
         borderColor: '#d6d7da',
         backgroundColor: '#fff',
-        height:hp('70%') ,
-        marginLeft: 24,
-        marginRight: 24,
+        height: '200%',
+        width: '87%',
+        marginLeft: '7%',
+        marginRight: '7%',
+        marginBottom: '3%',
         borderRadius: 35,
         justifyContent: 'center',
+
 
 
     },
+    textSignIn: {
+        color: 'white',
+        fontSize: 12,
+        color: '#C0CDDC',
+        marginRight: 50
+
+    },
+    textSignUp: {
+        color: 'white',
+        fontSize: 12
+    },
+    text1: {
+        color: 'grey',
+        marginLeft: 10,
+        paddingTop: 20,
+        fontSize: 18,
+        marginRight: 10,
+        textAlign:"center"
+        
+    },
+    text2: {
+        fontSize: 18,
+        color: 'grey',
+        textAlign: 'center',
+    },
     Contunie: {
         backgroundColor: '#132641',
-        height: hp('7%'),
+        height: '37%',
         borderRadius: 35,
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 5,
-        marginLeft: 24,
-        marginRight: 24,
-        marginTop: 20,
-        width: wp('90%'),
+        marginLeft: '7%',
+        marginRight: '7%',
+        marginTop: '3%',
+        width: '87%',
+    },
+    ContunieText: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: '500',
+        
 
     },
     Button: {
@@ -154,10 +192,22 @@ const styles = StyleSheet.create({
     },
     line: {
         flexDirection: 'row',
-        marginTop: 50,
         justifyContent: 'center',
-        paddingBottom: 15,
-    }
+        marginTop: '20%',
+        marginRight: '20%',
+        marginLeft: '20%',
+        marginBottom: '5%'
+    },
+    backbutton: {
+        position: 'absolute',
+        marginTop: 60,
+        marginLeft: 30,
+        alignItems: "center"
+    },
+    iconstyle: {
+        color: '#fff',
+        fontSize: 20
+    },
 
 
 }
