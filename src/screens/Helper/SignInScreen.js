@@ -12,8 +12,8 @@ const SignInScreen = ({ navigation }) => {
   const disptach = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [email_error, setemail_error] = useState('');
-  const [password_error, setpassword_errorr] = useState('');
+  // const [email_error, setemail_error] = useState('');
+  // const [password_error, setpassword_errorr] = useState('');
 
 
   const isLoading = useSelector((state) => {
@@ -24,30 +24,30 @@ const SignInScreen = ({ navigation }) => {
   })
   console.log(isLoading);
 
-  const validationemail = () => {
-    if (email == "") {
-      setemail_error("Please enter your Email ")
+  // const validationemail = () => {
+  //   if (email == "") {
+  //     setemail_error("Please enter your Email ")
 
-    }
-    // else 
-    // {
-    // var validator = require("email-validator");
-    // if(validator.validate(email))
-    // {
-    //   setemail_error("")
-    // }
-    else setemail_error("")
-    //}  
-  }
-  const validationpassword = () => {
-    console.log(password)
+  //   }
+  //   // else 
+  //   // {
+  //   // var validator = require("email-validator");
+  //   // if(validator.validate(email))
+  //   // {
+  //   //   setemail_error("")
+  //   // }
+  //   else setemail_error("")
+  //   //}  
+  // }
+  // const validationpassword = () => {
+  //   console.log(password)
 
-    if (password == '') {
-      setpassword_errorr(" Please enter your Password")
+  //   if (password == '') {
+  //     setpassword_errorr(" Please enter your Password")
 
-    }
-    else setpassword_errorr("")
-  }
+  //   }
+  //   else setpassword_errorr("")
+  // }
   return (
 
     <View style={styles.maincontainer}>
@@ -85,10 +85,10 @@ const SignInScreen = ({ navigation }) => {
             value={email}
             autoCapitalize='none'
             onChangeText={(text) => setEmail(text)}
-            onBlur={() => validationemail()}
+           // onBlur={() => validationemail()}
 
           />
-          <Text style={styles.texterror}>{email_error}</Text>
+          {/* <Text style={styles.texterror}>{email_error}</Text> */}
 
           <TextInput
             secureTextEntry={true}
@@ -99,10 +99,10 @@ const SignInScreen = ({ navigation }) => {
             style={styles.input}
             value={password}
             onChangeText={(text) => { setPassword(text) }}
-            onBlur={(text) => validationpassword(text)}
+           // onBlur={(text) => validationpassword(text)}
 
           />
-          <Text style={styles.texterror}>{password_error}</Text>
+          {/* <Text style={styles.texterror}>{password_error}</Text> */}
 
         </View>
         <View>
@@ -139,13 +139,13 @@ const SignInScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   maincontainer: {
     backgroundColor: '#F1F0F2',
-    //flex: 1
+    flex: 1,
     height:'100%'
   },
   container: {
     backgroundColor: '#7598BA',
-    //flex: 0.34,
-    height:'33%',
+    flex: 0.34,
+   
     borderBottomLeftRadius: 75
   },
   Rowbuttons: {
@@ -230,8 +230,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontWeight: '500',
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent:"center",
+    alignItems:"center",
+    fontFamily:'Montserrat_SemiBold'
 
   },
   buttonforget: {
