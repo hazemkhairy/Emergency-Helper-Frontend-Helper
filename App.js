@@ -6,13 +6,15 @@ import Home from './src/screens/Home';
 import { Provider } from 'react-redux';
 import React from 'react'
 import store from './src/store/index';
-
+import IndexScreen from './src/screens/IndexScreen';
 const navigator = createAppContainer(
   createSwitchNavigator({
+    IndexScreen,
     Home,
     SignUpScreen,
     SignUp2,
-    SignInScreen
+    SignInScreen,
+    
 
   })
 

@@ -30,12 +30,7 @@ const SignUp = ({ navigation }) => {
             <View style={styles.MainContainer}>
                 <View style={styles.Container}>
 
-                    {/* <View >
-                            <Button type="clear"
-                                style={{ position: 'absolute', marginTop: 30, marginLeft: 20 }}
-                                icon={<AntDesign name="arrowleft" size={20} color="white" />}
-                                onPress={() => this.props.navigation.navigate('Home')} />
-                        </View>  */}
+                    
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Home')}
                         style={styles.backbutton} >
@@ -169,7 +164,10 @@ const styles = StyleSheet.create({
         marginBottom: '2%',
         marginTop: '2%',
         fontSize: 16,
-        fontWeight: '500'
+        fontWeight: '500',
+        fontFamily:'Montserrat_Medium'
+
+
 
 
     },
@@ -183,7 +181,7 @@ const styles = StyleSheet.create({
         marginRight: '7%',
         marginBottom: '3%',
         borderRadius: 35,
-        justifyContent: 'center',
+        justifyContent: 'center'
 
     },
     ButtonContunie: {
@@ -210,23 +208,27 @@ const styles = StyleSheet.create({
     backbutton: {
         position: 'absolute',
         marginTop: 60,
-        marginLeft: 30,
+        marginLeft: 20,
         alignItems: "center"
     },
     text1: {
         color: 'grey',
         marginLeft: 10,
         paddingTop: 15,
-        fontSize: 16,
+        fontSize: 14,
         marginRight: 10,
-        textAlign:'center'
+        textAlign:'center',
+        fontFamily:'Montserrat'
+
         
     },
     text2: {
-        fontSize: 16,
+        fontSize: 14,
         color: '#132641',
         textAlign: 'center',
-        textDecorationLine: 'underline'
+        textDecorationLine: 'underline',
+        fontFamily:'Montserrat'
+
 
     },
     ContunieText: {
@@ -234,19 +236,25 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '500',
         justifyContent:"center",
-        alignItems:"center"
+        alignItems:"center",
+        fontFamily:'Montserrat_SemiBold'
+
 
     },
     textSignIn: {
         color: 'white',
         fontSize: 12,
         color: '#C0CDDC',
-        marginRight: 50
+        marginRight: 50,
+        fontFamily:'Montserrat_SemiBold'
+
 
     },
     textSignUp: {
         color: 'white',
-        fontSize: 12
+        fontSize: 12,
+        fontFamily:'Montserrat_SemiBold'
+
     },
     iconstyle: {
         color: '#fff',

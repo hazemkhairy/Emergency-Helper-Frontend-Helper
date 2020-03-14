@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     Container: {
         backgroundColor: '#7598BA',
         flex: 0.34,
-        borderBottomLeftRadius: 110
+        borderBottomLeftRadius: 75
 
     },
     inputs: {
@@ -122,7 +122,9 @@ const styles = StyleSheet.create({
         marginBottom: '2%',
         marginTop: '2%',
         fontSize: 16,
-        fontWeight: '500'
+        fontWeight: '500',
+        fontFamily:'Montserrat_Medium'
+
 
     },
     form: {
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
         marginRight: '7%',
         marginBottom: '3%',
         borderRadius: 35,
-        justifyContent: 'center',
+        justifyContent: 'center'
 
 
 
@@ -144,26 +146,34 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 12,
         color: '#C0CDDC',
-        marginRight: 50
+        marginRight: 50,
+        fontFamily:'Montserrat_SemiBold'
+
 
     },
     textSignUp: {
         color: 'white',
-        fontSize: 12
+        fontSize: 12,
+        fontFamily:'Montserrat_SemiBold'
+
     },
     text1: {
         color: 'grey',
         marginLeft: 10,
         paddingTop: 20,
-        fontSize: 18,
+        fontSize: 14,
         marginRight: 10,
-        textAlign:"center"
+        textAlign:"center",
+        fontFamily:'Montserrat'
+
         
     },
     text2: {
-        fontSize: 18,
+        fontSize: 14,
         color: 'grey',
         textAlign: 'center',
+        fontFamily:'Montserrat'
+
     },
     Contunie: {
         backgroundColor: '#132641',
@@ -180,6 +190,8 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 14,
         fontWeight: '500',
+        fontFamily:'Montserrat_SemiBold'
+
         
 
     },
