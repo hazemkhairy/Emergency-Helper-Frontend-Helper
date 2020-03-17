@@ -8,89 +8,93 @@ import * as ImagePicker from 'expo-image-picker';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { signUpAction } from '../../store/User/SignUp-Helper/actions';
+import globalStyle from '../../Styles/Global/globalStyle';
+import signUpStyle from '../../Styles/signUpStyle';
+
 
 const SignUp2 = ({ navigation }) => {
 
     return (
-        <View style={styles.MainContainer}>
-            <View style={styles.Container}>
+        <View style={globalStyle.white_background}>
+        <View style={globalStyle.blue_background}>
 
                 <View>
                 <TouchableOpacity
-                        onPress={() => navigation.navigate('Home')}
-                        style={styles.backbutton} >
+                        onPress={() => navigation.navigate('SignUpScreen')}
+                        style={globalStyle.backbutton} >
                         <Text>
-                            <Icon name="arrowleft" style={styles.iconstyle} />
+                            <Icon name="arrowleft" style={globalStyle.iconstyle} />
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.line}>
+                <View style={globalStyle.SignIn_SignUp}>
                     <TouchableOpacity >
-                        <Text style={styles.textSignIn}   onPress={() => navigation.navigate('SignInScreen')} >SIGN IN</Text>
+                        <Text style={signUpStyle.signInText}   onPress={() => navigation.navigate('SignInScreen')} >SIGN IN</Text>
                     </TouchableOpacity>
                     <TouchableOpacity >
-                        <Text style={styles.textSignUp}  >SIGN UP</Text>
+                        <Text style={signUpStyle.signUptext}  >SIGN UP</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.form}>
+                <View style={signUpStyle.form}>
                     <TextInput
                         autoCapitalize="none"
                         autoCorrect={false}
-                        style={styles.inputs}
+                        style={signUpStyle.inputs}
                         placeholder="Front ID "
                     />
 
                     <TextInput
                         autoCapitalize="none"
                         autoCorrect={false}
-                        style={styles.inputs}
+                        style={signUpStyle.inputs}
                         placeholder="Back ID"
                     />
 
                     <TextInput
                         autoCapitalize="none"
                         autoCorrect={false}
-                        style={styles.inputs}
+                        style={signUpStyle.inputs}
                         placeholder="Certificates"
                     />
 
                     <TextInput
                         autoCapitalize="none"
                         autoCorrect={false}
-                        style={styles.inputs}
+                        style={signUpStyle.inputs}
                         placeholder="Personal Photo"
                     />
 
                     <TextInput placeholder="Categories"
                         autoCapitalize="none"
                         autoCorrect={false}
-                        style={styles.inputs}
+                        style={signUpStyle.inputs}
 
                     />
 
                     <TextInput
                         autoCapitalize="none"
                         autoCorrect={false}
-                        style={styles.inputs}
+                        style={signUpStyle.inputs}
                         placeholder="Skills"
 
                     />
 
                     <View style={{ paddingTop: 20 }}>
-                        <Text style={styles.text1}>  By clicking continue you are confirming  </Text>
-                        <Text style={styles.text2}>  all details are correct </Text>
+                        <Text style={signUpStyle.ClickingText}>  By clicking continue you are confirming  </Text>
+                        <Text style={signUpStyle.ClickingText}>  all details are correct </Text>
                     </View>
 
                 </View>
 
                 <View >
-                    <TouchableOpacity style={styles.Contunie} onPress={() => {
+                    <TouchableOpacity style={globalStyle.Continuebutton}
+                     onPress={() => {
                         disptach(signup(new SignInUser(email,
                             password)))
                     }
                     }>
-                        <Text style={styles.ContunieText}>CONTINUE</Text>
+                        <Text style={globalStyle.continueText}>CONTINUE</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -98,134 +102,6 @@ const SignUp2 = ({ navigation }) => {
         </View>
     )
 };
-
-const styles = StyleSheet.create({
-
-    MainContainer: {
-        backgroundColor: '#F1F0F2',
-        flex: 1
-    },
-    Container: {
-        backgroundColor: '#7598BA',
-        flex: 0.34,
-        borderBottomLeftRadius: 75
-
-    },
-    inputs: {
-
-        height: '9%',
-        backgroundColor: '#ffffff00',
-        marginLeft: '7%',
-        marginRight: '7%',
-        borderBottomColor: '#DDDDDD',
-        borderBottomWidth: 1,
-        marginBottom: '2%',
-        marginTop: '2%',
-        fontSize: 16,
-        fontWeight: '500',
-        fontFamily:'Montserrat_Medium'
-
-
-    },
-    form: {
-        
-        borderColor: '#d6d7da',
-        backgroundColor: '#fff',
-        height: '200%',
-        width: '87%',
-        marginLeft: '7%',
-        marginRight: '7%',
-        marginBottom: '3%',
-        borderRadius: 35,
-        justifyContent: 'center'
-
-
-
-    },
-    textSignIn: {
-        color: 'white',
-        fontSize: 12,
-        color: '#C0CDDC',
-        marginRight: 50,
-        fontFamily:'Montserrat_SemiBold'
-
-
-    },
-    textSignUp: {
-        color: 'white',
-        fontSize: 12,
-        fontFamily:'Montserrat_SemiBold'
-
-    },
-    text1: {
-        color: 'grey',
-        marginLeft: 10,
-        paddingTop: 20,
-        fontSize: 14,
-        marginRight: 10,
-        textAlign:"center",
-        fontFamily:'Montserrat'
-
-        
-    },
-    text2: {
-        fontSize: 14,
-        color: 'grey',
-        textAlign: 'center',
-        fontFamily:'Montserrat'
-
-    },
-    Contunie: {
-        backgroundColor: '#132641',
-        height: '37%',
-        borderRadius: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: '7%',
-        marginRight: '7%',
-        marginTop: '3%',
-        width: '87%',
-    },
-    ContunieText: {
-        color: '#fff',
-        fontSize: 14,
-        fontWeight: '500',
-        fontFamily:'Montserrat_SemiBold'
-
-        
-
-    },
-    Button: {
-        backgroundColor: '#7598BA',
-        flexDirection: 'row',
-        marginLeft: 50,
-        marginRight: 50
-
-    },
-    line: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: '20%',
-        marginRight: '20%',
-        marginLeft: '20%',
-        marginBottom: '5%'
-    },
-    backbutton: {
-        position: 'absolute',
-        marginTop: 60,
-        marginLeft: 30,
-        alignItems: "center"
-    },
-    iconstyle: {
-        color: '#fff',
-        fontSize: 20
-    },
-
-
-}
-
-
-);
 
 export default SignUp2;
 

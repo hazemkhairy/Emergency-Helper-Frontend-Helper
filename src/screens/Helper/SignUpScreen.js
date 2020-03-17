@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SignUpUser } from '../../Modules/User/UserModule';
 import { signUpAction } from '../../store/User/SignUp-Helper/actions';
 import Icon from 'react-native-vector-icons/AntDesign';
-//import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import globalStyle from '../../Styles/Global/globalStyle';
+import signUpStyle from '../../Styles/signUpStyle';
 
 
 
@@ -23,110 +23,199 @@ const SignUp = ({ navigation }) => {
         const [password, setPassword] = useState('');
         const [confirmPassword, setConfirmPassword] = useState('');
 
+        const [firstname_error, setFirstname_error] = useState('');
+        const [lastname_error, setLastname_error] = useState('');
+        const [phonenumber_error, setPhonenumber_error] = useState('');
+        const [email_error, setemail_error] = useState('');
+        const [password_error, setpassword_error] = useState('');
+        const [confirmpassword_error, setConfirmPassword_error] = useState('');
+
+        const onSubmit = () => {
+            if (firstName == "") {
+                setFirstname_error("Please Enter your First Name ")
+
+            }
+
+            else {
+                const valid = /^[A-Za-z]+$/;
+                if (valid.test(email) === true) {
+                    setFirstname_error("")
+                }
+                else {
+                    setFirstname_error("Please Enter Valid Name")
+                }
+            }
+
+            if (lastName == '') {
+                setLastname_error("Please Enter your Last Name")
+            }
+            else setLastname_error("")
+            if (phoneNumber == "") {
+                setPhonenumber_error("Please Enter your Phone number ")
+            }
+            else setPhonenumber_error("")
+
+            if (email == '') {
+                setemail_error("Please Enter your Email")
+            }
+            else {
+                const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+                if (valid.test(email) === true) {
+                    setemail_error("")
+                }
+                else {
+                    setemail_error("Invalid Email")
+                }
+
+            }
+            if (password == '') {
+                setpassword_error("Please Enter your Password")
+            }
+            else {
+                if (password.length <= 8) {
+                    setpassword_error("Password must be 8 characters or more")
+                }
+                else { setpassword_error("") }
+            }
+
+            if (confirmPassword == '') {
+                setConfirmPassword_error("Please Confirm your Password")
+            }
+            else {
+                if (password != confirmPassword) {
+                    setConfirmPassword_error("Password doesn't match")
+                }
+                else
+                    setConfirmPassword_error("")
+            }
+        }
+
+
+
 
 
         return (
 
-            <View style={styles.MainContainer}>
-                <View style={styles.Container}>
+            <View style={globalStyle.white_background}>
+                <View style={globalStyle.blue_background}>
 
-                    
+
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Home')}
-                        style={styles.backbutton} >
+                        style={globalStyle.backbutton} >
                         <Text>
-                            <Icon name="arrowleft" style={styles.iconstyle} />
+                            <Icon name="arrowleft" style={globalStyle.iconstyle} />
                         </Text>
                     </TouchableOpacity>
 
-                    <View style={styles.RowButton}>
-                        <TouchableOpacity  onPress={() => navigation.navigate('SignInScreen')}>
-                            <Text style={styles.textSignIn} >SIGN IN</Text>
+                    <View style={globalStyle.SignIn_SignUp}>
+                        <TouchableOpacity onPress={() => navigation.navigate('SignInScreen')}>
+                            <Text style={signUpStyle.signInText} >SIGN IN</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity >
-                            <Text style={styles.textSignUp} >SIGN UP</Text>
+                            <Text style={signUpStyle.signUptext} >SIGN UP</Text>
                         </TouchableOpacity>
 
                     </View>
 
-                    <View style={styles.form}>
+                    <View style={signUpStyle.form}>
 
                         <TextInput
                             autoCapitalize="none"
                             autoCorrect={false}
-                            style={styles.inputs}
                             placeholder="First Name"
                             value={firstName}
                             onChangeText={(text) => setFirstName(text)}
+                            style={[signUpStyle.inputs, !firstname_error == '' ? globalStyle.error : null]}
                         />
+                        <Text style={globalStyle.texterror}>{firstname_error}</Text>
+
                         <TextInput
                             autoCapitalize="none"
                             autoCorrect={false}
-                            style={styles.inputs}
                             placeholder="Last Name"
                             value={lastName}
+                            style={[signUpStyle.inputs, !lastname_error == '' ? globalStyle.error : null]}
                             onChangeText={(text) => setLastName(text)}
+
                         />
+                        <Text style={globalStyle.texterror}>{lastname_error}</Text>
+
                         <TextInput
                             autoCapitalize="none"
                             autoCorrect={false}
-                            style={styles.inputs}
                             placeholder="Phone Number"
                             keyboardType={"numeric"}
                             value={phoneNumber}
                             onChangeText={(text) => setPhoneNumber(text)}
+                            style={[signUpStyle.inputs, !phonenumber_error == '' ? globalStyle.error : null]}
+
 
                         />
+                        <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
+
                         <TextInput
 
                             autoCapitalize="none"
                             autoCorrect={false}
-                            style={styles.inputs}
                             placeholder="Email"
                             keyboardType={"email-address"}
                             value={email}
                             onChangeText={(text) => setEmail(text)}
+                            style={[signUpStyle.inputs, !email_error == '' ? globalStyle.error : null]}
+
 
 
                         />
+                        <Text style={globalStyle.texterror}>{email_error}</Text>
+
                         <TextInput placeholder="Passwrod"
                             autoCapitalize="none"
                             autoCorrect={false}
-                            style={styles.inputs}
                             secureTextEntry={true}
                             value={password}
                             onChangeText={(text) => setPassword(text)}
-
+                            style={[signUpStyle.inputs, !password_error == '' ? globalStyle.error : null]}
 
 
                         />
+                        <Text style={globalStyle.texterror}>{password_error}</Text>
+
                         <TextInput
                             autoCapitalize="none"
                             autoCorrect={false}
-                            style={styles.inputs}
                             placeholder="Confrim Password"
                             secureTextEntry={true}
                             value={confirmPassword}
                             onChangeText={(text) => setConfirmPassword(text)}
-
-
+                            style={[signUpStyle.inputs, !confirmpassword_error == '' ? globalStyle.error : null]}
 
                         />
+                        <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>
+
 
                         <View style={{ paddingTop: 20 }}>
-                            <Text style={styles.text1}>By clicking continue you are agreeing to our</Text>
+                            <Text style={signUpStyle.ClickingText}>By clicking continue you are agreeing to our</Text>
 
                             <TouchableOpacity >
-                                <Text style={styles.text2}>Terms and Conditions</Text>
+                                <Text style={signUpStyle.termsAndConditionsText}>Terms and Conditions</Text>
                             </TouchableOpacity>
                         </View>
 
                     </View>
 
                     <View >
-                        <TouchableOpacity style={styles.ButtonContunie} onPress={() => navigation.navigate('SignUp2')}  >
-                            <Text style={styles.ContunieText} >CONTINUE</Text>
+                        <TouchableOpacity style={globalStyle.Continuebutton}
+                            onPress={() => {
+                                onSubmit()
+                                //navigation.navigate('SignUp2')
+
+
+                            }
+                            }
+                        >
+                            <Text style={globalStyle.continueText}>CONTINUE</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -138,133 +227,6 @@ const SignUp = ({ navigation }) => {
         )
     }
 };
-
-const styles = StyleSheet.create({
-
-    MainContainer: {
-        backgroundColor: '#F1F0F2',
-        flex: 1,
-
-    },
-
-    Container: {
-        backgroundColor: '#7598BA',
-        flex: 0.34,
-        borderBottomLeftRadius: 75,
-    },
-
-    inputs: {
-
-        height: '9%',
-        backgroundColor: '#ffffff00',
-        marginLeft: '7%',
-        marginRight: '7%',
-        borderBottomColor: '#DDDDDD',
-        borderBottomWidth: 1,
-        marginBottom: '2%',
-        marginTop: '2%',
-        fontSize: 16,
-        fontWeight: '500',
-        fontFamily:'Montserrat_Medium'
-
-
-
-
-    },
-    form: {
-
-        borderColor: '#d6d7da',
-        backgroundColor: '#fff',
-        height: '200%',
-        width: '87%',
-        marginLeft: '7%',
-        marginRight: '7%',
-        marginBottom: '3%',
-        borderRadius: 35,
-        justifyContent: 'center'
-
-    },
-    ButtonContunie: {
-        backgroundColor: '#132641',
-        height: '37%',
-        borderRadius: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: '7%',
-        marginRight: '7%',
-        marginTop: '3%',
-        width: '87%',
-    },
-
-    RowButton: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: '20%',
-        marginRight: '20%',
-        marginLeft: '20%',
-        marginBottom: '5%'
-
-    },
-    backbutton: {
-        position: 'absolute',
-        marginTop: 60,
-        marginLeft: 20,
-        alignItems: "center"
-    },
-    text1: {
-        color: 'grey',
-        marginLeft: 10,
-        paddingTop: 15,
-        fontSize: 14,
-        marginRight: 10,
-        textAlign:'center',
-        fontFamily:'Montserrat'
-
-        
-    },
-    text2: {
-        fontSize: 14,
-        color: '#132641',
-        textAlign: 'center',
-        textDecorationLine: 'underline',
-        fontFamily:'Montserrat'
-
-
-    },
-    ContunieText: {
-        color: '#fff',
-        fontSize: 14,
-        fontWeight: '500',
-        justifyContent:"center",
-        alignItems:"center",
-        fontFamily:'Montserrat_SemiBold'
-
-
-    },
-    textSignIn: {
-        color: 'white',
-        fontSize: 12,
-        color: '#C0CDDC',
-        marginRight: 50,
-        fontFamily:'Montserrat_SemiBold'
-
-
-    },
-    textSignUp: {
-        color: 'white',
-        fontSize: 12,
-        fontFamily:'Montserrat_SemiBold'
-
-    },
-    iconstyle: {
-        color: '#fff',
-        fontSize: 20
-    },
-
-}
-
-
-);
 
 export default SignUp;
 
