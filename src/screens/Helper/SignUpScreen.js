@@ -38,11 +38,11 @@ const SignUp = ({ navigation }) => {
 
             else {
                 const valid = /^[A-Za-z]+$/;
-                if (valid.test(email) === true) {
+                if (valid.test(firstName) === true) {
                     setFirstname_error("")
                 }
                 else {
-                    setFirstname_error("Please Enter Valid Name")
+                    setFirstname_error("Please Enter Valid Name without Numbers")
                 }
             }
 
@@ -53,7 +53,22 @@ const SignUp = ({ navigation }) => {
             if (phoneNumber == "") {
                 setPhonenumber_error("Please Enter your Phone number ")
             }
-            else setPhonenumber_error("")
+            else
+            {
+              var numbers =  /^[0-9\b]+$/;
+              if(phoneNumber.length!=12)
+              {
+                setPhonenumber_error("Please Enter valid mobile number")
+              }
+              else{
+              if (numbers.test(phonenumber_error) === true){
+          
+                setPhonenumber_error("")
+              }
+              else 
+              setPhonenumber_error("Please Enter Numbers only")
+            }
+            }
 
             if (email == '') {
                 setemail_error("Please Enter your Email")

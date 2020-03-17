@@ -33,7 +33,16 @@ const SignInScreen = ({ navigation }) => {
       setemail_error("Please Enter your Email ")
 
     }
-    else setemail_error("")
+    else
+    {
+      const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/ ;
+      if (valid.test(email) === true){
+        setemail_error("")
+    }
+    else{
+      setemail_error("Invalid Email")
+    }
+  }
 
     if (password == '') {
       setpassword_error(" Please Enter your Password")
