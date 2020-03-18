@@ -3,10 +3,13 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   
-   
+    container:{
+        position:'absolute',
+        
+        height:'100%'
+    },
     inputs: {
-
-        height: '8%',
+        height: '5%',
         backgroundColor: '#ffffff00',
         marginLeft: '7%',
         marginRight: '7%',
@@ -20,26 +23,23 @@ export default StyleSheet.create({
 
     },
     form: {
-
         borderColor: '#d6d7da',
         backgroundColor: '#fff',
-        height: '200%',
         width: '87%',
         marginLeft: '7%',
         marginRight: '7%',
-        marginBottom: '3%',
+        
+        marginBottom: '5%',
+        paddingTop:'10%',
         borderRadius: 35,
         justifyContent: 'center'
 
     },
     signInText: {
-        color: 'white',
         fontSize: 12,
         color: '#C0CDDC',
         marginRight: 50,
         fontFamily: 'Montserrat_SemiBold'
-
-
     },
     signUptext: {
         color: 'white',
@@ -54,8 +54,6 @@ export default StyleSheet.create({
         marginRight: 10,
         textAlign: 'center',
         fontFamily: 'Montserrat'
-
-
     },
     termsAndConditionsText: {
         fontSize: 14,

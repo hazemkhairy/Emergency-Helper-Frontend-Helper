@@ -1,13 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { Button } from 'react-native-elements';
-import * as Font from "expo-font";
-import * as DocumentPicker from 'expo-document-picker';
-import * as ImagePicker from 'expo-image-picker';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import Icon from 'react-native-vector-icons/AntDesign';
-import { signUpAction } from '../../store/User/SignUp-Helper/actions';
+
 import globalStyle from '../../Styles/Global/globalStyle';
 import signUpStyle from '../../Styles/signUpStyle';
 
