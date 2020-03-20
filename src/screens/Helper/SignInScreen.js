@@ -30,34 +30,34 @@ const SignInScreen = ({ navigation }) => {
   console.log(isLoading);
 
   const onSubmit = () => {
+
+    let thereIsError = false;
     if (email == "") {
       setemail_error("Please Enter your Email ")
 
     }
-    else
-    {
-      const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/ ;
-      if (valid.test(email) === true){
+    else {
+      const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      if (valid.test(email) === true) {
         setemail_error("")
+      }
+      else {
+        setemail_error("Invalid Email")
+      }
     }
-    else{
-      setemail_error("Invalid Email")
-    }
-  }
 
     if (password == '') {
       setpassword_error(" Please Enter your Password")
     }
-    else
-     {
+    else {
       if (password.length < 8) {
-          thereIsError = true;
-          setpassword_error("Please Enter 8 characters or more ")
+        thereIsError = true;
+        setpassword_error("Please Enter 8 characters or more ")
       }
       else {
-         setpassword_error("")
-         }
-  }
+        setpassword_error("")
+      }
+    }
   }
 
 
