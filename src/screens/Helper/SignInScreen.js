@@ -12,6 +12,7 @@ import signInStyle from '../../Styles/signInStyle';
 const SignInScreen = ({ navigation }) => {
 
   const disptach = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [email_error, setemail_error] = useState('');
@@ -47,7 +48,16 @@ const SignInScreen = ({ navigation }) => {
     if (password == '') {
       setpassword_error(" Please Enter your Password")
     }
-    else setpassword_error("")
+    else
+     {
+      if (password.length < 8) {
+          thereIsError = true;
+          setpassword_error("Please Enter 8 characters or more ")
+      }
+      else {
+         setpassword_error("")
+         }
+  }
   }
 
 

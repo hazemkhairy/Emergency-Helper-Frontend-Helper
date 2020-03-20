@@ -11,6 +11,8 @@ import { SaveSignUpDataAction } from '../../store/User/SignUp-Helper/actions';
 const SignUp = ({ navigation }) => {
 
 
+
+
     const disptach = useDispatch();
 
     const user = useSelector((store) => { return store.signUpReducer.user })
@@ -51,27 +53,31 @@ const SignUp = ({ navigation }) => {
             thereIsError = true;
             setLastname_error("Please Enter your Last Name")
         }
-        else setLastname_error("")
+        else {
+            const valid = /^[A-Za-z]+$/;
+            if (valid.test(lastName) === true) {
+                setLastname_error("")
+            }
+            else {
+                thereIsError = true;
+                setLastname_error("Please Enter Valid Name without Numbers")
+            }
+        }
         if (!phoneNumber || phoneNumber == "") {
             thereIsError = true;
-            setPhonenumber_error("Please Enter your Phone number ")
+            setPhonenumber_error("Please Enter your Phone Number ")
         }
         else {
             var numbers = /^[0-9\b]+$/;
-            if (phoneNumber.length != 12) {
-                thereIsError = true;
-                setPhonenumber_error("Please Enter valid mobile number")
+            if (numbers.test(phoneNumber) === true) {
+                setPhonenumber_error("")
             }
             else {
-                if (numbers.test(phonenumber_error) === true) {
 
-                    setPhonenumber_error("")
-                }
-                else {
-                    thereIsError = true;
-                    setPhonenumber_error("Please Enter Numbers only")
-                }
+                thereIsError = true;
+                setPhonenumber_error("Please Enter Numbers Only ")
             }
+
         }
 
         if (!email || email == '') {
@@ -94,7 +100,7 @@ const SignUp = ({ navigation }) => {
             setpassword_error("Please Enter your Password")
         }
         else {
-            if (password.length <= 8) {
+            if (password.length < 8) {
                 thereIsError = true;
                 setpassword_error("Password must be 8 characters or more")
             }

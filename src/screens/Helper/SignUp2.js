@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SaveSignUpDataAction } from '../../store/User/SignUp-Helper/actions';
 
 
+
+
 const SignUp2 = ({ navigation }) => {
 
 
