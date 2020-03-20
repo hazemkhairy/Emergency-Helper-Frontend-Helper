@@ -1,12 +1,12 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 
 export default StyleSheet.create({
-  
-    container:{
-        position:'absolute',
-        
-        height:'100%'
+
+    container: {
+        position: 'absolute',
+
+        height: '100%'
     },
     inputs: {
         height: '5%',
@@ -28,9 +28,7 @@ export default StyleSheet.create({
         width: '87%',
         marginLeft: '7%',
         marginRight: '7%',
-        
         marginBottom: '5%',
-        paddingTop:'10%',
         borderRadius: 35,
         justifyContent: 'center'
 
@@ -44,7 +42,7 @@ export default StyleSheet.create({
     signUptext: {
         color: 'white',
         fontSize: 12,
-        fontFamily:'Montserrat_SemiBold'
+        fontFamily: 'Montserrat_SemiBold'
     },
     ClickingText: {
         color: 'grey',
@@ -62,6 +60,20 @@ export default StyleSheet.create({
         textDecorationLine: 'underline',
         fontFamily: 'Montserrat'
 
-}
-     
+    },
+    globalInput: {
+
+        marginLeft: '7%',
+        marginRight: '7%',
+        marginBottom: '0%',
+        marginTop: '10%',
+    },
+    globalPhotoPicker:{
+        
+        marginLeft: '7%',
+        marginRight: '7%',
+        marginBottom: '0%',
+        marginTop: '10%',
+    }
+
 });

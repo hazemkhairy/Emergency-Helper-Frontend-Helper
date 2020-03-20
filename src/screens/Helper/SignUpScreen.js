@@ -3,19 +3,24 @@ import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'r
 import Icon from 'react-native-vector-icons/AntDesign';
 import globalStyle from '../../Styles/Global/globalStyle';
 import signUpStyle from '../../Styles/signUpStyle';
+import { useSelector, useDispatch } from 'react-redux';
+import { SaveSignUpDataAction } from '../../store/User/SignUp-Helper/actions';
 
 
 
 const SignUp = ({ navigation }) => {
 
 
-    //const disptach = useDispatch();
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const disptach = useDispatch();
+
+    const user = useSelector((store) => { return store.signUpReducer.user })
+
+    const [firstName, setFirstName] = useState(user.firstName);
+    const [lastName, setLastName] = useState(user.lastName);
+    const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
+    const [email, setEmail] = useState(user.email);
+    const [password, setPassword] = useState(user.password);
+    const [confirmPassword, setConfirmPassword] = useState(user.confirmPassword);
 
     const [firstname_error, setFirstname_error] = useState('');
     const [lastname_error, setLastname_error] = useState('');
@@ -25,9 +30,10 @@ const SignUp = ({ navigation }) => {
     const [confirmpassword_error, setConfirmPassword_error] = useState('');
 
     const onSubmit = () => {
-        if (firstName == "") {
+        let thereIsError = false;
+        if (!firstName || firstName == "") {
             setFirstname_error("Please Enter your First Name ")
-
+            thereIsError = true;
         }
 
         else {
@@ -36,20 +42,24 @@ const SignUp = ({ navigation }) => {
                 setFirstname_error("")
             }
             else {
+                thereIsError = true;
                 setFirstname_error("Please Enter Valid Name without Numbers")
             }
         }
 
         if (lastName == '') {
+            thereIsError = true;
             setLastname_error("Please Enter your Last Name")
         }
         else setLastname_error("")
-        if (phoneNumber == "") {
+        if (!phoneNumber || phoneNumber == "") {
+            thereIsError = true;
             setPhonenumber_error("Please Enter your Phone number ")
         }
         else {
             var numbers = /^[0-9\b]+$/;
             if (phoneNumber.length != 12) {
+                thereIsError = true;
                 setPhonenumber_error("Please Enter valid mobile number")
             }
             else {
@@ -57,12 +67,15 @@ const SignUp = ({ navigation }) => {
 
                     setPhonenumber_error("")
                 }
-                else
+                else {
+                    thereIsError = true;
                     setPhonenumber_error("Please Enter Numbers only")
+                }
             }
         }
 
-        if (email == '') {
+        if (!email || email == '') {
+            thereIsError = true;
             setemail_error("Please Enter your Email")
         }
         else {
@@ -71,30 +84,36 @@ const SignUp = ({ navigation }) => {
                 setemail_error("")
             }
             else {
+                thereIsError = true;
                 setemail_error("Invalid Email")
             }
 
         }
-        if (password == '') {
+        if (!password || password == '') {
+            thereIsError = true;
             setpassword_error("Please Enter your Password")
         }
         else {
             if (password.length <= 8) {
+                thereIsError = true;
                 setpassword_error("Password must be 8 characters or more")
             }
             else { setpassword_error("") }
         }
 
-        if (confirmPassword == '') {
+        if (!confirmPassword || confirmPassword == '') {
+            thereIsError = true;
             setConfirmPassword_error("Please Confirm your Password")
         }
         else {
             if (password != confirmPassword) {
+                thereIsError = true;
                 setConfirmPassword_error("Password doesn't match")
             }
             else
                 setConfirmPassword_error("")
         }
+        return thereIsError
     }
 
 
@@ -218,8 +237,14 @@ const SignUp = ({ navigation }) => {
                 <View >
                     <TouchableOpacity style={globalStyle.Continuebutton}
                         onPress={() => {
-                            onSubmit()
-                            //navigation.navigate('SignUp2')
+                            if (
+                                !onSubmit()
+
+                            ) {
+
+                                disptach(SaveSignUpDataAction({ ...user, firstName, lastName, email, password, mobileNumber, confirmPassword }))
+                                navigation.navigate('SignUp2')
+                            }
 
 
                         }

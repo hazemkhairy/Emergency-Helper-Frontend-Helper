@@ -5,7 +5,7 @@ export class SignInUser {
     }
 }
 export class SignUpUser{
-    constructor(firstName,lastName,email,mobileNumber,password,confirmPassword,frontID,backID,certificates,personalPhoto,categories,skills){
+    constructor(firstName='',lastName='',email='',mobileNumber='',password='',confirmPassword='',frontID={},backID={},certificates={},personalPhoto={},categories='',skills=''){
         this.firstName=firstName;
         this.lastName=lastName
         this.email=email;
