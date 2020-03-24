@@ -11,7 +11,7 @@ export const Failed_Sign_In = 'Failed_SIGN_IN';
 export const signInAction = (user = new SignInUser()) => {
 
     return (dispatch) => {
-        
+
         dispatch({ type: Start_Sign_In })
         axios.post('https://emergency-helper.herokuapp.com/account/login', {
             email: user.email,
@@ -19,18 +19,18 @@ export const signInAction = (user = new SignInUser()) => {
         })
             .then(res => {
                 console.log(res.data)
-                dispatch({ type: Success_Sign_In, payload:{token:res.data.token}})
+                dispatch({ type: Success_Sign_In, payload: { token: res.data.token } })
             })
-            .catch(err => { 
-    
-                console.log(err) 
+            .catch(err => {
+
+                console.log(err)
                 dispatch({ type: Failed_Sign_In })
-                 
+
             })
 
     }
 
 
 
-    
+
 }

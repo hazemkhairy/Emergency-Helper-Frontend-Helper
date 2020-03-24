@@ -9,8 +9,7 @@ export default StyleSheet.create({
     marginTop: '20%',
     marginRight: '20%',
     marginLeft: '20%',
-    marginBottom: '5%',
-    
+    marginBottom: '5%'
   },
   white_background: {
     backgroundColor: '#F1F0F2',
@@ -18,7 +17,7 @@ export default StyleSheet.create({
   },
 
   blue_background: {
-    zIndex:-1,
+    zIndex: -1,
     backgroundColor: '#7598BA',
     height: '33%',
     borderBottomLeftRadius: 70
@@ -26,7 +25,8 @@ export default StyleSheet.create({
   backbutton: {
     position: 'absolute',
     marginTop: '15%',
-    marginLeft: '10%'
+    marginLeft: '10%',
+    backgroundColor: 'red'
   },
   iconstyle: {
     color: '#fff',
@@ -58,8 +58,13 @@ export default StyleSheet.create({
     fontFamily: 'Montserrat_Medium'
   },
   error: {
-
     borderBottomColor: '#b30000',
     borderBottomWidth: 1
-  }
+  },
+  oneLineInput: {
+    marginLeft: '7%',
+    marginRight: '7%',
+    marginBottom: '0%',
+    marginTop: '10%',
+  },
 });

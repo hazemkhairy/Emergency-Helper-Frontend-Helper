@@ -5,7 +5,6 @@ export default StyleSheet.create({
 
     container: {
         position: 'absolute',
-
         height: '100%'
     },
     inputs: {

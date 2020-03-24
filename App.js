@@ -1,7 +1,8 @@
 import { createSwitchNavigator, createAppContainer } from 'react-navigation'
-import SignUpScreen from './src/screens/Helper/SignUpScreen';
-import SignUp2 from './src/screens/Helper/SignUp2';
-import SignInScreen from './src/screens/Helper/SignInScreen'
+import SignUpScreen from './src/screens/Helper/Auth/SignUpScreen';
+import SignUp2 from './src/screens/Helper/Auth/SignUp2';
+import SignInScreen from './src/screens/Helper/Auth/SignInScreen';
+import AuthHeader from './src/screens/Helper/Auth/AuthHeader';
 import Home from './src/screens/Home';
 import { Provider } from 'react-redux';
 import React from 'react'
@@ -14,6 +15,7 @@ const navigator = createAppContainer(
     SignUpScreen,
     SignUp2,
     SignInScreen,
+    AuthHeader
     
 
   })
