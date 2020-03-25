@@ -69,7 +69,7 @@ const SignInScreen = ({ navigation }) => {
 
         <AuthHeader
           continueButtonPress={() => { onSubmit() }}
-          signUpButtonPress={() => { navigation.navigate('SignUpScreen') }}
+          signUpButtonPress={() => { navigation.navigate('SignUp2') }}
           signInButtonPress={() => { }}
           backButtonPress={() => { navigation.navigate('Home') }}
           active={1}
@@ -83,6 +83,7 @@ const SignInScreen = ({ navigation }) => {
             autoCapitalize='none'
             onChangeText={() => setEmail()}
             style={globalStyle.oneLineInput}
+            error={email_error != ''}
           />
           <View>
             {
@@ -100,6 +101,7 @@ const SignInScreen = ({ navigation }) => {
             autoCorrect={false}
             autoCapitalize='none'
             style={globalStyle.oneLineInput}
+            error = {password_error != ''}
           />
           <View>
             {

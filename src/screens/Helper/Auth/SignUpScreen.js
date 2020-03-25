@@ -148,7 +148,7 @@ const SignUp = ({ navigation }) => {
                 value={firstName}
                 onChangeText={(text) => setFirstName(text)}
                 style={globalStyle.oneLineInput}
-
+                error={firstname_error!=''}
             />
 
             <Text style={globalStyle.texterror}>{firstname_error}</Text>
@@ -160,7 +160,7 @@ const SignUp = ({ navigation }) => {
                 value={lastName}
                 onChangeText={(text) => setLastName(text)}
                 style={globalStyle.oneLineInput}
-
+                error={lastname_error!=''}
             />
             <Text style={globalStyle.texterror}>{lastname_error}</Text>
             <Input
@@ -171,7 +171,7 @@ const SignUp = ({ navigation }) => {
                 value={phoneNumber}
                 onChangeText={(text) => setPhoneNumber(text)}
                 style={globalStyle.oneLineInput}
-
+                error={phonenumber_error!=''}
             />
 
             <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
@@ -184,7 +184,7 @@ const SignUp = ({ navigation }) => {
                 value={email}
                 onChangeText={(text) => setEmail(text)}
                 style={globalStyle.oneLineInput}
-
+                error={email_error!=''}
             />
             <Text style={globalStyle.texterror}>{email_error}</Text>
 
@@ -197,7 +197,7 @@ const SignUp = ({ navigation }) => {
                 value={password}
                 onChangeText={(text) => setPassword(text)}
                 style={globalStyle.oneLineInput}
-
+                error={password_error!=''}
             />
             <Text style={globalStyle.texterror}>{password_error}</Text>
             <Input
@@ -208,7 +208,7 @@ const SignUp = ({ navigation }) => {
                 value={confirmPassword}
                 onChangeText={(text) => setConfirmPassword(text)}
                 style={globalStyle.oneLineInput}
-
+                error={confirmpassword_error!=''}
             />
 
             <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>

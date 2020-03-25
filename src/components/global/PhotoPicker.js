@@ -46,6 +46,7 @@ const PhotoPicker = (props) => {
                     placeholder={props.placeholder ? props.placeholder : 'select photo'}
                     editable={false}
                     value={image.name?image.name:''}
+                    error = {props.error}
                 />
             </View>
         </View>);

@@ -18,7 +18,7 @@ export default StyleSheet.create({
     },
     //check that
     backButton: {
-        marginLeft: '5%', width: 25
+        marginLeft: '7%', width: 25
     },
     backIcon: {
         color: '#fff',
@@ -53,7 +53,7 @@ export default StyleSheet.create({
         paddingTop:'5%',
         borderRadius: 35,
         justifyContent: 'center',
-        minHeight: '50%', alignContent: 'center'
+        minHeight: '30%', alignContent: 'center'
     },
     continueButton: {
         backgroundColor: '#132641',

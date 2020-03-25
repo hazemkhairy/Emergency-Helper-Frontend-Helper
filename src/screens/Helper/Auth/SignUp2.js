@@ -20,7 +20,7 @@ const SignUp2 = ({ navigation }) => {
     const disptach = useDispatch();
 
     const user = useSelector((store) => { return store.signUpReducer.user })
-
+    
     const [frontID, setFrontID] = useState(user.frontID);
     const [backID, setBackID] = useState(user.backID);
     const [certificates, setCertificates] = useState(user.certificates);
@@ -46,16 +46,22 @@ const SignUp2 = ({ navigation }) => {
     }
     const dataValid = () => {
         //categories ?
-        if (
-            test(frontID.name, setErrorFrontID, 'Front Id photo') &
-            test(backID.name, setErrorBackID, 'Back Id photo') &
-            test(certificates.name, setErrorCertificates, 'Certificate') &
-            test(personalPhoto.name, setErrorPersonalPhoto, 'Certificate') &
-            test(categories, setErrorCategories, 'Category') &
-            test(skills, setErrorSkills, 'Skill')
-        )
-            return false;
-        return true;
+        let valid = true;
+        if (!test(frontID.name, setErrorFrontID, 'Front Id photo'))
+            valid = false;
+        if (!test(backID.name, setErrorBackID, 'Back Id photo'))
+            valid = false;
+        if (!test(certificates.name, setErrorCertificates, 'Certificate'))
+            valid = false;
+        if (!test(personalPhoto.name, setErrorPersonalPhoto, 'Certificate'))
+            valid = false;
+        if (!test(personalPhoto.name, setErrorPersonalPhoto, 'Certificate'))
+            valid = false;
+        if (!test(categories, setErrorCategories, 'Category'))
+            valid = false;
+        if (!test(skills, setErrorSkills, 'Skill') )
+            valid = false;
+        return valid;
     }
     const saveData = () => {
         disptach(SaveSignUpDataAction({ ...user, frontID, backID, certificates, personalPhoto, categories, skills }))
@@ -82,6 +88,7 @@ const SignUp2 = ({ navigation }) => {
                 placeholder="Front ID"
                 value={frontID}
                 setValue={setFrontID}
+                error={errorFrontID}
             />
             {showError(errorFrontID)}
             <PhotoPicker
@@ -89,6 +96,7 @@ const SignUp2 = ({ navigation }) => {
                 placeholder="Back Id"
                 value={backID}
                 setValue={setBackID}
+                error={errorBackID}
             />
             {showError(errorBackID)}
             <PhotoPicker
@@ -96,6 +104,7 @@ const SignUp2 = ({ navigation }) => {
                 placeholder="Certificate"
                 value={certificates}
                 setValue={setCertificates}
+                error={errorCertificates }
             />
             {showError(errorCertificates)}
             <PhotoPicker
@@ -103,6 +112,7 @@ const SignUp2 = ({ navigation }) => {
                 placeholder="Personal Photo"
                 value={personalPhoto}
                 setValue={setPersonalPhoto}
+                error={errorPersonalPhoto}
             />
             {showError(errorPersonalPhoto)}
             <Input
@@ -110,6 +120,7 @@ const SignUp2 = ({ navigation }) => {
                 onChangeText={setCategories}
                 placeholder='Categories'
                 style={globalStyle.oneLineInput}
+                error={errorCategories }
             />
             {showError(errorCategories)}
             <Input
@@ -117,10 +128,9 @@ const SignUp2 = ({ navigation }) => {
                 onChangeText={setSkills}
                 placeholder='Skills'
                 style={globalStyle.oneLineInput}
+                error={errorSkills}
             />
             {showError(errorSkills)}
-
-
             <View >
                 <Text style={signUpStyle.ClickingText}>  By clicking continue you are confirming  </Text>
                 <Text style={signUpStyle.ClickingText}>  all details are correct </Text>
