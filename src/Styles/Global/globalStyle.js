@@ -65,6 +65,6 @@ export default StyleSheet.create({
     marginLeft: '7%',
     marginRight: '7%',
     marginBottom: '0%',
-    marginTop: '10%',
+    marginTop: '5%',
   },
 });

@@ -29,8 +29,7 @@ const SignInScreen = ({ navigation }) => {
   const token = useSelector((state) => {
     return state.signInReducer.token
   })
-  console.log(isLoading);
-
+  
   const onSubmit = () => {
 
     let thereIsError = false;
@@ -49,7 +48,7 @@ const SignInScreen = ({ navigation }) => {
     }
 
     if (password == '') {
-      setpassword_error(" Please Enter your Password")
+      setpassword_error("Please Enter your Password")
     }
     else {
       if (password.length < 8) {
@@ -69,7 +68,7 @@ const SignInScreen = ({ navigation }) => {
 
         <AuthHeader
           continueButtonPress={() => { onSubmit() }}
-          signUpButtonPress={() => { navigation.navigate('SignUp2') }}
+          signUpButtonPress={() => { navigation.navigate('SignUpScreen') }}
           signInButtonPress={() => { }}
           backButtonPress={() => { navigation.navigate('Home') }}
           active={1}
@@ -87,8 +86,7 @@ const SignInScreen = ({ navigation }) => {
           />
           <View>
             {
-              email_error ?
-                <Text style={globalStyle.texterror}>{email_error}</Text> : null
+                <Text style={globalStyle.texterror}>{email_error}</Text> 
             }
           </View>
 
@@ -105,8 +103,7 @@ const SignInScreen = ({ navigation }) => {
           />
           <View>
             {
-              password_error ?
-                <Text style={globalStyle.texterror}>{password_error}</Text> : null
+                <Text style={globalStyle.texterror}>{password_error}</Text> 
             }
           </View>
         </AuthHeader>

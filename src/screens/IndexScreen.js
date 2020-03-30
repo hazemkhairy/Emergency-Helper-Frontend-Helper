@@ -12,7 +12,7 @@ class IndexScreen extends React.Component{
             Montserrat_bold: require("../../assets/fonts/Montserrat-Bold.ttf")
         });
 
-       this.props.navigation.navigate("SignInScreen");
+       this.props.navigation.navigate("Home");
     }
    
     

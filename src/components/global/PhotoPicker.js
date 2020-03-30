@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet, Button, Image, Text, TextComponent } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import Input from './Input';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import { PhotoInfo } from '../../Modules/GlobalModels'
 const getNameFromUri = (uri) => {
     if (uri == '') {
         return '';
@@ -21,15 +21,18 @@ const PhotoPicker = (props) => {
     const _pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
+            base64: true,
+            quality:0.5
         });
         if (result.cancelled)
             return
         const imageName = getNameFromUri(result.uri)
         if (!result.cancelled) {
-            setImage({ uri: result.uri, name: imageName })
-            props.setValue({ uri: result.uri, name: imageName });
+            setImage({ uri: result.uri, name: imageName, base64: result.base64 })
+            props.setValue(new PhotoInfo(result.uri, imageName, result.base64));
         }
     };
+
     return (
         <View style={{ ...styles.container, ...props.style }}>
 
@@ -45,8 +48,8 @@ const PhotoPicker = (props) => {
                 <Input
                     placeholder={props.placeholder ? props.placeholder : 'select photo'}
                     editable={false}
-                    value={image.name?image.name:''}
-                    error = {props.error}
+                    value={image.name ? image.name : ''}
+                    error={props.error}
                 />
             </View>
         </View>);
@@ -55,7 +58,6 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'row-reverse',
-
         alignItems: 'center'
     },
     input: {

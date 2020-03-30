@@ -50,10 +50,11 @@ export default StyleSheet.create({
         marginRight: '7%',
         marginBottom: '5%',
         marginTop: '5%',
-        paddingTop:'5%',
+        paddingTop:'10%',
         borderRadius: 35,
         justifyContent: 'center',
-        minHeight: '30%', alignContent: 'center'
+        minHeight: '25%',
+        alignContent: 'center',
     },
     continueButton: {
         backgroundColor: '#132641',

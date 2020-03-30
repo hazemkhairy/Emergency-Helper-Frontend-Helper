@@ -1,9 +1,13 @@
 import { SignUpUser } from '../../../Modules/User/UserModule'
 
-import { Save_Sign_Up_Data, Clear_Sign_UP } from './actions'
+import { Save_Sign_Up_Data, Clear_Sign_UP, Start_Sign_Up,Error_Sign_Up,Success_Sign_Up } from './actions'
 
 const initialState = {
-    user: new SignUpUser()
+    user: new SignUpUser(),
+    sendingSignUpRequest: false,
+    errorSignUpRequest: false,
+    successSignUpRequest: false,
+
 }
 
 export default (state = initialState, action) => {
@@ -14,25 +18,13 @@ export default (state = initialState, action) => {
             return neww;
         case Clear_Sign_UP:
             return { ...state, user: new SignUpUser() };
-
-    }
-    return state;
-}
-/*
-import { Start_Sign_Up, Success_Sign_UP } from './actions'
-
-const initialState = {
-    token:'',
-    SignUpStarted:false,
-}
-
-export default (state = initialState, action) => {
-    switch (action.type) {
         case Start_Sign_Up:
-            return { ...state, SignUpStarted : true };
-        case Success_Sign_UP:
-            return { ...state, token : action.payload.token, SignUpStarted : false };
+            return { ...state, sendingSignUpRequest: true, successSignUpRequest: false, errorSignUpRequest: false };
+        case Error_Sign_Up:
+            return { ...state, sendingSignUpRequest: false, errorSignUpRequest: true };
+        case Success_Sign_Up:
+            return { ...state, sendingSignUpRequest: false, successSignUpRequest: true };
 
     }
     return state;
-}*/
+}
