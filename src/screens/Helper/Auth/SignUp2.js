@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text } from 'react-native';
 
 import globalStyle from '../../../Styles/Global/globalStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
@@ -10,23 +10,25 @@ import RNPickerSelect from 'react-native-picker-select';
 import AuthHeader from './AuthHeader'
 import { Ionicons } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux';
-
-import { SaveSignUpDataAction, signUpAction } from '../../../store/User/SignUp-Helper/actions';
+import ErrorModal from '../../../components/global/ErrorModal'
+import LoadingModal from '../../../components/global/LoadingModal'
+import SuccessModal from '../../../components/global/SuccessModal'
+import { SaveSignUpDataAction, signUpAction, ClearSignUpStateAction } from '../../../store/User/SignUp-Helper/actions';
 
 import { getAllCategories } from '../../../utils/categories'
 
 const SignUp2 = ({ navigation }) => {
 
-    getAllCategories();
     const disptach = useDispatch();
 
     const user = useSelector((store) => { return store.signUpReducer.user })
     const requestState = useSelector(
         (store) => {
             return {
-                pending: store.signUpReducer.sendingSignUpRequest,
-                error: store.signUpReducer.errorSignUpRequest,
-                success: store.signUpReducer.successSignUpRequest
+                pending: store.signUpReducer.requestState.sendingSignUpRequest,
+                error: store.signUpReducer.requestState.errorSignUpRequest,
+                success: store.signUpReducer.requestState.successSignUpRequest,
+                errorMessage: store.signUpReducer.requestState.errorMessage
             }
         })
 
@@ -36,7 +38,9 @@ const SignUp2 = ({ navigation }) => {
     const [personalPhoto, setPersonalPhoto] = useState(user.personalPhoto);
     const [categories, setCategories] = useState(user.categories);
     const [skills, setSkills] = useState(user.skills);
+
     const [allCategories, setAllCategories] = useState([]);
+
     const [errorFrontID, setErrorFrontID] = useState(null);
     const [errorBackID, setErrorBackID] = useState(null);
     const [errorCertificates, setErrorCertificates] = useState(null);
@@ -62,9 +66,7 @@ const SignUp2 = ({ navigation }) => {
             valid = false;
         if (!test(certificates.name, setErrorCertificates, 'Certificate'))
             valid = false;
-        if (!test(personalPhoto.name, setErrorPersonalPhoto, 'Certificate'))
-            valid = false;
-        if (!test(personalPhoto.name, setErrorPersonalPhoto, 'Certificate'))
+        if (!test(personalPhoto.name, setErrorPersonalPhoto, 'Personal Photo'))
             valid = false;
         if (!test(categories, setErrorCategories, 'Category'))
             valid = false;
@@ -72,27 +74,29 @@ const SignUp2 = ({ navigation }) => {
             valid = false;
         return valid;
     }
+
     useEffect(
         () => {
             saveData()
         },
         [frontID, backID, certificates, personalPhoto, categories, skills]
     )
-    useEffect(() => {
-        getAllCategories().then(
-            (result) => {
-                setAllCategories(result.map(o => { return { label: o.name, value: o.name } }))
-            }
-        )
-    }, [])
+    useEffect(
+        () => {
+            getAllCategories().then(
+                (result) => {
+                    setAllCategories(result.map(o => { return { label: o.name, value: o.name } }))
+                }
+            )
+        }, [])
     const saveData = () => {
         disptach(SaveSignUpDataAction({ ...user, frontID, backID, certificates, personalPhoto, categories, skills }))
     }
+    
     const submit = () => {
         if (dataValid()) {
             disptach(signUpAction(user))
-
-            //navigation.navigate('SignUpScreen')
+            
         }
     }
 
@@ -101,7 +105,9 @@ const SignUp2 = ({ navigation }) => {
     }
     return (
         <>
-
+            <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen')  }} message="Registration completed successfully" />
+            <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
+            <LoadingModal modalVisible={requestState.pending} />
             <AuthHeader
                 continueButtonPress={() => { submit() }}
                 signUpButtonPress={() => { }}
@@ -172,19 +178,6 @@ const SignUp2 = ({ navigation }) => {
                 <View >
                     <Text style={signUpStyle.ClickingText}>  By clicking continue you are confirming  </Text>
                     <Text style={signUpStyle.ClickingText}>  all details are correct </Text>
-                </View>
-
-                <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '10%' }}>
-                    {
-
-                        requestState.pending ?
-                            <ActivityIndicator size="small" /> :
-                            requestState.success ?
-                                <Text>sucess</Text> :
-                                requestState.error ?
-                                    <Text>Error</Text> :
-                                    null
-                    }
                 </View>
             </AuthHeader>
         </>

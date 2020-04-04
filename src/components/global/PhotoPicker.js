@@ -22,7 +22,7 @@ const PhotoPicker = (props) => {
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             base64: true,
-            quality:0.5
+            quality: 0.5
         });
         if (result.cancelled)
             return

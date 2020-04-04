@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/AntDesign';
-import { signInAction } from '../../../store/User/SignIn-Helper/actions';
+import { signInAction, clearSignInStateAction } from '../../../store/User/SignIn-Helper/actions';
 import { SignInUser } from '../../../Modules/User/UserModule';
 import { useDispatch, useSelector } from 'react-redux';
-import { validate } from 'email-validator';
 import globalStyle from '../../../Styles/Global/globalStyle';
 import signInStyle from '../../../Styles/signInStyle';
 import AuthHeader from './AuthHeader'
 import Input from '../../../components/global/Input';
+import ErrorModal from '../../../components/global/ErrorModal'
+import LoadingModal from '../../../components/global/LoadingModal'
+import SuccessModal from '../../../components/global/SuccessModal'
+
 const SignInScreen = ({ navigation }) => {
 
   const disptach = useDispatch();
@@ -21,21 +23,23 @@ const SignInScreen = ({ navigation }) => {
   const [password_error, setpassword_error] = useState('');
 
 
-
-
-  const isLoading = useSelector((state) => {
-    return state.signInReducer.SignInStarted
-  })
+  const requestState = useSelector((state) => {
+    return {
+      success: state.signInReducer.success,
+      error: state.signInReducer.error,
+      pending: state.signInReducer.signInStarted,
+      errorMessage: state.signInReducer.errorMessage
+    }
+  }
+  )
   const token = useSelector((state) => {
     return state.signInReducer.token
   })
-  
-  const onSubmit = () => {
-
-    let thereIsError = false;
+  const validInput = () => {
+    let thereIsNoError = true;
     if (email == "") {
       setemail_error("Please Enter your Email ")
-
+      thereIsNoError = false;
     }
     else {
       const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -43,21 +47,30 @@ const SignInScreen = ({ navigation }) => {
         setemail_error("")
       }
       else {
+        thereIsNoError = false
         setemail_error("Invalid Email")
       }
     }
 
     if (password == '') {
+      thereIsNoError = false
       setpassword_error("Please Enter your Password")
     }
     else {
       if (password.length < 8) {
-        thereIsError = true;
+        thereIsNoError = false;
         setpassword_error("Please Enter 8 characters or more ")
       }
       else {
         setpassword_error("")
       }
+    }
+    return thereIsNoError;
+  }
+  const onSubmit = () => {
+
+    if (validInput()) {
+      disptach(signInAction(new SignInUser(email, password)));
     }
   }
 
@@ -65,7 +78,9 @@ const SignInScreen = ({ navigation }) => {
   return (
     <View>
       <View>
-
+        <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()), navigation.navigate('MainScreen') }} message="Sign In successfully" />
+        <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message={requestState.errorMessage} />
+        <LoadingModal modalVisible={requestState.pending} />
         <AuthHeader
           continueButtonPress={() => { onSubmit() }}
           signUpButtonPress={() => { navigation.navigate('SignUpScreen') }}
@@ -80,13 +95,13 @@ const SignInScreen = ({ navigation }) => {
             autoCorrect={false}
             value={email}
             autoCapitalize='none'
-            onChangeText={() => setEmail()}
+            onChangeText={(text) => setEmail(text)}
             style={globalStyle.oneLineInput}
             error={email_error != ''}
           />
           <View>
             {
-                <Text style={globalStyle.texterror}>{email_error}</Text> 
+              <Text style={globalStyle.texterror}>{email_error}</Text>
             }
           </View>
 
@@ -99,29 +114,27 @@ const SignInScreen = ({ navigation }) => {
             autoCorrect={false}
             autoCapitalize='none'
             style={globalStyle.oneLineInput}
-            error = {password_error != ''}
+            error={password_error != ''}
           />
           <View>
             {
-                <Text style={globalStyle.texterror}>{password_error}</Text> 
+              <Text style={globalStyle.texterror}>{password_error}</Text>
             }
           </View>
+          <View>
+            {
+              token ? <Text >{token}</Text> : null
+            }
+            <Button type='clear' title='FORGOT PASSWORD' titleStyle={signInStyle.buttonforget}
+              onPress={() => { }}
+            />
+
+
+          </View>
+
         </AuthHeader>
       </View>
 
-      <View>
-        {
-          isLoading === true ? <ActivityIndicator /> : null
-        }
-        {
-          token ? <Text >{token}</Text> : null
-        }
-        <Button type='clear' title='FORGOT PASSWORD' titleStyle={signInStyle.buttonforget}
-          onPress={() => { }}
-        />
-
-
-      </View>
 
     </View>
 

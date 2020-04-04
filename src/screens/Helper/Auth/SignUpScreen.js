@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import { View, Text, TouchableOpacity} from 'react-native';
 import globalStyle from '../../../Styles/Global/globalStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,9 +8,6 @@ import AuthHeader from './AuthHeader';
 
 import Input from '../../../components/global/Input';
 const SignUp = ({ navigation }) => {
-
-
-
 
     const disptach = useDispatch();
 

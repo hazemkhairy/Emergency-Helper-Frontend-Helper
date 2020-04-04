@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import image from '../images/image.png';
 
@@ -32,7 +32,7 @@ const First = ({ navigation }) => {
                     <Text style={styles.SignUpTextStyle}>SIGN UP</Text>
                 </TouchableOpacity>
             </View>
-        </ImageBackground >
+        </ImageBackground>
 
     );
 }
@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 32,
         marginBottom: '3%',
-        fontFamily:'Montserrat_bold'
+        fontFamily:'Montserrat_Bold'
         },
     text1: {
         color: '#FFFFFF',
         fontSize: 32,
-        fontFamily:'Montserrat_bold'
+        fontFamily:'Montserrat_Bold'
     },
     text2: {
         color: '#FFFFFF',

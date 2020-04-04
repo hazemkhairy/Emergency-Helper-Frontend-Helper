@@ -1,22 +1,38 @@
-import { AsyncStorage } from 'react-native'
-export const getAuthToken = () => {
-    return AsyncStorage.getItem('token');
+import * as SecureStore from 'expo-secure-store'
+
+export const token = 'AUTH_TOKEN';
+
+export const getAuthToken = async () => {
+    try {
+        const value = await SecureStore.getItemAsync(token);
+        if (value) {
+            return value
+        }
+        return '';
+    } 
+    catch (error) {
+        return error;
+    }
 }
-export const setAuthToken = (value) => {
-    AsyncStorage.getItem('token', value);
+export const setAuthToken = async (value) => {
+    const res = await SecureStore.setItemAsync(token, value);
+    return res;
 }
-export const clearToken = () => {
-    AsyncStorage.removeItem('token');
+export const clearToken = async () => {
+    const res = await SecureStore.deleteItemAsync(token);
+    return res;
 }
-export const setInLocalStorage = (key, value) => {
-    AsyncStorage.getItem(key, value);
+
+
+export const getFromLocalStorage = async (key) => {
+    const res = await SecureStore.getItemAsync(key);
+    return res;
 }
-export const getFromLocalStorage = (key) => {
-    return AsyncStorage.getItem(key);
+export const setInLocalStorage = async (key, value) => {
+    const res = await SecureStore.setItemAsync(key, value);
+    return res;
 }
-export const clearFromLocalStorage = (key) => {
-    AsyncStorage.removeItem(key);
-}
-export const clearAll = () => {
-    AsyncStorage.clear()
+export const clearFromLocalStorage = async (key) => {
+    const res = await SecureStore.deleteItemAsync(key);
+    return res;
 }
