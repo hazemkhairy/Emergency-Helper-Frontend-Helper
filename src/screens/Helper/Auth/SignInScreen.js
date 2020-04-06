@@ -79,7 +79,7 @@ const SignInScreen = ({ navigation }) => {
     <View>
       <View>
         <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()), navigation.navigate('MainScreen') }} message="Sign In successfully" />
-        <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message={requestState.errorMessage} />
+        <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message={requestState.errorMessage ? requestState.errorMessage : 'Wrong Email or Password'} />
         <LoadingModal modalVisible={requestState.pending} />
         <AuthHeader
           continueButtonPress={() => { onSubmit() }}
@@ -121,18 +121,14 @@ const SignInScreen = ({ navigation }) => {
               <Text style={globalStyle.texterror}>{password_error}</Text>
             }
           </View>
-          <View>
-            {
-              token ? <Text >{token}</Text> : null
-            }
-            <Button type='clear' title='FORGOT PASSWORD' titleStyle={signInStyle.buttonforget}
-              onPress={() => { }}
-            />
 
-
-          </View>
 
         </AuthHeader>
+        <View style={signInStyle.forgetPasswordView}>
+          <Button type='clear' title='FORGOT PASSWORD' titleStyle={signInStyle.buttonforget}
+            onPress={() => { }}
+          />
+        </View>
       </View>
 
 

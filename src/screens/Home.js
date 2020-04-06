@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 32,
         marginBottom: '3%',
-        fontFamily:'Montserrat_Bold'
-        },
+        fontFamily: 'Montserrat_Bold'
+    },
     text1: {
         color: '#FFFFFF',
         fontSize: 32,
-        fontFamily:'Montserrat_Bold'
+        fontFamily: 'Montserrat_Bold'
     },
     text2: {
         color: '#FFFFFF',
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         justifyContent: 'center',
         alignItems: 'center',
-        fontFamily:'Montserrat_SemiBold',
+        fontFamily: 'Montserrat_SemiBold',
 
     },
     LoginButton: {
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 14,
         fontWeight: '500',
-        fontFamily:'Montserrat_SemiBold',
+        fontFamily: 'Montserrat_SemiBold',
 
 
     },

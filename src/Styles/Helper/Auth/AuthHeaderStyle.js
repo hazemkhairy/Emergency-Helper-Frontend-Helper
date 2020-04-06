@@ -1,13 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet , Dimensions } from 'react-native';
 
 export default StyleSheet.create({
     whiteBackground: {
         backgroundColor: '#F1F0F2',
-        height: '100%', width: '100%'
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width
     },
     blueBackground: {
         backgroundColor: '#7598BA',
-        height: '33%',
+        height: 0.33*Dimensions.get('window').height,
         borderBottomLeftRadius: 70
     },
     container: {
@@ -18,7 +19,7 @@ export default StyleSheet.create({
     },
     //check that
     backButton: {
-        marginLeft: '7%', width: 25
+        marginLeft: '9%', width: 25
     },
     backIcon: {
         color: '#fff',
@@ -27,7 +28,7 @@ export default StyleSheet.create({
     signInUpContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '50%',
+        width: '40%',
         alignSelf: 'center'
     },
 
@@ -54,11 +55,12 @@ export default StyleSheet.create({
         borderRadius: 35,
         justifyContent: 'center',
         minHeight: '25%',
+        maxHeight:'85%',
         alignContent: 'center',
     },
     continueButton: {
         backgroundColor: '#132641',
-        height: '25%',
+        height: '27%',
         width: '87%',
         borderRadius: 35,
         alignItems: 'center',

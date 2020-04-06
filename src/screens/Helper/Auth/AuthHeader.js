@@ -5,7 +5,7 @@ import AuthHeaderStyle from '../../../Styles/Helper/Auth/AuthHeaderStyle'
 const AuthHeader = (props) => {
 
     return (
-        <View>
+        <View >
             <View style={AuthHeaderStyle.whiteBackground}>
                 <View style={AuthHeaderStyle.blueBackground}>
                 </View>

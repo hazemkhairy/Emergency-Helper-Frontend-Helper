@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ImageBackground, StyleSheet } from 'react-native'
+import { ImageBackground, StyleSheet } from 'react-native'
 import LoadingModal from '../components/global/LoadingModal'
 import image from '../images/image.png';
 import { validateToken } from '../utils/Helper'

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import globalStyle from '../../../Styles/Global/globalStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
 import { useSelector, useDispatch } from 'react-redux';
-import { SaveSignUpDataAction } from '../../../store/User/SignUp-Helper/actions';
+import { SaveSignUpDataAction, ClearSignUpAction } from '../../../store/User/SignUp-Helper/actions';
 import AuthHeader from './AuthHeader';
 
 import Input from '../../../components/global/Input';
@@ -62,6 +62,10 @@ const SignUp = ({ navigation }) => {
         if (!phoneNumber || phoneNumber == "") {
             thereIsError = true;
             setPhonenumber_error("Please Enter your Phone Number ")
+        }
+        else if (phoneNumber.length < 6 || phoneNumber.length > 15) {
+            thereIsError = true;
+            setPhonenumber_error("Number of digits must be [6-15]")
         }
         else {
             var numbers = /^[0-9\b]+$/;
@@ -133,8 +137,8 @@ const SignUp = ({ navigation }) => {
 
             continueButtonPress={() => { submit() }}
             signUpButtonPress={() => { }}
-            signInButtonPress={() => { navigation.navigate('SignInScreen') }}
-            backButtonPress={() => { navigation.navigate('Home') }}
+            signInButtonPress={() => { navigation.navigate('SignInScreen'), disptach(ClearSignUpAction()) }}
+            backButtonPress={() => { navigation.navigate('Home'), disptach(ClearSignUpAction()) }}
             active={2}
         >
             <Input
@@ -144,7 +148,7 @@ const SignUp = ({ navigation }) => {
                 value={firstName}
                 onChangeText={(text) => setFirstName(text)}
                 style={globalStyle.oneLineInput}
-                error={firstname_error!=''}
+                error={firstname_error != ''}
             />
 
             <Text style={globalStyle.texterror}>{firstname_error}</Text>
@@ -156,7 +160,7 @@ const SignUp = ({ navigation }) => {
                 value={lastName}
                 onChangeText={(text) => setLastName(text)}
                 style={globalStyle.oneLineInput}
-                error={lastname_error!=''}
+                error={lastname_error != ''}
             />
             <Text style={globalStyle.texterror}>{lastname_error}</Text>
             <Input
@@ -167,7 +171,7 @@ const SignUp = ({ navigation }) => {
                 value={phoneNumber}
                 onChangeText={(text) => setPhoneNumber(text)}
                 style={globalStyle.oneLineInput}
-                error={phonenumber_error!=''}
+                error={phonenumber_error != ''}
             />
 
             <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
@@ -180,7 +184,7 @@ const SignUp = ({ navigation }) => {
                 value={email}
                 onChangeText={(text) => setEmail(text)}
                 style={globalStyle.oneLineInput}
-                error={email_error!=''}
+                error={email_error != ''}
             />
             <Text style={globalStyle.texterror}>{email_error}</Text>
 
@@ -193,7 +197,7 @@ const SignUp = ({ navigation }) => {
                 value={password}
                 onChangeText={(text) => setPassword(text)}
                 style={globalStyle.oneLineInput}
-                error={password_error!=''}
+                error={password_error != ''}
             />
             <Text style={globalStyle.texterror}>{password_error}</Text>
             <Input
@@ -204,7 +208,7 @@ const SignUp = ({ navigation }) => {
                 value={confirmPassword}
                 onChangeText={(text) => setConfirmPassword(text)}
                 style={globalStyle.oneLineInput}
-                error={confirmpassword_error!=''}
+                error={confirmpassword_error != ''}
             />
 
             <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>

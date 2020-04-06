@@ -14,7 +14,7 @@ export const Clear_Sign_Up_State = 'Clear_Sign_UP_State'
 
 
 
-export const ClearSignUpDataAction = () => {
+export const ClearSignUpAction = () => {
     return { type: Clear_Sign_UP }
 }
 export const ClearSignUpStateAction = () => {

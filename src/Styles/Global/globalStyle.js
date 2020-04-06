@@ -50,7 +50,7 @@ export default StyleSheet.create({
   },
   texterror: {
     color: '#b30000',
-    fontSize: 14,
+    fontSize: 12,
     position: 'relative',
     alignItems: 'center',
     marginLeft: 30,
@@ -67,4 +67,7 @@ export default StyleSheet.create({
     marginBottom: '0%',
     marginTop: '5%',
   },
+  RNPickerSelect:{
+    fontFamily:'Montserrat'
+  }
 });

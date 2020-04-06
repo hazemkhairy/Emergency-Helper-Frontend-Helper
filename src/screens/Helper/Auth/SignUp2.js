@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ErrorModal from '../../../components/global/ErrorModal'
 import LoadingModal from '../../../components/global/LoadingModal'
 import SuccessModal from '../../../components/global/SuccessModal'
-import { SaveSignUpDataAction, signUpAction, ClearSignUpStateAction } from '../../../store/User/SignUp-Helper/actions';
+import { SaveSignUpDataAction, signUpAction, ClearSignUpStateAction, ClearSignUpAction } from '../../../store/User/SignUp-Helper/actions';
 
 import { getAllCategories } from '../../../utils/categories'
 
@@ -92,11 +92,11 @@ const SignUp2 = ({ navigation }) => {
     const saveData = () => {
         disptach(SaveSignUpDataAction({ ...user, frontID, backID, certificates, personalPhoto, categories, skills }))
     }
-    
+
     const submit = () => {
         if (dataValid()) {
             disptach(signUpAction(user))
-            
+
         }
     }
 
@@ -105,13 +105,13 @@ const SignUp2 = ({ navigation }) => {
     }
     return (
         <>
-            <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen')  }} message="Registration completed successfully" />
+            <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpAction()), navigation.navigate('PreConfigScreen') }} message="Registration completed successfully" />
             <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
             <LoadingModal modalVisible={requestState.pending} />
             <AuthHeader
                 continueButtonPress={() => { submit() }}
                 signUpButtonPress={() => { }}
-                signInButtonPress={() => { navigation.navigate('SignInScreen') }}
+                signInButtonPress={() => { navigation.navigate('SignInScreen'), disptach(ClearSignUpAction()) }}
                 backButtonPress={() => { saveData(), navigation.navigate('SignUpScreen') }}
                 active={2}
             >

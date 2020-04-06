@@ -32,6 +32,7 @@ export default StyleSheet.create({
     
     
       }, buttonforget: {
+
         color: '#132641',
         fontSize: 12,
         fontWeight: '700',
@@ -54,4 +55,9 @@ export default StyleSheet.create({
         fontFamily: 'Montserrat_SemiBold'
     
       },
+      forgetPasswordView:{
+        position:'absolute',
+        left:'35%',
+        top:'50%'
+      }
 });
