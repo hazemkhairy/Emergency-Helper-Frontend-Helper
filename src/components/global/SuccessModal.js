@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { Ionicons } from '@expo/vector-icons'
 const SuccessModal = ({ modalVisible, closeModal, message }) => {
-    useEffect(() => { }, [modalVisible])
-
+    if (!modalVisible)
+        return null;
     return (
         <Modal isVisible={modalVisible} >
             <View style={styles.container}>
@@ -19,7 +19,7 @@ const SuccessModal = ({ modalVisible, closeModal, message }) => {
 
                 <View style={styles.modalBody}>
                     <Text style={styles.errorText}>Success</Text>
-                    <Text style={styles.messageText}>{message ? message.replace(/, /g, '\n') : 'There is some error'}</Text>
+                    <Text style={styles.messageText}>{message ? message.replace(/, /g, '\n') : 'Your action done successfully'}</Text>
                 </View>
 
                 <View style={styles.modalFooter}>

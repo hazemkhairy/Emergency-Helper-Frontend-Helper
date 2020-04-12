@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import Modal from 'react-native-modal';
 
-const ErrorModal = ({ modalVisible }) => {
-    useEffect(() => { }, [modalVisible])
-
+const LoadingModal = ({ modalVisible }) => {
+    if (!modalVisible)
+        return null;
     return (
         <Modal isVisible={modalVisible} >
             <>
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 })
-export default ErrorModal;
+export default LoadingModal;
