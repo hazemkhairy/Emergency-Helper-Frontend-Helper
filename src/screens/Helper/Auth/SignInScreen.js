@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { signInAction, clearSignInStateAction } from '../../../store/User/SignIn-Helper/actions';
 import { SignInUser } from '../../../Modules/User/UserModule';

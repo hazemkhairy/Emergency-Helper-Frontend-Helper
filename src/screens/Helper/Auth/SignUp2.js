@@ -176,8 +176,7 @@ const SignUp2 = ({ navigation }) => {
                 />
                 {showError(errorSkills)}
                 <View >
-                    <Text style={signUpStyle.ClickingText}>  By clicking continue you are confirming  </Text>
-                    <Text style={signUpStyle.ClickingText}>  all details are correct </Text>
+                    <Text style={signUpStyle.ClickingText}>By clicking continue you are confirming all details are correct</Text>
                 </View>
             </AuthHeader>
         </>

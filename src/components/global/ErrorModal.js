@@ -11,7 +11,7 @@ const ErrorModal = ({ modalVisible, closeModal, message }) => {
 
                 <View style={styles.modalHeader}>
                     <Ionicons
-                        size={Math.min(Dimensions.get('window').width * 0.2, Dimensions.get('window').height * 0.1)}
+                        size={Math.min(Dimensions.get('screen').width * 0.2, Dimensions.get('screen').height * 0.1)}
                         name="md-close-circle"
                         color='white'
                     />

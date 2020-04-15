@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, Picker, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import AuthHeaderStyle from '../../../Styles/Helper/Auth/AuthHeaderStyle'
 const AuthHeader = (props) => {
