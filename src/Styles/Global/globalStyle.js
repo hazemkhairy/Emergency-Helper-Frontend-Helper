@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet ,Dimensions} from 'react-native';
 
 
 export default StyleSheet.create({
@@ -34,7 +34,7 @@ export default StyleSheet.create({
   },
   Continuebutton: {
     backgroundColor: '#132641',
-    height: '25%',
+    height: Dimensions.get('window').height*0.25,
     width: '87%',
     borderRadius: 35,
     alignItems: 'center',
@@ -51,10 +51,7 @@ export default StyleSheet.create({
   texterror: {
     color: '#b30000',
     fontSize: 12,
-    position: 'relative',
-    alignItems: 'center',
-    marginLeft: 30,
-    marginRight: 20,
+    marginLeft: '7%',
     fontFamily: 'Montserrat_Medium'
   },
   error: {

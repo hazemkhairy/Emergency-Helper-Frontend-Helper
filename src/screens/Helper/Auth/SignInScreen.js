@@ -59,7 +59,7 @@ const SignInScreen = ({ navigation }) => {
     else {
       if (password.length < 8) {
         thereIsNoError = false;
-        setpassword_error("Please Enter 8 characters or more ")
+        setpassword_error("Password Invalid")
       }
       else {
         setpassword_error("")
