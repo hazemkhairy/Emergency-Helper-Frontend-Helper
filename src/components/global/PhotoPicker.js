@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Dimensions } from 'react-native';
 import Input from './Input';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'row-reverse',
-        alignItems: 'center'
+        alignItems: 'center',
+       
     },
     input: {
         flexGrow: 1,
@@ -66,17 +67,19 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        zIndex: 1,
+        zIndex: 0,
         bottom: 0,
         backgroundColor: 'white',
-        borderWidth: 2,
-        borderRadius: 10,
-        padding: 2
+        padding: 2,
+        height: Dimensions.get('window').height > 800 ? 30 : 30,
+        marginRight:'7%'
+       
     },
     text: {
         color: '#132641',
         textAlign: 'center',
-        fontFamily: 'Montserrat'
+        fontFamily: 'Montserrat',
+        fontSize: 14,
     }
 });
 

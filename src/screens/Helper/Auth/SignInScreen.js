@@ -59,7 +59,7 @@ const SignInScreen = ({ navigation }) => {
     else {
       if (password.length < 8) {
         thereIsNoError = false;
-        setpassword_error("Password Invalid")
+        setpassword_error("Invalid Password")
       }
       else {
         setpassword_error(" ")
@@ -87,6 +87,7 @@ const SignInScreen = ({ navigation }) => {
           signInButtonPress={() => { }}
           backButtonPress={() => { navigation.navigate('Home') }}
           active={1}
+          signin={1}
         >
 
           <Input
@@ -96,12 +97,12 @@ const SignInScreen = ({ navigation }) => {
             value={email}
             autoCapitalize='none'
             onChangeText={(text) => setEmail(text)}
-            style={globalStyle.oneLineInput}
+            style={signInStyle.emailinput}
             error={email_error != ' '}
           />
           <View>
             {
-              <Text style={globalStyle.texterror}>{email_error}</Text>
+              <Text style={signInStyle.textError}>{email_error}</Text>
             }
           </View>
 
@@ -113,12 +114,12 @@ const SignInScreen = ({ navigation }) => {
             placeholderTextColor='#B9B3BD'
             autoCorrect={false}
             autoCapitalize='none'
-            style={globalStyle.oneLineInput}
+            style={signInStyle.input}
             error={password_error != ' '}
           />
           <View>
             {
-              <Text style={globalStyle.texterror}>{password_error}</Text>
+              <Text style={signInStyle.textError}>{password_error}</Text>
             }
           </View>
 

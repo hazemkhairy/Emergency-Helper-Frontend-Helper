@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 import globalStyle from '../../../Styles/Global/globalStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Input from '../../../components/global/Input';
 import PhotoPicker from '../../../components/global/PhotoPicker';
 import RNPickerSelect from 'react-native-picker-select';
@@ -60,9 +60,9 @@ const SignUp2 = ({ navigation }) => {
     const dataValid = () => {
         //categories ?
         let valid = true;
-        if (!test(frontID.name, setErrorFrontID, 'Front Id photo'))
+        if (!test(frontID.name, setErrorFrontID, 'Front ID photo'))
             valid = false;
-        if (!test(backID.name, setErrorBackID, 'Back Id photo'))
+        if (!test(backID.name, setErrorBackID, 'Back ID photo'))
             valid = false;
         if (!test(certificates.name, setErrorCertificates, 'Certificate'))
             valid = false;
@@ -101,9 +101,11 @@ const SignUp2 = ({ navigation }) => {
     }
 
     const showError = (errorField) => {
-        return <Text style={globalStyle.texterror}>{errorField}</Text>
+        return <Text style={signUpStyle.textError}>{errorField}</Text>
     }
     return (
+        <KeyboardAwareScrollView>
+
         <>
             <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpAction()), navigation.navigate('PreConfigScreen') }} message="Registration completed successfully" />
             <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
@@ -114,9 +116,11 @@ const SignUp2 = ({ navigation }) => {
                 signInButtonPress={() => { navigation.navigate('SignInScreen'), disptach(ClearSignUpAction()) }}
                 backButtonPress={() => { saveData(), navigation.navigate('SignUpScreen') }}
                 active={2}
+                signin={0}
+                
             >
                 <PhotoPicker
-                    style={signUpStyle.globalPhotoPicker}
+                    style={signUpStyle.globalPhotoPicker1}
                     placeholder="Front ID"
                     value={frontID}
                     setValue={setFrontID}
@@ -125,7 +129,7 @@ const SignUp2 = ({ navigation }) => {
                 {showError(errorFrontID)}
                 <PhotoPicker
                     style={signUpStyle.globalPhotoPicker}
-                    placeholder="Back Id"
+                    placeholder="Back ID"
                     value={backID}
                     setValue={setBackID}
                     error={errorBackID!=' '}
@@ -148,14 +152,15 @@ const SignUp2 = ({ navigation }) => {
                 />
                 {showError(errorPersonalPhoto)}
                 <View
-                    style={{ ...signUpStyle.globalPhotoPicker, ...{ borderBottomWidth: 1, borderColor: '#DDDDDD' } }}
+                    style={{ ...globalStyle.oneLineInput, ...{ borderBottomWidth: 1, borderColor: '#DDDDDD' } }}
                 >
                     {
                         allCategories.length ?
 
                             <RNPickerSelect
-
-                                placeholder={{ label: 'Categories', value: null }}
+ 
+                                placeholder={{ label: 'Categories' , value: null }}
+                                style={globalStyle.RNPickerSelect}
                                 value={categories}
                                 onValueChange={(item) => { setCategories(item) }}
                                 useNativeAndroidPickerStyle={false}
@@ -180,6 +185,7 @@ const SignUp2 = ({ navigation }) => {
                 </View>
             </AuthHeader>
         </>
+        </KeyboardAwareScrollView>
 
     )
 };

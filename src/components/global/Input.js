@@ -21,12 +21,14 @@ const Input = (props) => {
 }
 const styles = StyleSheet.create({
     input: {
-        height: Dimensions.get('screen').height * 0.03,
+       
         backgroundColor: '#ffffff00',
         borderBottomColor: '#DDDDDD',
         borderBottomWidth: 1,
         fontSize: 16,
-        fontFamily: 'Montserrat_Medium'
+        fontFamily: 'Montserrat_Medium',
+        marginLeft:'9%',
+        marginRight:'9%'
     },
     error: {
         borderBottomColor: '#b30000',
