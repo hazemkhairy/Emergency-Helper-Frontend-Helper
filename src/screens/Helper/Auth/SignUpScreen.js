@@ -20,12 +20,12 @@ const SignUp = ({ navigation }) => {
     const [password, setPassword] = useState(user.password);
     const [confirmPassword, setConfirmPassword] = useState(user.confirmPassword);
 
-    const [firstname_error, setFirstname_error] = useState('');
-    const [lastname_error, setLastname_error] = useState('');
-    const [phonenumber_error, setPhonenumber_error] = useState('');
-    const [email_error, setemail_error] = useState('');
-    const [password_error, setpassword_error] = useState('');
-    const [confirmpassword_error, setConfirmPassword_error] = useState('');
+    const [firstname_error, setFirstname_error] = useState(' ');
+    const [lastname_error, setLastname_error] = useState(' ');
+    const [phonenumber_error, setPhonenumber_error] = useState(' ');
+    const [email_error, setemail_error] = useState(' ');
+    const [password_error, setpassword_error] = useState(' ');
+    const [confirmpassword_error, setConfirmPassword_error] = useState(' ');
 
     const onSubmit = () => {
         let thereIsError = false;
@@ -37,7 +37,7 @@ const SignUp = ({ navigation }) => {
         else {
             const valid = /^[A-Za-z]+$/;
             if (valid.test(firstName) === true) {
-                setFirstname_error("")
+                setFirstname_error(" ")
             }
             else {
                 thereIsError = true;
@@ -52,7 +52,7 @@ const SignUp = ({ navigation }) => {
         else {
             const valid = /^[A-Za-z]+$/;
             if (valid.test(lastName) === true) {
-                setLastname_error("")
+                setLastname_error(" ")
             }
             else {
                 thereIsError = true;
@@ -70,7 +70,7 @@ const SignUp = ({ navigation }) => {
         else {
             var numbers = /^[0-9\b]+$/;
             if (numbers.test(phoneNumber) === true) {
-                setPhonenumber_error("")
+                setPhonenumber_error(" ")
             }
             else {
 
@@ -87,7 +87,7 @@ const SignUp = ({ navigation }) => {
         else {
             const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
             if (valid.test(email) === true) {
-                setemail_error("")
+                setemail_error(" ")
             }
             else {
                 thereIsError = true;
@@ -104,7 +104,7 @@ const SignUp = ({ navigation }) => {
                 thereIsError = true;
                 setpassword_error("Password must be 8 characters or more")
             }
-            else { setpassword_error("") }
+            else { setpassword_error(" ") }
         }
 
         if (!confirmPassword || confirmPassword == '') {
@@ -117,7 +117,7 @@ const SignUp = ({ navigation }) => {
                 setConfirmPassword_error("Password doesn't match")
             }
             else
-                setConfirmPassword_error("")
+                setConfirmPassword_error(" ")
         }
         return thereIsError
     }
@@ -148,7 +148,7 @@ const SignUp = ({ navigation }) => {
                 value={firstName}
                 onChangeText={(text) => setFirstName(text)}
                 style={globalStyle.oneLineInput}
-                error={firstname_error != ''}
+                error={firstname_error != ' '}
             />
 
             <Text style={globalStyle.texterror}>{firstname_error}</Text>
@@ -160,7 +160,7 @@ const SignUp = ({ navigation }) => {
                 value={lastName}
                 onChangeText={(text) => setLastName(text)}
                 style={globalStyle.oneLineInput}
-                error={lastname_error != ''}
+                error={lastname_error != ' '}
             />
             <Text style={globalStyle.texterror}>{lastname_error}</Text>
             <Input
@@ -171,7 +171,7 @@ const SignUp = ({ navigation }) => {
                 value={phoneNumber}
                 onChangeText={(text) => setPhoneNumber(text)}
                 style={globalStyle.oneLineInput}
-                error={phonenumber_error != ''}
+                error={phonenumber_error != ' '}
             />
 
             <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
@@ -184,7 +184,7 @@ const SignUp = ({ navigation }) => {
                 value={email}
                 onChangeText={(text) => setEmail(text)}
                 style={globalStyle.oneLineInput}
-                error={email_error != ''}
+                error={email_error != ' '}
             />
             <Text style={globalStyle.texterror}>{email_error}</Text>
 
@@ -197,7 +197,7 @@ const SignUp = ({ navigation }) => {
                 value={password}
                 onChangeText={(text) => setPassword(text)}
                 style={globalStyle.oneLineInput}
-                error={password_error != ''}
+                error={password_error != ' '}
             />
             <Text style={globalStyle.texterror}>{password_error}</Text>
             <Input
@@ -208,7 +208,7 @@ const SignUp = ({ navigation }) => {
                 value={confirmPassword}
                 onChangeText={(text) => setConfirmPassword(text)}
                 style={globalStyle.oneLineInput}
-                error={confirmpassword_error != ''}
+                error={confirmpassword_error != ' '}
             />
 
             <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>

@@ -41,12 +41,12 @@ const SignUp2 = ({ navigation }) => {
 
     const [allCategories, setAllCategories] = useState([]);
 
-    const [errorFrontID, setErrorFrontID] = useState(null);
-    const [errorBackID, setErrorBackID] = useState(null);
-    const [errorCertificates, setErrorCertificates] = useState(null);
-    const [errorPersonalPhoto, setErrorPersonalPhoto] = useState(null);
-    const [errorCategories, setErrorCategories] = useState(null);
-    const [errorSkills, setErrorSkills] = useState(null);
+    const [errorFrontID, setErrorFrontID] = useState(' ');
+    const [errorBackID, setErrorBackID] = useState(' ');
+    const [errorCertificates, setErrorCertificates] = useState(' ');
+    const [errorPersonalPhoto, setErrorPersonalPhoto] = useState(' ');
+    const [errorCategories, setErrorCategories] = useState(' ');
+    const [errorSkills, setErrorSkills] = useState(' ');
 
     const test = (fieldName, setter, word) => {
 
@@ -54,7 +54,7 @@ const SignUp2 = ({ navigation }) => {
             setter(`Please Select ${word}`);
             return false
         }
-        setter(null)
+        setter(' ')
         return true;
     }
     const dataValid = () => {
@@ -120,7 +120,7 @@ const SignUp2 = ({ navigation }) => {
                     placeholder="Front ID"
                     value={frontID}
                     setValue={setFrontID}
-                    error={errorFrontID}
+                    error={errorFrontID!=' '}
                 />
                 {showError(errorFrontID)}
                 <PhotoPicker
@@ -128,7 +128,7 @@ const SignUp2 = ({ navigation }) => {
                     placeholder="Back Id"
                     value={backID}
                     setValue={setBackID}
-                    error={errorBackID}
+                    error={errorBackID!=' '}
                 />
                 {showError(errorBackID)}
                 <PhotoPicker
@@ -136,7 +136,7 @@ const SignUp2 = ({ navigation }) => {
                     placeholder="Certificate"
                     value={certificates}
                     setValue={setCertificates}
-                    error={errorCertificates}
+                    error={errorCertificates!=' '}
                 />
                 {showError(errorCertificates)}
                 <PhotoPicker
@@ -144,7 +144,7 @@ const SignUp2 = ({ navigation }) => {
                     placeholder="Personal Photo"
                     value={personalPhoto}
                     setValue={setPersonalPhoto}
-                    error={errorPersonalPhoto}
+                    error={errorPersonalPhoto!=' '}
                 />
                 {showError(errorPersonalPhoto)}
                 <View
@@ -172,7 +172,7 @@ const SignUp2 = ({ navigation }) => {
                     onChangeText={setSkills}
                     placeholder='Skills'
                     style={globalStyle.oneLineInput}
-                    error={errorSkills}
+                    error={errorSkills!=' '}
                 />
                 {showError(errorSkills)}
                 <View >

@@ -19,8 +19,8 @@ const SignInScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [email_error, setemail_error] = useState('');
-  const [password_error, setpassword_error] = useState('');
+  const [email_error, setemail_error] = useState(' ');
+  const [password_error, setpassword_error] = useState(' ');
 
 
   const requestState = useSelector((state) => {
@@ -44,7 +44,7 @@ const SignInScreen = ({ navigation }) => {
     else {
       const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
       if (valid.test(email) === true) {
-        setemail_error("")
+        setemail_error(" ")
       }
       else {
         thereIsNoError = false
@@ -62,7 +62,7 @@ const SignInScreen = ({ navigation }) => {
         setpassword_error("Password Invalid")
       }
       else {
-        setpassword_error("")
+        setpassword_error(" ")
       }
     }
     return thereIsNoError;
@@ -97,7 +97,7 @@ const SignInScreen = ({ navigation }) => {
             autoCapitalize='none'
             onChangeText={(text) => setEmail(text)}
             style={globalStyle.oneLineInput}
-            error={email_error != ''}
+            error={email_error != ' '}
           />
           <View>
             {
@@ -114,7 +114,7 @@ const SignInScreen = ({ navigation }) => {
             autoCorrect={false}
             autoCapitalize='none'
             style={globalStyle.oneLineInput}
-            error={password_error != ''}
+            error={password_error != ' '}
           />
           <View>
             {
