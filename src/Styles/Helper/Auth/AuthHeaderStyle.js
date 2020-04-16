@@ -1,34 +1,12 @@
-import { StyleSheet , Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
-    whiteBackground: {
-        backgroundColor: '#F1F0F2',
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width
-    },
-    blueBackground: {
-        backgroundColor: '#7598BA',
-        height: 0.33*Dimensions.get('window').height,
-        borderBottomLeftRadius: 70
-    },
-    container: {
-        position: 'absolute',
-        marginTop: '10%',
-        width: '100%',
-        height: '100%'
-    },
-    //check that
-    backButton: {
-        marginLeft: '9%', width: 25
-    },
-    backIcon: {
-        color: '#fff',
-        fontSize: 20
-    },
+  
+   
     signInUpContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '40%',
+        width:Dimensions.get('window').height>850?'36%':Dimensions.get('window').height<600?'40%':'36%',
         alignSelf: 'center'
     },
 
@@ -38,7 +16,6 @@ export default StyleSheet.create({
         fontFamily: 'Montserrat_SemiBold'
     },
     inActiveText: {
-
         color: '#C0CDDC',
         fontSize: 12,
         fontFamily: 'Montserrat_SemiBold'
@@ -49,29 +26,10 @@ export default StyleSheet.create({
         width: '87%',
         marginLeft: '7%',
         marginRight: '7%',
-        marginBottom: '5%',
+        marginBottom: '7%',
         marginTop: '5%',
-        paddingTop:'10%',
         borderRadius: 35,
-        justifyContent: 'center',
-        minHeight: '25%',
-        maxHeight:'85%',
-        alignContent: 'center',
-    },
-    continueButton: {
-        backgroundColor: '#132641',
-        height: '27%',
-        width: '87%',
-        borderRadius: 35,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: '7%',
-        marginRight: '7%',
 
     },
-    continueText: {
-        color: '#fff',
-        fontSize: 14,
-        fontFamily: 'Montserrat_SemiBold'
-    },
+    
 })

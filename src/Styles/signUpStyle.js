@@ -1,78 +1,74 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 
 export default StyleSheet.create({
+  ClickingText: {
 
-    container: {
-        position: 'absolute',
-        height: '100%'
-    },
-    inputs: {
-        height: '5%',
-        backgroundColor: '#ffffff00',
-        marginLeft: '7%',
-        marginRight: '7%',
-        borderBottomColor: '#DDDDDD',
-        borderBottomWidth: 1,
-        marginBottom: '2%',
-        marginTop: '2%',
-        fontSize: 16,
-        fontWeight: '500',
-        fontFamily: 'Montserrat_Medium'
+    color: '#767676',
+    fontSize: Dimensions.get('window').height < 600 ? 12 : 14,
+    marginBottom: '0%',
+    marginTop: Dimensions.get('window').height > 800 ? '3%' : Dimensions.get('window').height < 600 ? '1%' : '1%',
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    marginLeft:'1%',
+    marginRight:'1%'
 
-    },
-    form: {
-        borderColor: '#d6d7da',
-        backgroundColor: '#fff',
-        width: '87%',
-        marginLeft: '7%',
-        marginRight: '7%',
-        marginBottom: '5%',
-        borderRadius: 35,
-        justifyContent: 'center'
+  },
+  termsAndConditionsText: {
 
-    },
-    signInText: {
-        fontSize: 12,
-        color: '#C0CDDC',
-        marginRight: 50,
-        fontFamily: 'Montserrat_SemiBold'
-    },
-    signUptext: {
-        color: 'white',
-        fontSize: 12,
-        fontFamily: 'Montserrat_SemiBold'
-    },
-    ClickingText: {
-        color: 'grey',
-        marginLeft: 10,
-        paddingTop: 15,
-        fontSize: 14,
-        marginRight: 10,
-        textAlign: 'center',
-        fontFamily: 'Montserrat'
-    },
-    termsAndConditionsText: {
-        fontSize: 14,
-        color: '#132641',
-        textAlign: 'center',
-        textDecorationLine: 'underline',
-        fontFamily: 'Montserrat'
+    color: '#132641',
+    textDecorationLine: 'underline',
+    fontSize: Dimensions.get('window').height < 600 ? 12 : 14,
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    marginBottom: '0%',
+    marginBottom: '5%',
 
-    },
-    globalInput: {
+  },
+  input: {
+    height: Dimensions.get('window').height > 800 ? 30 : 30,
+    marginBottom: '0%',
+    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '2%' : '5%',
 
-        marginLeft: '7%',
-        marginRight: '7%',
-        marginBottom: '0%',
-        marginTop: '10%',
-    },
-    globalPhotoPicker:{
-        
-        marginLeft: '7%',
-        marginRight: '7%',
-        marginBottom: '0%',
-        marginTop: '5%',
-    }
+  },
+  firstnameinput: {
+    height: Dimensions.get('window').height > 800 ? 30 : 30,
+    marginTop: Dimensions.get('window').height > 850 ? '15%' : Dimensions.get('window').height < 600 ? '8%' : '12%',
+    marginBottom: '0%'
+  },
+  form: {
+   height:'82%',
+  },
+  textError: {
+    color: '#b30000',
+    fontSize: 12,
+    position: 'relative',
+    alignItems: 'center',
+    marginRight: '9%',
+    marginLeft: '9%',
+    marginTop: '0%',
+    marginBottom: '0%',
+   // height:'4%',
+    fontFamily: 'Montserrat_Medium',
+
+  },
+
+  globalPhotoPicker1: {
+    height: Dimensions.get('window').height > 800 ? 30 : 30,
+    marginLeft: '0%',
+    marginRight:'0%',
+    marginBottom: '0%',
+    marginTop: '5%',
+    marginTop: Dimensions.get('window').height > 850 ? '15%' : Dimensions.get('window').height < 600 ? '8%' : '12%',
+
+  },
+  globalPhotoPicker: {
+    height: Dimensions.get('window').height > 800 ? 30 : 30,
+    marginLeft: '0%',
+    marginRight:'0%',
+    marginBottom: '0%',
+    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '2%' : '5%',
+
+  }
 
 });

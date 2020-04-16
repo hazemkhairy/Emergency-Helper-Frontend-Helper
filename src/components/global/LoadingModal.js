@@ -11,7 +11,7 @@ const LoadingModal = ({ modalVisible }) => {
                 <View style={styles.modalBody}>
                     <ActivityIndicator
                         color='rgba(117, 152, 200,1)'
-                        size={Math.min(Dimensions.get('window').width * 0.2, Dimensions.get('window').height * 0.1)}
+                        size={Math.min(Dimensions.get('screen').width * 0.2, Dimensions.get('screen').height * 0.1)}
                     />
                 </View>
             </>

@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
-import { View, Text, Picker, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import signInStyle from '../../../Styles/signInStyle';
+import signUpStyle from '../../../Styles/signUpStyle';
 import AuthHeaderStyle from '../../../Styles/Helper/Auth/AuthHeaderStyle'
+import globalStyle from '../../../Styles/Global/globalStyle';
 const AuthHeader = (props) => {
 
     return (
         <View >
-            <View style={AuthHeaderStyle.whiteBackground}>
-                <View style={AuthHeaderStyle.blueBackground}>
+            <View style={globalStyle.whiteBackground}>
+                <View style={globalStyle.blueBackground}>
                 </View>
             </View>
 
-            <View style={AuthHeaderStyle.container}>
+            <View style={globalStyle.container}>
 
                 <View >
                     <TouchableOpacity
                         onPress={() => { props.backButtonPress() }}
-                        style={AuthHeaderStyle.backButton} >
+                        style={globalStyle.backButton} >
                         <Text>
-                            <Icon name="arrowleft" style={AuthHeaderStyle.backIcon} />
+                            <Icon name="arrowleft" style={globalStyle.backIcon} />
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -37,13 +40,16 @@ const AuthHeader = (props) => {
 
                 </View>
                 <View style={AuthHeaderStyle.form} >
+                    <View
+                    style={props.signin==1? signInStyle.form: signUpStyle.form} >
                     {props.children}
+                    </View>
                 </View>
                 <View >
-                    <TouchableOpacity style={AuthHeaderStyle.continueButton}
+                    <TouchableOpacity style={globalStyle.continueButton}
                         onPress={() => { props.continueButtonPress() }}
                     >
-                        <Text style={AuthHeaderStyle.continueText}>CONTINUE</Text>
+                        <Text style={globalStyle.continueText}>{props.signin==1?'SIGN IN':props.signin==0?'SIGN UP':'COUNTINUE'}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

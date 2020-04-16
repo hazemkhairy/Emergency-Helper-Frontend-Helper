@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { signInAction, clearSignInStateAction } from '../../../store/User/SignIn-Helper/actions';
 import { SignInUser } from '../../../Modules/User/UserModule';
@@ -19,8 +19,8 @@ const SignInScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [email_error, setemail_error] = useState('');
-  const [password_error, setpassword_error] = useState('');
+  const [email_error, setemail_error] = useState(' ');
+  const [password_error, setpassword_error] = useState(' ');
 
 
   const requestState = useSelector((state) => {
@@ -44,7 +44,7 @@ const SignInScreen = ({ navigation }) => {
     else {
       const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
       if (valid.test(email) === true) {
-        setemail_error("")
+        setemail_error(" ")
       }
       else {
         thereIsNoError = false
@@ -59,10 +59,10 @@ const SignInScreen = ({ navigation }) => {
     else {
       if (password.length < 8) {
         thereIsNoError = false;
-        setpassword_error("Please Enter 8 characters or more ")
+        setpassword_error("Invalid Password")
       }
       else {
-        setpassword_error("")
+        setpassword_error(" ")
       }
     }
     return thereIsNoError;
@@ -87,6 +87,7 @@ const SignInScreen = ({ navigation }) => {
           signInButtonPress={() => { }}
           backButtonPress={() => { navigation.navigate('Home') }}
           active={1}
+          signin={1}
         >
 
           <Input
@@ -96,12 +97,12 @@ const SignInScreen = ({ navigation }) => {
             value={email}
             autoCapitalize='none'
             onChangeText={(text) => setEmail(text)}
-            style={globalStyle.oneLineInput}
-            error={email_error != ''}
+            style={signInStyle.emailinput}
+            error={email_error != ' '}
           />
           <View>
             {
-              <Text style={globalStyle.texterror}>{email_error}</Text>
+              <Text style={signInStyle.textError}>{email_error}</Text>
             }
           </View>
 
@@ -113,12 +114,12 @@ const SignInScreen = ({ navigation }) => {
             placeholderTextColor='#B9B3BD'
             autoCorrect={false}
             autoCapitalize='none'
-            style={globalStyle.oneLineInput}
-            error={password_error != ''}
+            style={signInStyle.input}
+            error={password_error != ' '}
           />
           <View>
             {
-              <Text style={globalStyle.texterror}>{password_error}</Text>
+              <Text style={signInStyle.textError}>{password_error}</Text>
             }
           </View>
 

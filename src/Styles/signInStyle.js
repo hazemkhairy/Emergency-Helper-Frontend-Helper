@@ -1,63 +1,42 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 
 export default StyleSheet.create({
-  
-    form: {
-
-        borderColor: '#d6d7da',
-        backgroundColor: '#fff',
-        height: '75%',
-        width: '87%',
-        marginLeft: '7%',
-        marginRight: '7%',
-        marginBottom: '5%',
-        borderRadius: 35,
-        justifyContent: 'center',
+  buttonforget: {
+    color: '#132641',
+    fontSize: 12,
+    fontFamily:'Montserrat_SemiBold',
+  },
+  forgetPasswordView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position:'absolute',
+    width:'100%',
+    top:Dimensions.get('window').height>850?'51%':Dimensions.get('window').height<600?'57%':'56%',
+  },
+  input: {
+    height: Dimensions.get('window').height>800?30:30,
+    marginBottom: '0%',
+    marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'2%':'3%',
     
-      },
-      textInputStyle: {
-
-        height: '15%',
-        backgroundColor: '#ffffff00',
-        marginLeft: '10%',
-        marginRight: '10%',
-        borderBottomColor: '#DDDDDD',
-        borderBottomWidth: 1,
-        marginBottom: '5%',
-        marginTop: '2%',
-        fontSize: 16,
-        fontWeight: '500',
-        fontFamily: 'Montserrat_Medium'
-    
-    
-      }, buttonforget: {
-
-        color: '#132641',
-        fontSize: 12,
-        fontWeight: '700',
-        alignItems: 'center',
-        fontFamily: 'Montserrat_SemiBold'
-    
-      },
-      signInText: {
-
-        color: 'white',
-        fontSize: 12,
-        marginRight: '20%',
-        fontFamily: 'Montserrat_SemiBold'
-    
-    
-      },
-      signUpText: {
-        color: '#C0CDDC',
-        fontSize: 12,
-        fontFamily: 'Montserrat_SemiBold'
-    
-      },
-      forgetPasswordView:{
-        position:'absolute',
-        left:'35%',
-        top:'50%'
-      }
+},
+  emailinput:{
+     marginTop: Dimensions.get('window').height>850?'12%':Dimensions.get('window').height<600?'8%':'12%',
+     height: Dimensions.get('window').height>800?30:30,
+     marginBottom:'0%'
+},
+form: {
+  height: '30%',
+},
+ textError: {
+  color: '#b30000',
+  fontSize: 12,
+  position: 'relative',
+  alignItems: 'center',
+  marginRight:'9%',
+  marginLeft: '9%',
+  marginTop: '0%',
+  marginBottom:'0%',
+  fontFamily: 'Montserrat_Medium',
+},
 });

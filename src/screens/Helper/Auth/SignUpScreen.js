@@ -5,6 +5,7 @@ import signUpStyle from '../../../Styles/signUpStyle';
 import { useSelector, useDispatch } from 'react-redux';
 import { SaveSignUpDataAction, ClearSignUpAction } from '../../../store/User/SignUp-Helper/actions';
 import AuthHeader from './AuthHeader';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import Input from '../../../components/global/Input';
 const SignUp = ({ navigation }) => {
@@ -20,12 +21,12 @@ const SignUp = ({ navigation }) => {
     const [password, setPassword] = useState(user.password);
     const [confirmPassword, setConfirmPassword] = useState(user.confirmPassword);
 
-    const [firstname_error, setFirstname_error] = useState('');
-    const [lastname_error, setLastname_error] = useState('');
-    const [phonenumber_error, setPhonenumber_error] = useState('');
-    const [email_error, setemail_error] = useState('');
-    const [password_error, setpassword_error] = useState('');
-    const [confirmpassword_error, setConfirmPassword_error] = useState('');
+    const [firstname_error, setFirstname_error] = useState(' ');
+    const [lastname_error, setLastname_error] = useState(' ');
+    const [phonenumber_error, setPhonenumber_error] = useState(' ');
+    const [email_error, setemail_error] = useState(' ');
+    const [password_error, setpassword_error] = useState(' ');
+    const [confirmpassword_error, setConfirmPassword_error] = useState(' ');
 
     const onSubmit = () => {
         let thereIsError = false;
@@ -37,7 +38,7 @@ const SignUp = ({ navigation }) => {
         else {
             const valid = /^[A-Za-z]+$/;
             if (valid.test(firstName) === true) {
-                setFirstname_error("")
+                setFirstname_error(" ")
             }
             else {
                 thereIsError = true;
@@ -52,7 +53,7 @@ const SignUp = ({ navigation }) => {
         else {
             const valid = /^[A-Za-z]+$/;
             if (valid.test(lastName) === true) {
-                setLastname_error("")
+                setLastname_error(" ")
             }
             else {
                 thereIsError = true;
@@ -65,12 +66,12 @@ const SignUp = ({ navigation }) => {
         }
         else if (phoneNumber.length < 6 || phoneNumber.length > 15) {
             thereIsError = true;
-            setPhonenumber_error("Number of digits must be [6-15]")
+            setPhonenumber_error("Number must be between[6-15]")
         }
         else {
             var numbers = /^[0-9\b]+$/;
             if (numbers.test(phoneNumber) === true) {
-                setPhonenumber_error("")
+                setPhonenumber_error(" ")
             }
             else {
 
@@ -87,7 +88,7 @@ const SignUp = ({ navigation }) => {
         else {
             const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
             if (valid.test(email) === true) {
-                setemail_error("")
+                setemail_error(" ")
             }
             else {
                 thereIsError = true;
@@ -102,9 +103,9 @@ const SignUp = ({ navigation }) => {
         else {
             if (password.length < 8) {
                 thereIsError = true;
-                setpassword_error("Password must be 8 characters or more")
+                setpassword_error("Must be 8 characters or more")
             }
-            else { setpassword_error("") }
+            else { setpassword_error(" ") }
         }
 
         if (!confirmPassword || confirmPassword == '') {
@@ -117,7 +118,7 @@ const SignUp = ({ navigation }) => {
                 setConfirmPassword_error("Password doesn't match")
             }
             else
-                setConfirmPassword_error("")
+                setConfirmPassword_error(" ")
         }
         return thereIsError
     }
@@ -133,13 +134,14 @@ const SignUp = ({ navigation }) => {
 
 
     return (
+        <KeyboardAwareScrollView>
         <AuthHeader
-
             continueButtonPress={() => { submit() }}
             signUpButtonPress={() => { }}
             signInButtonPress={() => { navigation.navigate('SignInScreen'), disptach(ClearSignUpAction()) }}
             backButtonPress={() => { navigation.navigate('Home'), disptach(ClearSignUpAction()) }}
             active={2}
+            signin={2}
         >
             <Input
                 autoCapitalize="none"
@@ -147,11 +149,11 @@ const SignUp = ({ navigation }) => {
                 placeholder="First Name"
                 value={firstName}
                 onChangeText={(text) => setFirstName(text)}
-                style={globalStyle.oneLineInput}
-                error={firstname_error != ''}
+                style={signUpStyle.firstnameinput}
+                error={firstname_error != ' '}
             />
 
-            <Text style={globalStyle.texterror}>{firstname_error}</Text>
+            <Text style={signUpStyle.textError}>{firstname_error}</Text>
 
             <Input
                 autoCapitalize="none"
@@ -159,10 +161,10 @@ const SignUp = ({ navigation }) => {
                 placeholder="Last Name"
                 value={lastName}
                 onChangeText={(text) => setLastName(text)}
-                style={globalStyle.oneLineInput}
-                error={lastname_error != ''}
+                style={signUpStyle.input}
+                error={lastname_error != ' '}
             />
-            <Text style={globalStyle.texterror}>{lastname_error}</Text>
+            <Text style={signUpStyle.textError}>{lastname_error}</Text>
             <Input
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -170,11 +172,11 @@ const SignUp = ({ navigation }) => {
                 keyboardType={"numeric"}
                 value={phoneNumber}
                 onChangeText={(text) => setPhoneNumber(text)}
-                style={globalStyle.oneLineInput}
-                error={phonenumber_error != ''}
+                style={signUpStyle.input}
+                error={phonenumber_error != ' '}
             />
 
-            <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
+            <Text style={signUpStyle.textError}>{phonenumber_error}</Text>
 
             <Input
                 autoCapitalize="none"
@@ -183,10 +185,10 @@ const SignUp = ({ navigation }) => {
                 keyboardType={"email-address"}
                 value={email}
                 onChangeText={(text) => setEmail(text)}
-                style={globalStyle.oneLineInput}
-                error={email_error != ''}
+                style={signUpStyle.input}
+                error={email_error != ' '}
             />
-            <Text style={globalStyle.texterror}>{email_error}</Text>
+            <Text style={signUpStyle.textError}>{email_error}</Text>
 
 
             <Input
@@ -196,10 +198,10 @@ const SignUp = ({ navigation }) => {
                 secureTextEntry={true}
                 value={password}
                 onChangeText={(text) => setPassword(text)}
-                style={globalStyle.oneLineInput}
-                error={password_error != ''}
+                style={signUpStyle.input}
+                error={password_error != ' '}
             />
-            <Text style={globalStyle.texterror}>{password_error}</Text>
+            <Text style={signUpStyle.textError}>{password_error}</Text>
             <Input
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -207,11 +209,11 @@ const SignUp = ({ navigation }) => {
                 secureTextEntry={true}
                 value={confirmPassword}
                 onChangeText={(text) => setConfirmPassword(text)}
-                style={globalStyle.oneLineInput}
-                error={confirmpassword_error != ''}
+                style={signUpStyle.input}
+                error={confirmpassword_error != ' '}
             />
 
-            <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>
+            <Text style={signUpStyle.textError}>{confirmpassword_error}</Text>
 
 
             <View >
@@ -224,7 +226,7 @@ const SignUp = ({ navigation }) => {
 
         </AuthHeader>
 
-
+        </KeyboardAwareScrollView>
 
     )
 
