@@ -165,7 +165,7 @@ const SignUp2 = ({ navigation }) => {
                                 onValueChange={(item) => { setCategories(item) }}
                                 useNativeAndroidPickerStyle={false}
                                 items={allCategories}
-                                Icon={() => { return <Ionicons name="ios-arrow-down" size={20} color="black" /> }}
+                                Icon={() => { return <Ionicons name="ios-arrow-down" size={20} color="#132641" /> }}
 
                             />
                             : <Text>Still loading categories</Text>

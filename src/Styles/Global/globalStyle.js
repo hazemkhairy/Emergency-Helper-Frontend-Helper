@@ -51,7 +51,7 @@ backIcon: {
     marginLeft: '9%',
     marginRight: '9%',
     marginBottom: '0%',
-    marginTop: '5%',
+    marginTop: '3%',
     height:30,
     fontFamily: 'Montserrat_Medium',
   },

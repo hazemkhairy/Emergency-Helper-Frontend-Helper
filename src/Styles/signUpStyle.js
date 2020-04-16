@@ -7,7 +7,7 @@ export default StyleSheet.create({
     color: '#767676',
     fontSize: Dimensions.get('window').height < 600 ? 12 : 14,
     marginBottom: '0%',
-    marginTop: Dimensions.get('window').height > 800 ? '8%' : Dimensions.get('window').height < 600 ? '0%' : '3%',
+    marginTop: Dimensions.get('window').height > 800 ? '3%' : Dimensions.get('window').height < 600 ? '1%' : '1%',
     textAlign: 'center',
     fontFamily: 'Montserrat',
     marginLeft:'1%',
@@ -28,16 +28,16 @@ export default StyleSheet.create({
   input: {
     height: Dimensions.get('window').height > 800 ? 30 : 30,
     marginBottom: '0%',
-    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '3%' : '5%',
+    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '2%' : '5%',
 
   },
   firstnameinput: {
     height: Dimensions.get('window').height > 800 ? 30 : 30,
-    marginTop: Dimensions.get('window').height > 850 ? '15%' : Dimensions.get('window').height < 600 ? '8%' : '8%',
+    marginTop: Dimensions.get('window').height > 850 ? '15%' : Dimensions.get('window').height < 600 ? '8%' : '12%',
     marginBottom: '0%'
   },
   form: {
-    height: '82%',
+   height:'82%',
   },
   textError: {
     color: '#b30000',
@@ -48,7 +48,7 @@ export default StyleSheet.create({
     marginLeft: '9%',
     marginTop: '0%',
     marginBottom: '0%',
-    height:'4%',
+   // height:'4%',
     fontFamily: 'Montserrat_Medium',
 
   },
@@ -59,7 +59,7 @@ export default StyleSheet.create({
     marginRight:'0%',
     marginBottom: '0%',
     marginTop: '5%',
-    marginTop: Dimensions.get('window').height > 850 ? '15%' : Dimensions.get('window').height < 600 ? '8%' : '8%',
+    marginTop: Dimensions.get('window').height > 850 ? '15%' : Dimensions.get('window').height < 600 ? '8%' : '12%',
 
   },
   globalPhotoPicker: {
@@ -67,7 +67,7 @@ export default StyleSheet.create({
     marginLeft: '0%',
     marginRight:'0%',
     marginBottom: '0%',
-    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '3%' : '5%',
+    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '2%' : '5%',
 
   }
 
