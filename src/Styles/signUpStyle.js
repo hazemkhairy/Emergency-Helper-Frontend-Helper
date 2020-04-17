@@ -7,7 +7,7 @@ export default StyleSheet.create({
     color: '#767676',
     fontSize: Dimensions.get('window').height < 600 ? 12 : 14,
     marginBottom: '0%',
-    marginTop: Dimensions.get('window').height > 800 ? '3%' : Dimensions.get('window').height < 600 ? '1%' : '1%',
+    marginTop:Dimensions.get('window').height>800?'3%':Dimensions.get('window').height<600?'2%':'5%',
     textAlign: 'center',
     fontFamily: 'Montserrat',
     marginLeft:'1%',
@@ -28,12 +28,12 @@ export default StyleSheet.create({
   input: {
     height: Dimensions.get('window').height > 800 ? 30 : 30,
     marginBottom: '0%',
-    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '2%' : '5%',
+    marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'3%':'4%',
 
   },
   firstnameinput: {
     height: Dimensions.get('window').height > 800 ? 30 : 30,
-    marginTop: Dimensions.get('window').height > 850 ? '15%' : Dimensions.get('window').height < 600 ? '8%' : '12%',
+    marginTop: Dimensions.get('window').height>850?'15%':Dimensions.get('window').height<600?'10%':'11%',
     marginBottom: '0%'
   },
   form: {
@@ -59,7 +59,7 @@ export default StyleSheet.create({
     marginRight:'0%',
     marginBottom: '0%',
     marginTop: '5%',
-    marginTop: Dimensions.get('window').height > 850 ? '15%' : Dimensions.get('window').height < 600 ? '8%' : '12%',
+    marginTop: Dimensions.get('window').height>850?'15%':Dimensions.get('window').height<600?'10%':'11%',
 
   },
   globalPhotoPicker: {
