@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     text: {
         color: '#132641',
         textAlign: 'center',
-        fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat_SemiBold',
         fontSize: 14,
     }
 });
