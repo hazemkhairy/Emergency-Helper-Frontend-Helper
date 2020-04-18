@@ -28,7 +28,7 @@ export default StyleSheet.create({
   input: {
     height: Dimensions.get('window').height > 800 ? 30 : 30,
     marginBottom: '0%',
-    marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'3%':'4%',
+    marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'1%':'5%',
 
   },
   firstnameinput: {
@@ -67,7 +67,7 @@ export default StyleSheet.create({
     marginLeft: '0%',
     marginRight:'0%',
     marginBottom: '0%',
-    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '2%' : '5%',
+    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '1%' : '5%',
 
   }
 
