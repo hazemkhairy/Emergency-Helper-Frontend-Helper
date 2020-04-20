@@ -11,7 +11,7 @@ const SuccessModal = ({ modalVisible, closeModal, message }) => {
 
                 <View style={styles.modalHeader}>
                     <Ionicons
-                        size={Math.min(Dimensions.get('screen').width * 0.2, Dimensions.get('screen').height * 0.1)}
+                        size={Math.min(Dimensions.get('screen').width * 0.11, Dimensions.get('screen').height * 0.1)}
                         name="md-checkmark-circle"
                         color='white'
                     />
@@ -37,13 +37,13 @@ const SuccessModal = ({ modalVisible, closeModal, message }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        margin: 22,
+        margin: 30,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 75,
-        borderColor: 'rgba(0, 0, 0, 0.1)',
-        minHeight: '30%',
-        maxHeight: '50%',
+        borderRadius: 30,
+        borderColor: 'rgb(42,98,24)',
+        minHeight: '25%',
+        maxHeight: '25%',
         overflow: 'hidden'
     },
     modalHeader: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(60, 200, 30, 0.70)',
+        backgroundColor: 'rgb(69,136,51)',
 
     },
     modalFooter: {
@@ -65,28 +65,33 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 10,
+      
 
     },
     button: {
         height: '70%',
-        width: '40%',
-        borderRadius: 75,
-        backgroundColor: 'rgba(60, 200, 30, 0.6)',
+        width: '30%',
+        borderRadius: 10,
+        backgroundColor: 'rgb(69,136,51)',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 3,
-        borderColor: 'rgba(0,255,0,0.3)'
+
     },
     buttonText: {
-        fontSize: 25,
-        color: 'white'
+        fontSize: 22,
+        color: 'white',
+        fontWeight: "600"
     },
     errorText: {
-        fontSize: 25, marginBottom: 10
+        fontSize: 25,marginBottom:5,
+        color: 'black', fontWeight: "500"
+
     },
     messageText: {
-        fontSize: 15,
+        marginLeft:12,
+        marginRight:12,
+        fontSize: 18,
+        fontWeight: "400",
     }
 })
 export default SuccessModal;
