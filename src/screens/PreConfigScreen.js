@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     Backgroundstyle: {
         flex: 1,
         resizeMode: 'stretch',
-        height: '90%',
+        height: '100%',
         backgroundColor: '#241332'
     }
 })

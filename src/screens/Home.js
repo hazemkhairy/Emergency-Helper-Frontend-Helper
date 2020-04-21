@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     },
     LoginButton: {
         backgroundColor: '#7598BA',
-        height: '48%',
+        height: '49%',
         borderTopLeftRadius: 120,
         justifyContent: "center",
         alignItems: 'center',
@@ -102,15 +102,12 @@ const styles = StyleSheet.create({
     LoginBackground: {
         borderTopLeftRadius: 90,
         backgroundColor: '#7598BA',
-        height: '20%',
+        height: '22%',
         overflow: 'hidden'
 
 
     },
-    // buttonbackground2: {
-    //     backgroundColor: '#7598BA',
-    //     height: '10%'
-    // }
+    
 });
 
 export default First;
