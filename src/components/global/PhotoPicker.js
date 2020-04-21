@@ -67,12 +67,13 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        zIndex: 0,
+        zIndex:1,
         bottom: 0,
         backgroundColor: 'white',
         padding: 2,
         height: Dimensions.get('window').height > 800 ? 30 : 30,
-        marginRight:'7%'
+        marginRight:'7%',
+        marginBottom:'5%'
        
     },
     text: {
