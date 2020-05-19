@@ -12,7 +12,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     position:'absolute',
     width:'100%',
-    top:Dimensions.get('window').height>850?'51%':Dimensions.get('window').height<600?'58%':'56%',
+    top:Dimensions.get('window').height>850?'51%':Dimensions.get('window').height<600?'58%':'55%',
   },
   input: {
     height: Dimensions.get('window').height>800?30:30,

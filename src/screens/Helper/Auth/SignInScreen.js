@@ -99,6 +99,7 @@ const SignInScreen = ({ navigation }) => {
             onChangeText={(text) => setEmail(text)}
             style={signInStyle.emailinput}
             error={email_error != ' '}
+            autoFocus={true}
           />
           <View>
             {
@@ -116,6 +117,7 @@ const SignInScreen = ({ navigation }) => {
             autoCapitalize='none'
             style={signInStyle.input}
             error={password_error != ' '}
+            autoFocus={true}
           />
           <View>
             {
