@@ -94,7 +94,7 @@ const SignUp2 = ({ navigation }) => {
     }
 
     const submit = () => {
-        if (dataValid()) {
+        if (dataValid()||true) {
             disptach(signUpAction(user))
 
         }

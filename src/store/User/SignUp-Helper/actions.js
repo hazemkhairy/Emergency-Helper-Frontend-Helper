@@ -1,6 +1,7 @@
 import backendAxios from '../../../services/backendAxios'
 import { SignUpUser } from "../../../Modules/User/UserModule";
 
+import { registerHelper } from '../../../utils/Helper';
 
 export const Start_Sign_Up = 'Start_Sign_Up';
 export const Success_Sign_Up = 'Success_SIGN_UP';
@@ -30,31 +31,28 @@ export const signUpAction = (user = new SignUpUser()) => {
     return (dispatch) => {
 
         dispatch({ type: Start_Sign_Up })
-        let obj = {
-            name: {
-                firstName: user.firstName,
-                lastName: user.lastName
-            },
-            email: user.email,
-            password: user.password,
-            skills: user.skills,
-            categories: [user.categories],
-            picture: user.personalPhoto.base64,
-            frontID: user.frontID.base64,
-            backID: user.backID.base64,
-            certificate: user.certificates.base64,
-            mobile: user.phoneNumber
-        }
-        backendAxios.post('Helper/Register',
-            obj
-        ).then(
+
+
+
+
+        registerHelper(user).then(
             (res) => {
                 dispatch({ type: Success_Sign_Up })
             }
         )
             .catch(
                 (err) => {
-                    dispatch({ type: Error_Sign_Up, payload: err.response.data.message })
+                    console.log(err)
+                    
+                    if(err.response.data)
+                    {
+                        console.log(err.response.data)
+                    }
+                    if(err.response.data.message)
+                    {
+                        console.log(err.response.data.message)
+                    }
+                    dispatch({ type: Error_Sign_Up, payload: 'err.response.data.message' })
                 }
             )
     }

@@ -21,7 +21,6 @@ const PhotoPicker = (props) => {
     const _pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
-            base64: true,
             quality: 0.5
         });
         if (result.cancelled)
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row-reverse',
         alignItems: 'center',
-       
+
     },
     input: {
         flexGrow: 1,
@@ -67,14 +66,14 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        zIndex:1,
+        zIndex: 1,
         bottom: 0,
         backgroundColor: 'white',
         padding: 2,
         height: Dimensions.get('window').height > 800 ? 30 : 30,
-        marginRight:'7%',
-        marginBottom:'5%'
-       
+        marginRight: '7%',
+        marginBottom: '5%'
+
     },
     text: {
         color: '#132641',
