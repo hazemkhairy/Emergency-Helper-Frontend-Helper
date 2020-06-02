@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import signInStyle from '../../../Styles/signInStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
@@ -41,15 +41,15 @@ const AuthHeader = (props) => {
                 </View>
                 <View style={AuthHeaderStyle.form} >
                     <View
-                    style={props.signin==1? signInStyle.form: signUpStyle.form} >
-                    {props.children}
+                        style={props.signin == 1 ? signInStyle.form : signUpStyle.form} >
+                        {props.children}
                     </View>
                 </View>
                 <View >
                     <TouchableOpacity style={globalStyle.continueButton}
                         onPress={() => { props.continueButtonPress() }}
                     >
-                        <Text style={globalStyle.continueText}>{props.signin==1?'SIGN IN':props.signin==0?'SIGN UP':'COUNTINUE'}</Text>
+                        <Text style={globalStyle.continueText}>{props.signin == 1 ? 'SIGN IN' : props.signin == 0 ? 'SIGN UP' : 'COUNTINUE'}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

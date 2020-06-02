@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import globalStyle from '../../../Styles/Global/globalStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
 import { useSelector, useDispatch } from 'react-redux';
 import { SaveSignUpDataAction, ClearSignUpAction } from '../../../store/User/SignUp-Helper/actions';

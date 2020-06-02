@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-      
+
 
     },
     button: {
@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
         fontWeight: "600"
     },
     errorText: {
-        fontSize: 25,marginBottom:5,
+        fontSize: 25, marginBottom: 5,
         color: 'black', fontWeight: "500"
 
     },
     messageText: {
-        marginLeft:12,
-        marginRight:12,
+        marginLeft: 12,
+        marginRight: 12,
         fontSize: 18,
         fontWeight: "400",
     }

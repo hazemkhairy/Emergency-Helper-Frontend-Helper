@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
-
 import globalStyle from '../../../Styles/Global/globalStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -94,7 +93,7 @@ const SignUp2 = ({ navigation }) => {
     }
 
     const submit = () => {
-        if (dataValid()||true) {
+        if (dataValid()) {
             disptach(signUpAction(user))
 
         }

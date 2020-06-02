@@ -4,7 +4,6 @@ import { Button } from 'react-native-elements';
 import { signInAction, clearSignInStateAction } from '../../../store/User/SignIn-Helper/actions';
 import { SignInUser } from '../../../Modules/User/UserModule';
 import { useDispatch, useSelector } from 'react-redux';
-import globalStyle from '../../../Styles/Global/globalStyle';
 import signInStyle from '../../../Styles/signInStyle';
 import AuthHeader from './AuthHeader'
 import Input from '../../../components/global/Input';

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:  '#b30000',
+        backgroundColor: '#b30000',
 
     },
     modalFooter: {
@@ -66,17 +66,17 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-       
+
 
     },
     button: {
         height: '70%',
         width: '30%',
         borderRadius: 10,
-        backgroundColor:  '#b30000',
+        backgroundColor: '#b30000',
         justifyContent: 'center',
         alignItems: 'center',
-       
+
     },
     buttonText: {
         fontSize: 22,
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
         color: 'black', fontWeight: "500"
     },
     messageText: {
-        marginLeft:12,
-        marginRight:12,
+        marginLeft: 12,
+        marginRight: 12,
         fontSize: 16,
         fontWeight: "400",
 
