@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
         bottom: 0,
         backgroundColor: 'white',
         padding: 2,
-        height: Dimensions.get('window').height > 800 ? 30 : 30,
+        height: 30,
         marginRight: '7%',
-        marginBottom: '5%'
+        marginBottom: Dimensions.get('window').height>600?'5%':'5.5%'
 
     },
     text: {

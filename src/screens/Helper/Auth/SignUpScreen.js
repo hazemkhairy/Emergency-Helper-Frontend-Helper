@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { SaveSignUpDataAction, ClearSignUpAction } from '../../../store/User/SignUp-Helper/actions';
 import AuthHeader from './AuthHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import PasswordStrengthBar from '../../../components/global/PasswordStrengthBar';
 import Input from '../../../components/global/Input';
 const SignUp = ({ navigation }) => {
 
@@ -133,7 +133,7 @@ const SignUp = ({ navigation }) => {
 
 
     return (
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView bounces={false}>
             <AuthHeader
                 continueButtonPress={() => { submit() }}
                 signUpButtonPress={() => { }}
@@ -203,6 +203,7 @@ const SignUp = ({ navigation }) => {
                     error={password_error != ' '}
                 />
                 <Text style={signUpStyle.textError}>{password_error}</Text>
+                <PasswordStrengthBar password={password} />
                 <Input
                     autoCapitalize="none"
                     autoCorrect={false}

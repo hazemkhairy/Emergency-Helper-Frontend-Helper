@@ -103,87 +103,93 @@ const SignUp2 = ({ navigation }) => {
         return <Text style={signUpStyle.textError}>{errorField}</Text>
     }
     return (
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView bounces={false}>
 
-        <>
-            <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpAction()), navigation.navigate('PreConfigScreen') }} message="Registration completed successfully" />
-            <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
-            <LoadingModal modalVisible={requestState.pending} />
-            <AuthHeader
-                continueButtonPress={() => { submit() }}
-                signUpButtonPress={() => { }}
-                signInButtonPress={() => { navigation.navigate('SignInScreen'), disptach(ClearSignUpAction()) }}
-                backButtonPress={() => { saveData(), navigation.navigate('SignUpScreen') }}
-                active={2}
-                signin={0}
-                
-            >
-                <PhotoPicker
-                    style={signUpStyle.globalPhotoPicker1}
-                    placeholder="Front ID"
-                    value={frontID}
-                    setValue={setFrontID}
-                    error={errorFrontID!=' '}
-                />
-                {showError(errorFrontID)}
-                <PhotoPicker
-                    style={signUpStyle.globalPhotoPicker}
-                    placeholder="Back ID"
-                    value={backID}
-                    setValue={setBackID}
-                    error={errorBackID!=' '}
-                />
-                {showError(errorBackID)}
-                <PhotoPicker
-                    style={signUpStyle.globalPhotoPicker}
-                    placeholder="Certificate"
-                    value={certificates}
-                    setValue={setCertificates}
-                    error={errorCertificates!=' '}
-                />
-                {showError(errorCertificates)}
-                <PhotoPicker
-                    style={signUpStyle.globalPhotoPicker}
-                    placeholder="Personal Photo"
-                    value={personalPhoto}
-                    setValue={setPersonalPhoto}
-                    error={errorPersonalPhoto!=' '}
-                />
-                {showError(errorPersonalPhoto)}
-                <View
-                    style={{ ...globalStyle.oneLineInput, ...{ borderBottomWidth: 1, borderColor: '#DDDDDD' } }}
+            <>
+                <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpAction()), navigation.navigate('PreConfigScreen') }} message="Registration completed successfully" />
+                <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
+                <LoadingModal modalVisible={requestState.pending} />
+                <AuthHeader
+                    continueButtonPress={() => { submit() }}
+                    signUpButtonPress={() => { }}
+                    signInButtonPress={() => { navigation.navigate('SignInScreen'), disptach(ClearSignUpAction()) }}
+                    backButtonPress={() => { saveData(), navigation.navigate('SignUpScreen') }}
+                    active={2}
+                    signin={0}
+
                 >
-                    {
-                        allCategories.length ?
+                    <PhotoPicker
+                        style={signUpStyle.globalPhotoPicker1}
+                        placeholder="Front ID"
+                        value={frontID}
+                        setValue={setFrontID}
+                        error={errorFrontID != ' '}
+                    />
+                    {showError(errorFrontID)}
+                    <PhotoPicker
+                        style={signUpStyle.globalPhotoPicker}
+                        placeholder="Back ID"
+                        value={backID}
+                        setValue={setBackID}
+                        error={errorBackID != ' '}
+                    />
+                    {showError(errorBackID)}
+                    <PhotoPicker
+                        style={signUpStyle.globalPhotoPicker}
+                        placeholder="Certificate"
+                        value={certificates}
+                        setValue={setCertificates}
+                        error={errorCertificates != ' '}
+                    />
+                    {showError(errorCertificates)}
+                    <PhotoPicker
+                        style={signUpStyle.globalPhotoPicker}
+                        placeholder="Personal Photo"
+                        value={personalPhoto}
+                        setValue={setPersonalPhoto}
+                        error={errorPersonalPhoto != ' '}
+                    />
+                    {showError(errorPersonalPhoto)}
+                    <View
+                        style={{ ...globalStyle.oneLineInput, ...{ borderBottomWidth: 1, borderColor: '#DDDDDD' } }}
+                    >
+                        {
+                            allCategories.length ?
 
-                            <RNPickerSelect
- 
-                                placeholder={{ label: 'Categories' , value: null }}
-                                style={globalStyle.RNPickerSelect}
-                                value={categories}
-                                onValueChange={(item) => { setCategories(item) }}
-                                useNativeAndroidPickerStyle={false}
-                                items={allCategories}
-                                Icon={() => { return <Ionicons name="ios-arrow-down" size={20} color="#132641" /> }}
+                                <RNPickerSelect
 
-                            />
-                            : <Text>Still loading categories</Text>
-                    }
-                </View>
-                {showError(errorCategories)}
-                <Input
-                    value={skills}
-                    onChangeText={setSkills}
-                    placeholder='Skills'
-                    style={globalStyle.oneLineInput}
-                    error={errorSkills!=' '}
-                />
-                {showError(errorSkills)}
-                <View >
-                    <Text style={signUpStyle.ClickingText}>By clicking continue you are confirming all details are correct</Text>
-                </View>
-            </AuthHeader>
-        </>
+                                    placeholder={{ label: 'Categories', value: null }}
+                                    style={{
+                                        placeholder: {
+                                            fontSize: 16,
+                                            fontFamily: "Montserrat_Medium",
+                                            color: 'rgb(199,200,204)'
+                                        }
+                                    }}
+                                    value={categories}
+                                    onValueChange={(item) => { setCategories(item) }}
+                                    useNativeAndroidPickerStyle={false}
+                                    items={allCategories}
+                                    Icon={() => { return <Ionicons name="ios-arrow-down" size={20} color="#132641" /> }}
+
+                                />
+                                : <Text>Still loading categories</Text>
+                        }
+                    </View>
+                    {showError(errorCategories)}
+                    <Input
+                        value={skills}
+                        onChangeText={setSkills}
+                        placeholder='Skills'
+                        style={globalStyle.oneLineInput}
+                        error={errorSkills != ' '}
+                    />
+                    {showError(errorSkills)}
+                    <View >
+                        <Text style={signUpStyle.ClickingText}>By clicking continue you are confirming all details are correct</Text>
+                    </View>
+                </AuthHeader>
+            </>
         </KeyboardAwareScrollView>
 
     )
