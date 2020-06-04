@@ -55,7 +55,7 @@ export default StyleSheet.create({
   },
   globalPhotoPicker: {
     height: Dimensions.get('window').height > 800 ? 30 : 30,
-    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '1%' : '5%',
+    marginTop: Dimensions.get('window').height > 850 ? '8%' : Dimensions.get('window').height < 600 ? '1%' : '5%'
 
   }
 

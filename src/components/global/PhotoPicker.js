@@ -50,6 +50,7 @@ const PhotoPicker = (props) => {
                     editable={false}
                     value={image.name ? image.name : ''}
                     error={props.error}
+                    multiline={true}
                 />
             </View>
         </View>);
@@ -59,22 +60,22 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row-reverse',
         alignItems: 'center',
+        
 
 
     },
     input: {
         flexGrow: 1,
-
+        
     },
     button: {
         position: 'absolute',
         zIndex: 1,
-        bottom: normalize(-7),
+        bottom: normalize(11),
         backgroundColor: 'white',
-        padding: 5,
-        height: 30,
+        height: 20,
         marginRight: '7%',
-        marginBottom: Dimensions.get('window').height > 600 ? '5%' : '5.5%',
+       
 
 
     },
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'Montserrat_SemiBold',
         fontSize: 14,
+       
 
     }
 });

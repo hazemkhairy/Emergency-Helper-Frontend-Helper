@@ -93,7 +93,7 @@ const SignInScreen = ({ navigation }) => {
             placeholder="Email"
             placeholderTextColor='#B9B3BD'
             autoCorrect={false}
-            value={email}
+            value={email.toLowerCase()}
             autoCapitalize='none'
             onChangeText={(text) => setEmail(text)}
             style={signInStyle.emailinput}

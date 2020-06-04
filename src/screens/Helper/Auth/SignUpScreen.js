@@ -184,7 +184,7 @@ const SignUp = ({ navigation }) => {
                     autoCorrect={false}
                     placeholder="Email"
                     keyboardType={"email-address"}
-                    value={email}
+                    value={email.toLowerCase()}
                     onChangeText={(text) => setEmail(text)}
                     style={signUpStyle.input}
                     error={email_error != ' '}
