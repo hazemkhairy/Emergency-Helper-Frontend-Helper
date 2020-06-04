@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import globalStyle from '../../../Styles/Global/globalStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -160,6 +160,7 @@ const SignUp2 = ({ navigation }) => {
 
                                     placeholder={{ label: 'Categories', value: null }}
                                     style={{
+                                        ...pickerSelectStyles,
                                         placeholder: {
                                             fontSize: 16,
                                             fontFamily: "Montserrat_Medium",
@@ -186,7 +187,7 @@ const SignUp2 = ({ navigation }) => {
                     />
                     {showError(errorSkills)}
                     <View >
-                        <Text style={signUpStyle.ClickingText}>By clicking continue you are confirming all details are correct</Text>
+                        <Text style={signUpStyle.ClickingText}>By sigining up you are confirming all details are correct</Text>
                     </View>
                 </AuthHeader>
             </>
@@ -195,6 +196,18 @@ const SignUp2 = ({ navigation }) => {
     )
 };
 
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+        fontSize: 16,
+        color: "rgb(199,200,204)",
+        fontFamily: "Montserrat_Medium",
+    },
+    inputAndroid: {
+        fontSize: 16,
+        color: "rgb(199,200,204)",
+        fontFamily: "Montserrat_Medium",
+    },
+});
 export default SignUp2;
 
 

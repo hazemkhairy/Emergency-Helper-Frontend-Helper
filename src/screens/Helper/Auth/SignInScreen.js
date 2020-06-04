@@ -77,7 +77,7 @@ const SignInScreen = ({ navigation }) => {
   return (
     <View>
       <View>
-        <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()), navigation.navigate('MainScreen') }} message="Sign In successfully" />
+        <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()), navigation.navigate('MainScreen') }} message="Signed In successfully" />
         <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message={requestState.errorMessage ? requestState.errorMessage : 'Wrong Email or Password'} />
         <LoadingModal modalVisible={requestState.pending} />
         <AuthHeader
@@ -116,7 +116,7 @@ const SignInScreen = ({ navigation }) => {
             autoCapitalize='none'
             style={signInStyle.input}
             error={password_error != ' '}
-            autoFocus={true}
+           
           />
           <View>
             {

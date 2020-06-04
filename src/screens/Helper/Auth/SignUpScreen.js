@@ -35,7 +35,7 @@ const SignUp = ({ navigation }) => {
         }
 
         else {
-            const valid = /^[A-Za-z]+$/;
+            const valid =/^[A-Za-z ]+$/;
             if (valid.test(firstName) === true) {
                 setFirstname_error(" ")
             }
@@ -50,7 +50,7 @@ const SignUp = ({ navigation }) => {
             setLastname_error("Please Enter your Last Name")
         }
         else {
-            const valid = /^[A-Za-z]+$/;
+            const valid = /^[A-Za-z ]+$/;
             if (valid.test(lastName) === true) {
                 setLastname_error(" ")
             }

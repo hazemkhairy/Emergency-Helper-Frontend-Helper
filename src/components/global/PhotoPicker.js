@@ -4,6 +4,7 @@ import Input from './Input';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { PhotoInfo } from '../../Modules/GlobalModels'
+import normalize from 'react-native-normalize'
 const getNameFromUri = (uri) => {
     if (uri == '') {
         return '';
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         alignItems: 'center',
 
+
     },
     input: {
         flexGrow: 1,
@@ -67,12 +69,13 @@ const styles = StyleSheet.create({
     button: {
         position: 'absolute',
         zIndex: 1,
-        bottom: 0,
+        bottom: normalize(-7),
         backgroundColor: 'white',
-        padding: 2,
+        padding: 5,
         height: 30,
         marginRight: '7%',
-        marginBottom: Dimensions.get('window').height>600?'5%':'5.5%'
+        marginBottom: Dimensions.get('window').height > 600 ? '5%' : '5.5%',
+
 
     },
     text: {
@@ -80,6 +83,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'Montserrat_SemiBold',
         fontSize: 14,
+
     }
 });
 

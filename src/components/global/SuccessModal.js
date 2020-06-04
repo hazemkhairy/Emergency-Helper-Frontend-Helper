@@ -37,13 +37,10 @@ const SuccessModal = ({ modalVisible, closeModal, message }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        margin: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
         borderRadius: 30,
         borderColor: 'rgb(42,98,24)',
-        minHeight: '25%',
-        maxHeight: '25%',
+        minHeight: '35%',
+        maxHeight: '35%',
         overflow: 'hidden'
     },
     modalHeader: {
@@ -80,18 +77,20 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 22,
         color: 'white',
-        fontWeight: "600"
+        fontFamily: 'Montserrat_Medium'
+
     },
     errorText: {
         fontSize: 25, marginBottom: 5,
-        color: 'black', fontWeight: "500"
+        color: 'black',  fontFamily: 'Montserrat_SemiBold'
 
     },
     messageText: {
         marginLeft: 12,
         marginRight: 12,
         fontSize: 18,
-        fontWeight: "400",
+        fontFamily: 'Montserrat_Medium'
+
     }
 })
 export default SuccessModal;

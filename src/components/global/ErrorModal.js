@@ -37,13 +37,10 @@ const ErrorModal = ({ modalVisible, closeModal, message }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        margin: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
         borderRadius: 30,
         borderColor: 'rgba(0, 0, 0, 0.1)',
-        minHeight: '30%',
-        maxHeight: '30%',
+        minHeight: '35%',
+        maxHeight: '35%',
         overflow: 'hidden'
 
     },
@@ -81,17 +78,17 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 22,
         color: 'white',
-        fontWeight: "600"
+        fontFamily:'Montserrat_Medium'
     },
     errorText: {
         fontSize: 25, marginBottom: 5,
-        color: 'black', fontWeight: "500"
+        color: 'black',  fontFamily: 'Montserrat_SemiBold'
     },
     messageText: {
         marginLeft: 12,
         marginRight: 12,
-        fontSize: 16,
-        fontWeight: "400",
+        fontSize: 18,
+        fontFamily: 'Montserrat_Medium'
 
 
     }
