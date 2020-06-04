@@ -164,7 +164,7 @@ const SignUp2 = ({ navigation }) => {
                                         placeholder: {
                                             fontSize: 16,
                                             fontFamily: "Montserrat_Medium",
-                                            color: 'rgb(199,200,204)'
+                                            color: 'rgb(200,200,205)'
                                         }
                                     }}
                                     value={categories}
@@ -199,12 +199,12 @@ const SignUp2 = ({ navigation }) => {
 const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
         fontSize: 16,
-        color: "rgb(199,200,204)",
+        color: "#132641",
         fontFamily: "Montserrat_Medium",
     },
     inputAndroid: {
         fontSize: 16,
-        color: "rgb(199,200,204)",
+        color: "#132641",
         fontFamily: "Montserrat_Medium",
     },
 });
