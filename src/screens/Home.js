@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
-import { Text, View, StyleSheet, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-elements';
-
+import React from 'react';
+import { Text, View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import image from '../images/image.png';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-const { width, height } = Dimensions.get('window');
-const window = Dimensions.get('window');
-export const IMAGE_HEIGHT = window.width / 2;
-export const IMAGE_HEIGHT_SMALL = window.width / 7;
+
 
 const First = ({ navigation }) => {
     return (
-        <ImageBackground
-            source={image}
-            style={{ flex: 1, resizeMode: 'stretch', height: hp('95%'), backgroundColor: '#241332' }} >
+        <ImageBackground source={image} style={styles.Backgroundstyle} >
+
             <View style={styles.main}>
                 <Text style={styles.text1}>
                     Welcome
@@ -29,60 +21,93 @@ const First = ({ navigation }) => {
                     Let’s get started!
                 </Text>
             </View>
-            <View style={{ borderTopLeftRadius: 60, backgroundColor: '#7598BA', height: hp("10%") }}>
-                <Button  title="LOG IN" titleStyle={{ color: 'white', fontSize: 14, fontWeight: '500' }} onPress={() => navigation.navigate('SignInScreen')}  type="clear" >
 
-                </Button>
-
-            </View>
-            <View style={{ backgroundColor: '#7598BA', height: hp('10%') }}>
-                <Button style={styles.button2} title="SIGN UP" titleStyle={{ color: 'white', fontSize: 14, fontWeight: '500' }} type="clear" onPress={() => navigation.navigate('SignUpScreen')} />
+            <View style={styles.LoginBackground}>
+                <TouchableOpacity style={styles.LoginButton} onPress={() => navigation.navigate('SignInScreen')}>
+                    <Text style={styles.loginTextStyle}>LOG IN</Text>
+                </TouchableOpacity>
+                {/* </View> */}
+                {/* <View style={styles.buttonbackground2}> */}
+                <TouchableOpacity style={styles.SignUpButton} onPress={() => navigation.navigate('SignUpScreen')}>
+                    <Text style={styles.SignUpTextStyle}>SIGN UP</Text>
+                </TouchableOpacity>
             </View>
         </ImageBackground>
 
     );
 }
 const styles = StyleSheet.create({
-main: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 80
-},
-text: {
-    color: 'white',
-    fontSize: 32,
-    marginBottom: 20,
-    // fontFamily: 'light',
-    fontWeight: 'bold',
-},
-text1: {
-    color: 'white',
-    fontSize: 32,
-    fontWeight: 'bold',
-    //fontFamily: 'Montserrat-Bold'
-},
-text2: {
-    color: 'white',
-    fontSize: 12,
-    fontWeight: '200',
-    // fontFamily: 'light'
-},
-    button1: {
-        backgroundColor: '#7598BA',
-        height: '50s%',
-        borderTopLeftRadius: 120,
-        justifyContent: 'center',
+    Backgroundstyle: {
+        flex: 1,
+        resizeMode: 'stretch',
+        height: '93%',
+        backgroundColor: '#241332'
     },
-    button2: {
-        backgroundColor: '#132641',
-        height: '100%',
-
-        borderTopLeftRadius: 60,
+    main: {
+        flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 65
+    },
+    text: {
+        color: '#FFFFFF',
+        fontSize: 32,
+        marginBottom: '3%',
+        fontFamily: 'Montserrat_Bold'
+    },
+    text1: {
+        color: '#FFFFFF',
+        fontSize: 32,
+        fontFamily: 'Montserrat_Bold'
+    },
+    text2: {
+        color: '#FFFFFF',
+        fontSize: 12,
+        fontWeight: '200',
+        fontFamily: 'Montserrat_Medium'
 
-    }
+
+    },
+    loginTextStyle: {
+        color: 'white',
+        fontSize: 14,
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: 'Montserrat_SemiBold',
+
+    },
+    LoginButton: {
+        backgroundColor: '#7598BA',
+        height: '49%',
+        borderTopLeftRadius: 120,
+        justifyContent: "center",
+        alignItems: 'center',
+
+    },
+    SignUpButton: {
+        backgroundColor: '#132641',
+        height: '53%',
+        borderTopLeftRadius: 120,
+        justifyContent: "center",
+        alignItems: 'center',
+        overflow: 'hidden'
+    },
+    SignUpTextStyle: {
+        color: 'white',
+        fontSize: 14,
+        fontFamily: 'Montserrat_SemiBold',
+        marginBottom: 10
+
+    },
+    LoginBackground: {
+        borderTopLeftRadius: 90,
+        backgroundColor: '#7598BA',
+        height: '22%',
+        overflow: 'hidden'
+
+
+    },
+
 });
 
-   
 export default First;
