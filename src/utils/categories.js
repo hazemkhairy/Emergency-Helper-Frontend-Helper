@@ -5,6 +5,8 @@ export const getAllCategories = async () => {
         .then(res => {
             return res.data.payload.categories;
         })
-        .catch(err => { return err })
+        .catch(err => { 
+            return err
+         })
     return res;
 }
