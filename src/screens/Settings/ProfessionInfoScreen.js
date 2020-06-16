@@ -37,7 +37,7 @@ const ProfessionInfoScreen = ({ navigation }) => {
     setLoading(true);
     updateProfessionData(frontID, backID, certificate, category, skills).then(
       (result) => {
-        setModalMessage("Updated Successfully!");
+        setModalMessage("Updated Successfully! Wait for approval!");
         setLoading(false);
         setModalVisible(true);
       }
