@@ -10,6 +10,8 @@ const MainScreen = ({ navigation }) => {
                 navigation.navigate('PreConfigScreen')
             }
         } />
+          <Button title="History Screen" onPress={()=>{navigation.navigate('HistoryScreen')}}></Button>
+          <Button title="Support Ticket Screen" onPress={()=>{navigation.navigate('SupportTicketScreen')}}></Button>
     </View>
 }
 
