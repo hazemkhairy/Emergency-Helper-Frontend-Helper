@@ -4,7 +4,7 @@ export const getProfileData = async () => {
     let res = await backendAxios
         .get("Helper")
         .then((res) => {
-            return res.data.payload._doc
+            return res.data.payload
         })
         .catch((error) => {
             return error;
