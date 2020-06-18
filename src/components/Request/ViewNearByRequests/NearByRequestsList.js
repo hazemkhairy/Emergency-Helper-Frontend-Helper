@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
     item: {
         width: 0.85 * Dimensions.get('window').width,
         minHeight: 0.23 * Dimensions.get('window').height,
-
+        flex: 1,
         margin: '3%',
-        marginTop: '5%'
+        marginBottom: '6%'
     }
 });
 
