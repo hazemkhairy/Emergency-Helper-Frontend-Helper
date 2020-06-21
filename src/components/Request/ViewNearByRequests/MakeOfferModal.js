@@ -1,17 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { AntDesign } from '@expo/vector-icons';
+import { sendOffer } from '../../../utils/OfferUtils'
+import LoadingModal from '../../global/LoadingModal'
+import SuccessModal from '../../global/SuccessModal'
+import ErrorModal from '../../global/ErrorModal'
+import { useNavigation } from 'react-navigation-hooks'
 const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
     if (!modalVisibility)
         return null;
+    const { navigate } = useNavigation();
     const [loading, setLoading] = useState(false);
+    const [successModal, setSuccessModal] = useState(false);
+    const [errorModal, setErrorModal] = useState(false);
+    const [errorModalMessage, setErrorModalMessage] = useState('');
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
     const [description, setDescription] = useState('');
 
-    const [priceError, setPriceError] = useState(' ');
-    const [descriptionError, setDescriptionError] = useState(' ');
+    const [priceError, setPriceError] = useState('');
+    const [descriptionError, setDescriptionError] = useState('');
 
     const validData = () => {
         let valid = true;
@@ -24,7 +33,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
             setPriceError("Please enter valid range")
         }
         else {
-            setPriceError(" ")
+            setPriceError("")
         }
         if (description.trim().length == 0) {
             valid = false;
@@ -36,19 +45,51 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
         }
         return valid
     }
-    const handleSubmit = async () => {
-        setLoading(true);
-        if (validData()) {
-            //await submit()
 
+    const handleSubmit = async () => {
+        if (validData()) {
+            setLoading(true);
+            let res = await sendOffer(from, to, description, requestID);
+            setLoading(false);
+            if (res.status && res.status >= 300) {
+                setErrorModalMessage(res.message ? res.message : 'something went wrong')
+                setErrorModal(true);
+            }
+            else {
+                setSuccessModal(true);
+            }
         }
-        setLoading(false);
     }
     return <Modal
         style={styles.modal}
         isVisible={modalVisibility}
         animationIn="fadeIn"
     >
+        {loading ?
+            <LoadingModal modalVisible={loading} />
+            : null
+        }
+        {
+            successModal ?
+
+                <SuccessModal
+                    message="Your offer submitted"
+                    modalVisible={successModal}
+                    closeModal={() => {
+                        setSuccessModal(false);
+                        navigate('MainScreen')
+                    }}
+                />
+                : null
+        }
+        {
+            errorModal ?
+                <ErrorModal
+                    closeModal={() => { setErrorModal(false) }}
+                    modalVisible={errorModal}
+                    message={errorModalMessage}
+                /> : null
+        }
         <View style={styles.container}>
             <View style={styles.closeRow}>
                 <TouchableOpacity
@@ -70,7 +111,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                 <View style={styles.priceRow}>
                     <TextInput
                         placeholder="From"
-                        style={styles.priceInput}
+                        style={priceError ? { ...styles.priceInput, ...styles.errorTextInput } : styles.priceInput}
                         keyboardType="numeric"
                         value={from}
                         onChangeText={(text) => { setFrom(text) }}
@@ -80,7 +121,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                     </Text>
                     <TextInput
                         placeholder="To"
-                        style={styles.priceInput}
+                        style={priceError ? { ...styles.priceInput, ...styles.errorTextInput } : styles.priceInput}
                         keyboardType="numeric"
                         value={to}
                         onChangeText={(text) => { setTo(text) }}
@@ -89,17 +130,17 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                         EGP
                     </Text>
                 </View>
-                <Text adjustsFontSizeToFit style={styles.errorText}>{priceError}</Text>
+                <Text adjustsFontSizeToFit style={styles.errorMessageText}>{priceError}</Text>
                 <View style={styles.descriptionRow}>
                     <TextInput
                         placeholder="Type your offer here"
-                        style={styles.descriptionInput}
+                        style={descriptionError ? { ...styles.descriptionInput, ...styles.errorTextInput } : styles.descriptionInput}
                         multiline
                         numberOfLines={4}
                         value={description}
                         onChangeText={(text) => { setDescription(text) }}
                     />
-                    <Text style={styles.errorText}>{descriptionError}</Text>
+                    <Text style={styles.errorMessageText}>{descriptionError}</Text>
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={handleSubmit}>
@@ -204,12 +245,16 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 18,
         fontFamily: 'Montserrat',
-        
+
     },
-    errorText: {
+    errorMessageText: {
         color: 'red',
         fontSize: 14 * (Dimensions.get('screen').width / 375),
         fontFamily: 'Montserrat'
+    },
+    errorTextInput: {
+        borderColor: 'red',
+        borderWidth: 1,
     }
 });
 

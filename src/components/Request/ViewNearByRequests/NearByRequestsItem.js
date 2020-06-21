@@ -3,6 +3,7 @@ import { Image, View, StyleSheet, Text, Dimensions, TouchableOpacity } from 'rea
 import MakeOfferModal from './MakeOfferModal'
 const NearByRequestsItem = ({ request }) => {
     const [modalVisibility, setModalVisibility] = useState(false);
+    
     return (
         <View style={styles.container}>
             {
@@ -11,6 +12,7 @@ const NearByRequestsItem = ({ request }) => {
                         modalVisibility={modalVisibility}
                         close={() => { setModalVisibility(false) }}
                         clientName={request.clientName}
+                        requestID={request._id}
                     /> : null
             }
             <View style={styles.topHalf}>

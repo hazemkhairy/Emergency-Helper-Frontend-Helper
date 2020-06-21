@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, View, StyleSheet, Text, Dimensions } from 'react-native';
 import NearByRequestsItem from './NearByRequestsItem'
-const NearByRequestsList = ({ requests }) => {
+const NearByRequestsList = ({ requests, refresh }) => {
+
+    const [loading, setLoading] = useState(false);
+    const getNewRequests = async () => {
+        setLoading(true);
+        await refresh();
+        setLoading(false);
+    }
+
     return (
         <FlatList
+            refreshing={loading}
+            onRefresh={() => {
+                getNewRequests()
+            }}
             style={styles.list}
             data={requests}
             keyExtractor={(item, index) => { return index.toString() }}

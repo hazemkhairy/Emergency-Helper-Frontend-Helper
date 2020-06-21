@@ -13,14 +13,13 @@ const NearByRequestScreen = () => {
         getCurrentLocation().then(
             location => {
                 if (location && location.coords) {
-
                     setCurrentLocation(location.coords);
                 }
             }
         )
     }
     const getRequests = () => {
-        getNearByRequests(currentLocation).then(
+        return getNearByRequests(currentLocation).then(
             (res) => {
                 if (res) {
 
@@ -53,7 +52,7 @@ const NearByRequestScreen = () => {
                     <Text style={styles.headerText}>Nearby Requests</Text>
                     <Text style={styles.categoryText}>{category}</Text>
                 </View>
-                <NearByRequestsList requests={requests} />
+                <NearByRequestsList requests={requests} refresh={getRequests} />
             </View>
         </View>
     )
