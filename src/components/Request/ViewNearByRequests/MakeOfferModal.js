@@ -115,6 +115,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                         keyboardType="numeric"
                         value={from}
                         onChangeText={(text) => { setFrom(text) }}
+                        placeholderTextColor='#78849E'
                     />
                     <Text style={styles.currancyStyle}>
                         ~
@@ -125,6 +126,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                         keyboardType="numeric"
                         value={to}
                         onChangeText={(text) => { setTo(text) }}
+                        placeholderTextColor='#78849E'
                     />
                     <Text style={styles.currancyStyle}>
                         EGP
@@ -138,6 +140,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                         multiline
                         numberOfLines={4}
                         value={description}
+                        placeholderTextColor='#78849E'
                         onChangeText={(text) => { setDescription(text) }}
                     />
                     <Text style={styles.errorMessageText}>{descriptionError}</Text>

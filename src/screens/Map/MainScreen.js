@@ -11,6 +11,12 @@ const MainScreen = ({ navigation }) => {
                 navigation.navigate('PreConfigScreen')
             }
         } />
+        <Button title="Test Fill Receipt" onPress={
+            () => {
+                navigation.navigate('TestFillReceipt')
+                
+            }
+        } />
         <View style={{ alignItems: 'center', width: '100%', justifyContent: 'flex-end', height: '100%', position: 'absolute' }}>
             <FindRequestButton />
         </View>
