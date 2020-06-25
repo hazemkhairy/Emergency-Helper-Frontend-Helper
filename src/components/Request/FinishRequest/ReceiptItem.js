@@ -1,62 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import React from 'react';
+import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { useSelector, useDispatch } from 'react-redux';
 
-const ReceiptItem = ({ item, removeable, addItem, removeItem, doneEditting }) => {
+import { modifieItemInReceipt } from '../../../store/Request/FillReceipt/action'
 
-    const [price, setPrice] = useState(item.price)
-    const [name, setName] = useState(item.name)
+const ReceiptItem = ({ removeable, addItem, removeItem, index }) => {
 
-    return <TouchableWithoutFeedback
-        onPressOut={() => { console.log('out') }}
-        onPressIn={() => { console.log('in') }}
-        onPress={() => { console.log('press') }}
-    >
+    const dispatch = useDispatch();
+    let item = useSelector(
+        store => {
+            return store.fillReceiptReducer.items[index];
+        }
+    )
 
-        <View style={styles.container}>
-            <View style={styles.iconContainer}>
+    return <View style={styles.container}>
+        <View style={styles.iconContainer}>
 
-                {removeable ?
-                    <TouchableOpacity onPress={removeItem}>
+            {removeable ?
+                <TouchableOpacity onPress={removeItem}>
 
-                        <AntDesign name="minus" size={26} color="red" />
-                    </TouchableOpacity>
-                    : null
-                }
-            </View>
-
-
-
-            <TextInput
-                placeholder="Service Name"
-                style={item.nameError ? { ...styles.nameInput, ...styles.errorInput } : styles.nameInput}
-                placeholderTextColor='#78849E'
-                value={name}
-                onChangeText={(t) => { setName(t); }}
-                onBlur={() => { doneEditting({ name, price }) }}
-                onEndEditing={() => { doneEditting({ name, price }) }}
-                on
-            />
-            <TextInput
-                placeholder="Price"
-                style={item.priceError ? { ...styles.priceInput, ...styles.errorInput } : styles.priceInput}
-                placeholderTextColor='#78849E'
-                value={price}
-                keyboardType="numeric"
-                onChangeText={(t) => { setPrice(t); }}
-                onBlur={() => { doneEditting({ name, price }) }}
-                onEndEditing={() => { doneEditting({ name, price }) }}
-                
-            />
-            
-
-
-            <TouchableOpacity style={styles.iconContainer} onPress={() => { addItem() }}>
-
-                <AntDesign name="plus" size={26} color="#2C2626" />
-            </TouchableOpacity>
+                    <AntDesign name="minus" size={26} color="red" />
+                </TouchableOpacity>
+                : null
+            }
         </View>
-    </TouchableWithoutFeedback>
+
+
+
+        <TextInput
+            placeholder="Service Name"
+            style={item.nameError ? { ...styles.nameInput, ...styles.errorInput } : styles.nameInput}
+            placeholderTextColor='#78849E'
+            value={item.name}
+            onChangeText={(t) => {
+                dispatch(modifieItemInReceipt(index, { name: t }))
+            }}
+        />
+        <TextInput
+            placeholder="Price"
+            style={item.priceError ? { ...styles.priceInput, ...styles.errorInput } : styles.priceInput}
+            placeholderTextColor='#78849E'
+            value={item.price}
+            keyboardType="numeric"
+
+            onChangeText={(t) => {
+                dispatch(modifieItemInReceipt(index, { price: t }))
+            }}
+
+        />
+
+
+
+        <TouchableOpacity style={styles.iconContainer} onPress={() => { addItem() }}>
+
+            <AntDesign name="plus" size={26} color="#2C2626" />
+        </TouchableOpacity>
+    </View>
 }
 
 const styles = StyleSheet.create({

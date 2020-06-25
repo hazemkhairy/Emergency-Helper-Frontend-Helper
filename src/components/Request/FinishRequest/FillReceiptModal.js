@@ -5,7 +5,16 @@ import Modal from 'react-native-modal';
 import { AntDesign } from '@expo/vector-icons';
 import ReceiptItem from './ReceiptItem';
 
-import { validNumber } from '../../../utils/CommonUtils'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { validNumber } from '../../../utils/CommonUtils';
+
+import {
+    addItemToReceipt,
+    clearReceipt,
+    deleteItemFromReceipt,
+    setItems,
+} from '../../../store/Request/FillReceipt/action'
 
 const getUUID = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -17,31 +26,23 @@ const getUUID = () => {
 const FillReceiptModal = ({ modalVisible, close }) => {
     if (!modalVisible)
         return null;
-    const [items, setItems] = useState([{ name: 'sad', price: '' }])
+    const items = useSelector(
+        (store) => {
+            return store.fillReceiptReducer.items;
+        }
+    )
+    const dispatch = useDispatch();
     const [refresh, setRefresh] = useState(false);
     const addItem = (index) => {
-        let copy = items;
-        copy.splice(index + 1, 0, { name: '', price: '' })
-        console.log(copy)
-        setItems(copy)
-        setRefresh(!refresh)
-        console.log(copy)
+        dispatch(addItemToReceipt(index));
+        setRefresh(!refresh);
     }
-    useEffect(() => { }, [items])
     const removeItem = (index) => {
-        let copy = items;
+        dispatch(deleteItemFromReceipt(index));
+        setRefresh(!refresh);
+    }
+    
 
-        copy.splice(index, 1)
-        setItems(copy)
-        setRefresh(!refresh)
-    }
-    const setItem = (index, item) => {
-        let copy = items;
-        setItems([]);
-        copy[index] = item;
-        setItems(copy);
-        setRefresh(!refresh)
-    }
     const validInput = () => {
         let copy = items;
         let changed = false;
@@ -65,7 +66,7 @@ const FillReceiptModal = ({ modalVisible, close }) => {
 
             if (changed) {
                 console.log('f')
-                setItems(copy);
+                dispatch(setItems(copy));
                 setRefresh(!refresh);
             }
         }
@@ -103,11 +104,10 @@ const FillReceiptModal = ({ modalVisible, close }) => {
                                 ({ item, index }) => {
                                     return <View style={styles.itemRow}>
                                         <ReceiptItem
-                                            item={item}
+                                            index={index}
                                             removeable={index > 0}
                                             addItem={() => { addItem(index) }}
                                             removeItem={() => { removeItem(index) }}
-                                            doneEditting={(item) => { setItem(index, item) }}
                                         />
                                     </View>
                                 }
