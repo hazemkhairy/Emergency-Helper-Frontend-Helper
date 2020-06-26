@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 import Modal from 'react-native-modal';
 
 import { AntDesign } from '@expo/vector-icons';
 import ReceiptItem from './ReceiptItem';
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 
 import { validNumber } from '../../../utils/CommonUtils';
 
@@ -41,7 +41,7 @@ const FillReceiptModal = ({ modalVisible, close }) => {
         dispatch(deleteItemFromReceipt(index));
         setRefresh(!refresh);
     }
-    
+
 
     const validInput = () => {
         let copy = items;
