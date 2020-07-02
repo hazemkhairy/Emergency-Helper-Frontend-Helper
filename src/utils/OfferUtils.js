@@ -1,10 +1,9 @@
 import backendAxios from '../services/backendAxios';
-
 export const sendOffer = async (from, to, description, requestID) => {
-
+    
     const ret = await backendAxios.post('Request/MakeOffer',
         {
-            price: { from, to },
+            price: { from:Number(from), to:Number(to) },
             description,
             requestID
         }).then(
