@@ -3,63 +3,48 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { getCurrentOffer } from '../../../utils/LockdownUtils';
 
-const WaitingOfferAcceptanceModal = ({ lockdown, refresh }) => {
+const WaitingOfferAcceptanceModal = ({ lockdown }) => {
     if (!lockdown.isLockedDown)
         return null;
-    const [loading, setLoading] = useState(true);
-    const [timeLeft, setTimeLeft] = useState(new Date());
-    const [offer, setOffer] = useState({});
-    let mount = false;
-    const setTime = () => {
-        setLoading(true);
+    let mount = true;
+
+    const [timeLeft, setTimeLeft] = useState(new Date(0, 0, 0, 0, 0, 0, 1));
+    let [offer, setOffer] = useState({});
+    
+    const getOffer = () => {
         getCurrentOffer().then(
             (res) => {
-                if (mount) {
+                if (mount)
                     setOffer(res);
-
-                    let ms = new Date() - new Date(offer.createdAt);
-                    ms = offer.expiryDuration - ms;
-                    let newDate = new Date(0, 0, 0, 0, 0, 0, ms);
-                    setLoading(false);
-                    if (mount && ms >= 0)
-                        setTimeLeft(newDate);
-                }
             }
         )
-            .catch(
-                () => {
-                    if (mount) {
-                        setLoading(false);
-                        refresh();
-                    }
-                }
-            )
+        .catch(
+            (err)=>{
+                console.log(err)
+            }
+        )
     }
-
     useEffect(
         () => {
             let timerId = setTimeout(
                 () => {
-                    if (mount && !loading) {
-                        setLoading(true);
-                        let ms = new Date() - new Date(offer.createdAt);
-                        ms = offer.expiryDuration - ms;
-                        let newDate = new Date(0, 0, 0, 0, 0, 0, ms);
-                        setLoading(false);
-                        if (mount && ms >= 0)
-                            setTimeLeft(newDate);
+                    let ms = new Date() - new Date(offer.createdAt)
+                    ms = offer.expiryDuration - ms;
+                    if (mount && ms >= 0) {
+                        setTimeLeft(new Date(0, 0, 0, 0, 0, 0, ms));
+                        clearTimeout(timerId)
                     }
-                    clearTimeout(timerId);
-                }, 1000
-            )
-        }
-        , [timeLeft]
-    )
 
+                },
+                1000
+            )
+        },
+        [timeLeft, offer]
+    )
     useEffect(
         () => {
             mount = true;
-            setTime();
+            getOffer();
             return () => { mount = false; }
         }, []
     )
