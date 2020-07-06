@@ -2,21 +2,17 @@ import React from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { modifieItemInReceipt } from '../../../store/Request/FillReceipt/action'
+import { modifieItemInReceipt } from '../../../store/Request/FillReceipt/action';
 
 const ReceiptItem = ({ removeable, addItem, removeItem, index }) => {
-
     const dispatch = useDispatch();
     let item = useSelector(
         store => {
             return store.fillReceiptReducer.items[index];
         }
     )
-
     return <View style={styles.container}>
         <View style={styles.iconContainer}>
-
             {removeable ?
                 <TouchableOpacity onPress={removeItem}>
 
@@ -25,9 +21,6 @@ const ReceiptItem = ({ removeable, addItem, removeItem, index }) => {
                 : null
             }
         </View>
-
-
-
         <TextInput
             placeholder="Service Name"
             style={item.nameError ? { ...styles.nameInput, ...styles.errorInput } : styles.nameInput}
@@ -47,11 +40,7 @@ const ReceiptItem = ({ removeable, addItem, removeItem, index }) => {
             onChangeText={(t) => {
                 dispatch(modifieItemInReceipt(index, { price: t }))
             }}
-
         />
-
-
-
         <TouchableOpacity style={styles.iconContainer} onPress={() => { addItem() }}>
 
             <AntDesign name="plus" size={26} color="#2C2626" />

@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'rea
 import Modal from 'react-native-modal';
 import { Entypo } from '@expo/vector-icons';
 import LoadingModal from '../../global/LoadingModal';
-import { getCurrentRequestInfo, startRequest, cancelRequest } from '../../../utils/RequestUtils'
-const ActiveRequestInfoModal = ({ lockdown, inProgress, refresh }) => {
-    if (!lockdown.isLockedDown)
+import { getCurrentRequestInfo } from '../../../utils/RequestUtils'
+const ActiveRequestInfoModal = ({ mv, inProgress, children }) => {
+    if (!mv)
         return null;
     let mount = true;
     const [request, setRequest] = useState(null);
@@ -27,31 +27,12 @@ const ActiveRequestInfoModal = ({ lockdown, inProgress, refresh }) => {
                         //setLoading(false);
                         getRequestInfo();
                         console.log('failed')
-
                     }
                 )
         }
 
     }
-    const handleEndRequest = async () => {
 
-    }
-    const handleStartRequest = async () => {
-        if (mount)
-            setLoading(true)
-        await startRequest();
-        if (mount)
-            setLoading(false);
-        refresh();
-    }
-    const handleCancelRequest = async () => {
-        if (mount)
-            setLoading(true)
-        await cancelRequest();
-        if (mount)
-            setLoading(false);
-        refresh();
-    }
     useEffect(
         () => {
             mount = true;
@@ -62,7 +43,7 @@ const ActiveRequestInfoModal = ({ lockdown, inProgress, refresh }) => {
     if (loading || !request)
         return <LoadingModal modalVisible={loading} />
 
-    return <Modal isVisible={lockdown.isLockedDown} >
+    return <Modal isVisible={mv} >
         <View style={styles.outerContainer}>
             <View style={styles.innerContainer}>
                 {
@@ -114,23 +95,9 @@ const ActiveRequestInfoModal = ({ lockdown, inProgress, refresh }) => {
                         </Text>
                     </Text>
                 </View>
-                {
-                    inProgress ?
-                        <View style={styles.bottomRow}>
-                            <TouchableOpacity onPress={() => { handleEndRequest(); }}>
-
-                                <Text style={styles.redText}>End Request</Text>
-                            </TouchableOpacity>
-                        </View> :
-                        <View style={styles.bottomRow}>
-                            <TouchableOpacity onPress={() => { handleCancelRequest(); }}>
-                                <Text style={styles.redText}>Cancel Request</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => { handleStartRequest(); }}>
-                                <Text style={styles.greenText}>Start Help</Text>
-                            </TouchableOpacity>
-                        </View>
-                }
+                <View style={styles.bottomRow}>
+                    {children}
+                </View>
             </View>
         </View>
     </Modal>
@@ -163,8 +130,7 @@ const styles = StyleSheet.create({
     },
     bottomRow: {
         flex: 2,
-        flexDirection: 'row-reverse',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     chatContainer: {
@@ -223,16 +189,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: 'Montserrat_Bold'
     },
-    greenText: {
-        color: '#1F7B13',
-        fontSize: 12,
-        fontFamily: 'Montserrat_SemiBold'
-    },
-    redText: {
-        color: '#B72020',
-        fontSize: 12,
-        fontFamily: 'Montserrat_SemiBold'
-    }
 
 });
 

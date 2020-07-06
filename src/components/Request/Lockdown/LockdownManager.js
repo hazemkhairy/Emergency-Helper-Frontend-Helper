@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import LoadingModal from '../../global/LoadingModal'
 import { getLockdownStatus } from '../../../utils/LockdownUtils';
-import WaitingOfferAcceptanceModal from './WaitingOfferAcceptanceModal'
-import ActiveRequestInfoModal from './ActiveRequestInfoModal';
+import WaitingOfferAcceptanceModal from './WaitingOfferAcceptanceModal';
 import WaitingClientModal from './WaitingClientModal';
+import WaitingHelperToStartRequest from './WaitingHelperToStartRequest';
+import WaitingHelperToFinishRequest from './WaitingHelperToFinishRequest';
 
 const WAITING_FOR_OFFER_RESPONSE = 'WAITING_FOR_OFFER_RESPONSE';
 const WAITING_FOR_HELPER_START = 'WAITING_FOR_HELPER_START';
@@ -70,13 +71,16 @@ const LockdownManager = () => {
             return <WaitingOfferAcceptanceModal lockdown={lockdown} />
         }
         case WAITING_FOR_HELPER_START: {
-            return <ActiveRequestInfoModal lockdown={lockdown} inProgress={false} refresh={x} />
+            return <WaitingHelperToStartRequest  />
         }
         case WAITING_FOR_CLIENT_START: {
-            return <WaitingClientModal lockdown={lockdown} title={"Request Started"} subTitle={"Waiting For client confirmation!"} />
+            return <WaitingClientModal
+                title={"Request Started"}
+                subTitle={"Waiting For client confirmation!"}
+            />
         }
         case WAITING_FOR_FINISH_REQUEST: {
-            return <ActiveRequestInfoModal lockdown={lockdown} inProgress={true} refresh={x} />
+            return <WaitingHelperToFinishRequest  />
         }
         default:
             return <Text>LOOOL</Text>

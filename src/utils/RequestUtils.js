@@ -9,15 +9,15 @@ export const getNearByRequests = async (location) => {
 
 export const getCurrentRequestInfo = async () => {
     return await backendAxios.get('Request/RequestInfo').then(
-        (res)=>{
+        (res) => {
             return res.data.payload
         }
     )
-    .catch(
-        err=>{
-            throw err;
-        }
-    )
+        .catch(
+            err => {
+                throw err;
+            }
+        )
 }
 
 export const startRequest = async () => {
@@ -30,4 +30,14 @@ export const cancelRequest = async () => {
     return ret.data.payload;
 }
 export const endRequest = async () => {
+}
+
+export const fillReceipt = async (items) => {
+
+    return await backendAxios.post('Helper/FillReceipt', { items }).then(
+        res => {
+            console.log(res);
+            
+        }
+    )
 }

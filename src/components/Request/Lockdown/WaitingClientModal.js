@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 
-const WaitingClientModal = ({ lockdown, title, subTitle }) => {
-    if (!lockdown.isLockedDown)
-        return null;
+const WaitingClientModal = ({  title, subTitle }) => {
     let mount = true;
 
 
@@ -13,7 +11,7 @@ const WaitingClientModal = ({ lockdown, title, subTitle }) => {
             return () => { mount = false; }
         }, []
     )
-    return <Modal isVisible={lockdown.isLockedDown} >
+    return <Modal isVisible={mount} >
         <View style={styles.outerContainer}>
             <View style={styles.innerContainer}>
                 <View style={styles.titleRow}>

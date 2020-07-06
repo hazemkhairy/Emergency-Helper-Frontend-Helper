@@ -8,7 +8,6 @@ import ReceiptItem from './ReceiptItem';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { validNumber } from '../../../utils/CommonUtils';
-
 import {
     addItemToReceipt,
     clearReceipt,
@@ -23,7 +22,7 @@ const getUUID = () => {
     });
 }
 
-const FillReceiptModal = ({ modalVisible, close }) => {
+const FillReceiptModal = ({ modalVisible, close, submit }) => {
     if (!modalVisible)
         return null;
     const items = useSelector(
@@ -45,35 +44,35 @@ const FillReceiptModal = ({ modalVisible, close }) => {
 
     const validInput = () => {
         let copy = items;
-        let changed = false;
+        let valid = true;
         for (let i = 0; i < items.length; i++) {
             if (items[i].name.trim().length == 0) {
                 copy[i].nameError = true;
-                changed = true;
+                valid = false;
             }
             else {
                 copy[i].nameError = false;
-                changed = true;
             }
             if (!validNumber(items[i].price)) {
                 copy[i].priceError = true;
-                changed = true;
+                valid = false;
             }
             else {
                 copy[i].priceError = false;
-                changed = true;
             }
 
-            if (changed) {
-                console.log('f')
-                dispatch(setItems(copy));
-                setRefresh(!refresh);
-            }
+
         }
+        if (!valid) {
+            dispatch(setItems(copy));
+            setRefresh(!refresh);
+        }
+        return valid;
     }
     const handleSubmit = () => {
         if (validInput()) {
-            //submit
+            console.log('x')
+            submit();
         }
     }
     return (
