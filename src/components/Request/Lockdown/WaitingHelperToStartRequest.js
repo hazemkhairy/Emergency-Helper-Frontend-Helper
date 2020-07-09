@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import ActiveRequestInfoModal from './ActiveRequestInfoModal'
-
+import CancelModal from '../FinishRequest/CancelModal';
+import LoadingModal from '../../global/LoadingModal';
+import { startRequest } from '../../../utils/RequestUtils'
 const WaitingHelperToStartRequest = () => {
+    const [cancelModal, setCancelModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    let mount = true;
     const handleStartRequest = async () => {
         if (mount)
             setLoading(true)
         await startRequest();
         if (mount)
             setLoading(false);
-        refresh();
+
     }
     const handleCancelRequest = async () => {
-        if (mount)
-            setLoading(true)
-        await cancelRequest();
-        if (mount)
-            setLoading(false);
-        refresh();
+        setCancelModal(true)
     }
+    if (loading) {
+        return <LoadingModal modalVisible={loading} />
+    }
+    if (cancelModal)
+        return <CancelModal
+            mv={cancelModal}
+            close={() => { setCancelModal(false) }}
+        />
     return <ActiveRequestInfoModal mv={true}>
         <View style={styles.container}>
             <TouchableOpacity onPress={() => { handleStartRequest(); }}>

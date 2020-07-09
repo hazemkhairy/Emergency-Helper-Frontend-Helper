@@ -9,7 +9,7 @@ import WaitingHelperToFinishRequest from './WaitingHelperToFinishRequest';
 
 const WAITING_FOR_OFFER_RESPONSE = 'WAITING_FOR_OFFER_RESPONSE';
 const WAITING_FOR_HELPER_START = 'WAITING_FOR_HELPER_START';
-const WAITING_FOR_CLIENT_START = 'WAITING_FOR_CLIENT_START';
+const WAITING_FOR_CLIENT_APPROVAL= 'WAITING_FOR_CLIENT_APPROVAL';
 const WAITING_FOR_FINISH_REQUEST = 'WAITING_FOR_FINISH_REQUEST';
 const WAITING_FOR_ADMIN_APPROVAL = 'WAITING_FOR_ADMIN_APPROVAL';
 
@@ -71,17 +71,17 @@ const LockdownManager = () => {
             return <WaitingOfferAcceptanceModal lockdown={lockdown} />
         }
         case WAITING_FOR_HELPER_START: {
-            return <WaitingHelperToStartRequest  />
+            return <WaitingHelperToStartRequest />
         }
-        case WAITING_FOR_CLIENT_START: {
+        case WAITING_FOR_CLIENT_APPROVAL: {
             return <WaitingClientModal
                 title={"Request Started"}
                 subTitle={"Waiting For client confirmation!"}
             />
         }
         case WAITING_FOR_FINISH_REQUEST: {
-            return <WaitingHelperToFinishRequest  />
-        }
+            return <WaitingHelperToFinishRequest />
+            }
         default:
             return <Text>LOOOL</Text>
     }

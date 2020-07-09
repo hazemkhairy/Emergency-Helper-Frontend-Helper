@@ -71,8 +71,7 @@ const FillReceiptModal = ({ modalVisible, close, submit }) => {
     }
     const handleSubmit = () => {
         if (validInput()) {
-            console.log('x')
-            submit();
+            submit(items)
         }
     }
     return (

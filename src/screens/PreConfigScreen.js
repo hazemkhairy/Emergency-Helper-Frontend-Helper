@@ -16,7 +16,7 @@ export default ({ navigation }) => {
                     else {
                         navigation.navigate('AppNavigator')
                     }
-                } catch (error) {
+                } catch (err) {
                     return err
                 }
             }

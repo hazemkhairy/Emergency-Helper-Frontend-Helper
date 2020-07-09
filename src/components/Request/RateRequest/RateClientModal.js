@@ -7,7 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 const RateClientModal = ({ modalVisible, close }) => {
     if (!modalVisible)
         return null;
-    const [rating, setRating] = useState(3);
+    const [rate, setRate] = useState(3);
     const [description, setDescription] = useState('');
     const [descriptionError, setDescriptionError] = useState('')
 
@@ -26,7 +26,7 @@ const RateClientModal = ({ modalVisible, close }) => {
 
     const handleSubmit = () => {
         if (validInput()) {
-            //submit
+            close({ rate, feedback: description })
         }
     }
     return <Modal isVisible={modalVisible} >
@@ -50,7 +50,7 @@ const RateClientModal = ({ modalVisible, close }) => {
                 <View style={styles.inputRow}>
 
                     <View style={styles.ratingRow}>
-                        <RatingComponent value={rating} setValue={setRating} />
+                        <RatingComponent value={rate} setValue={setRate} />
                     </View>
                     <View style={styles.textInputRow}>
 
