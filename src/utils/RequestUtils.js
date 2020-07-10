@@ -39,18 +39,15 @@ export const cancelRequest = async (message) => {
 }
 
 export const rateRequest = async (feedback) => {
-    console.log('started rate', feedback);
     return await backendAxios.post('Request/RateRequest',
         feedback
     )
         .then(
             res => {
-                console.log('success rate', res.data.payload);
                 return res.data.payload;
             }
         ).catch(
             err => {
-                console.log('failed rate');
                 throw err;
             }
         )
@@ -63,16 +60,13 @@ export const fillReceipt = async (items) => {
             item: item.name, price: Number(item.price)
         }
     })
-    console.log('started fill', { items });
     return await backendAxios.post('Helper/FillReciept', { items }).then(
         res => {
-            console.log('success fill', res.data);
             return res.data.payload;
         }
     )
         .catch(
             err => {
-                console.log('failed fill', err.response);
                 throw err;
             }
         )

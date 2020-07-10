@@ -44,7 +44,6 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
         }
         return valid
     }
-    console.log(modalVisibility, { from }, { to })
     const handleSubmit = async () => {
         if (validData()) {
             setLoading(true);
@@ -74,7 +73,6 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
         animationIn="fadeIn"
 
     >
-        {console.log('xx')}
         <View style={styles.container} >
             <View style={styles.closeRow}>
                 <TouchableOpacity

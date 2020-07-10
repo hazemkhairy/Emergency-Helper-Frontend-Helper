@@ -17,7 +17,6 @@ const LockdownManager = () => {
 
     const [loading, setLoading] = useState(true);
     const [lockdown, setLockdown] = useState({ isLockedDown: false });
-    console.log(lockdown)
     let mount = true;
     const x = async () => {
         setLoading(true);
