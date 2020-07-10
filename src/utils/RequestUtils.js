@@ -63,8 +63,8 @@ export const fillReceipt = async (items) => {
             item: item.name, price: Number(item.price)
         }
     })
-    console.log('started fill', items);
-    return await backendAxios.post('Helper/FillReceipt', { items }).then(
+    console.log('started fill', { items });
+    return await backendAxios.post('Helper/FillReciept', { items }).then(
         res => {
             console.log('success fill', res.data);
             return res.data.payload;
@@ -72,7 +72,7 @@ export const fillReceipt = async (items) => {
     )
         .catch(
             err => {
-                console.log('failed fill');
+                console.log('failed fill', err.response);
                 throw err;
             }
         )

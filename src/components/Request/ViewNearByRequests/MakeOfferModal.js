@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { AntDesign } from '@expo/vector-icons';
-import { sendOffer } from '../../../utils/OfferUtils'
-import LoadingModal from '../../global/LoadingModal'
-import SuccessModal from '../../global/SuccessModal'
+import { sendOffer } from '../../../utils/OfferUtils';
+import LoadingModal from '../../global/LoadingModal';
 import ErrorModal from '../../global/ErrorModal';
-import { useNavigation } from 'react-navigation-hooks'
+import { useNavigation } from 'react-navigation-hooks';
+
 const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
     if (!modalVisibility)
         return null;
     const { navigate } = useNavigation();
     const [loading, setLoading] = useState(false);
-    const [successModal, setSuccessModal] = useState(false);
     const [errorModal, setErrorModal] = useState(false);
     const [errorModalMessage, setErrorModalMessage] = useState('');
     const [from, setFrom] = useState('');
@@ -56,23 +55,13 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                 setErrorModal(true);
             }
             else {
-                setSuccessModal(true);
+                navigate('MainScreen');
             }
         }
     }
 
     if (loading)
         return <LoadingModal modalVisible={loading} />
-    if (successModal)
-        return <SuccessModal
-            message="Your offer submitted"
-            modalVisible={successModal}
-            closeModal={() => {
-                setSuccessModal(false);
-                navigate('MainScreen')
-            }}
-        />
-
 
     if (errorModal)
         return <ErrorModal
