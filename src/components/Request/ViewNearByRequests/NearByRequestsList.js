@@ -9,7 +9,6 @@ const NearByRequestsList = ({ requests, refresh }) => {
         await refresh();
         setLoading(false);
     }
-
     return (
         <FlatList
             refreshing={loading}
@@ -18,7 +17,7 @@ const NearByRequestsList = ({ requests, refresh }) => {
             }}
             style={styles.list}
             data={requests}
-            keyExtractor={(item, index) => { return index.toString() }}
+            keyExtractor={(item, index) => { return item._id }}
             renderItem={
                 ({ item }) => {
                     return <View style={styles.item}>
@@ -26,11 +25,13 @@ const NearByRequestsList = ({ requests, refresh }) => {
                     </View>
                 }
             }
+            keyboardShouldPersistTaps={"always"}
             ListEmptyComponent={
                 () => {
                     return <Text>There is no nearby requests</Text>
                 }
             }
+            ListFooterComponent={()=><View></View>}
         />
     )
 }

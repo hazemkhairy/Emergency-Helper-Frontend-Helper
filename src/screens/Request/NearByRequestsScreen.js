@@ -52,7 +52,10 @@ const NearByRequestScreen = () => {
                     <Text style={styles.headerText}>Nearby Requests</Text>
                     <Text style={styles.categoryText}>{category}</Text>
                 </View>
-                <NearByRequestsList requests={requests} refresh={getRequests} />
+                <View style={{ flex: 1 }}>
+
+                    <NearByRequestsList requests={requests} refresh={getRequests} />
+                </View>
             </View>
         </View>
     )

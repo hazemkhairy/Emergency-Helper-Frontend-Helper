@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-import { Image, View, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import MakeOfferModal from './MakeOfferModal'
 const NearByRequestsItem = ({ request }) => {
     const [modalVisibility, setModalVisibility] = useState(false);
-    
+
     return (
         <View style={styles.container}>
-            {
-                modalVisibility ?
-                    <MakeOfferModal
-                        modalVisibility={modalVisibility}
-                        close={() => { setModalVisibility(false) }}
-                        clientName={request.clientName}
-                        requestID={request._id}
-                    /> : null
-            }
+            <MakeOfferModal
+                modalVisibility={modalVisibility}
+                close={() => { setModalVisibility(false) }}
+                clientName={request.clientName}
+                requestID={request._id} />
             <View style={styles.topHalf}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 

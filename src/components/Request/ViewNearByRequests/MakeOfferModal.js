@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { sendOffer } from '../../../utils/OfferUtils'
 import LoadingModal from '../../global/LoadingModal'
 import SuccessModal from '../../global/SuccessModal'
-import ErrorModal from '../../global/ErrorModal'
+import ErrorModal from '../../global/ErrorModal';
 import { useNavigation } from 'react-navigation-hooks'
 const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
     if (!modalVisibility)
@@ -45,7 +45,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
         }
         return valid
     }
-
+    console.log(modalVisibility, { from }, { to })
     const handleSubmit = async () => {
         if (validData()) {
             setLoading(true);
@@ -60,39 +60,36 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
             }
         }
     }
-    return <Modal
-        style={styles.modal}
-        isVisible={modalVisibility}
-        animationIn="fadeIn"
-    >
-        {loading ?
-            <LoadingModal modalVisible={loading} />
-            : null
-        }
-        {
-            successModal ?
 
-                <SuccessModal
-                    message="Your offer submitted"
-                    modalVisible={successModal}
-                    closeModal={() => {
-                        setSuccessModal(false);
-                        navigate('MainScreen')
-                    }}
-                />
-                : null
-        }
-        {
-            errorModal ?
-                <ErrorModal
-                    closeModal={() => { setErrorModal(false) }}
-                    modalVisible={errorModal}
-                    message={errorModalMessage}
-                /> : null
-        }
-        <View style={styles.container}>
+    if (loading)
+        return <LoadingModal modalVisible={loading} />
+    if (successModal)
+        return <SuccessModal
+            message="Your offer submitted"
+            modalVisible={successModal}
+            closeModal={() => {
+                setSuccessModal(false);
+                navigate('MainScreen')
+            }}
+        />
+
+
+    if (errorModal)
+        return <ErrorModal
+            closeModal={() => { setErrorModal(false) }}
+            modalVisible={errorModal}
+            message={errorModalMessage}
+        />
+    return <Modal
+        isVisible={true}
+        animationIn="fadeIn"
+
+    >
+        {console.log('xx')}
+        <View style={styles.container} >
             <View style={styles.closeRow}>
                 <TouchableOpacity
+
                     onPress={() => { close() }}
                 >
                     <AntDesign
@@ -135,6 +132,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                 <Text adjustsFontSizeToFit style={styles.errorMessageText}>{priceError}</Text>
                 <View style={styles.descriptionRow}>
                     <TextInput
+                        scrollEnabled={false}
                         placeholder="Type your offer here"
                         style={descriptionError ? { ...styles.descriptionInput, ...styles.errorTextInput } : styles.descriptionInput}
                         multiline
@@ -156,15 +154,14 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
 }
 const styles = StyleSheet.create({
     modal: {
-        flex: 1
+        flex: 1,
+        minHeight: 100
     },
     container: {
         backgroundColor: 'white',
         maxHeight: Dimensions.get('screen').height * 0.45,
         flex: 1,
         borderRadius: 45,
-
-        overflow: 'hidden',
         alignItems: 'center'
     },
     closeRow: {
