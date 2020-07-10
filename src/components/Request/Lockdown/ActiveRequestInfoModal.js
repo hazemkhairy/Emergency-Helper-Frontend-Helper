@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, Linking } from 'react-native';
 import Modal from 'react-native-modal';
 import { Entypo } from '@expo/vector-icons';
 import LoadingModal from '../../global/LoadingModal';
-import { getCurrentRequestInfo } from '../../../utils/RequestUtils'
-const ActiveRequestInfoModal = ({ mv, inProgress, children }) => {
+import { getCurrentRequestInfo } from '../../../utils/RequestUtils';
+import { Feather } from '@expo/vector-icons';
+import RequestAndHelperMapModal from '../../Map/RequestAndHelperMapModal'
+const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
     if (!mv)
         return null;
     let mount = true;
     const [request, setRequest] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [mapModal, setMapModal] = useState(false);
     const getRequestInfo = () => {
 
         if (mount) {
@@ -42,7 +45,8 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children }) => {
     )
     if (loading || !request)
         return <LoadingModal modalVisible={loading} />
-
+    if (mapModal)
+        return <RequestAndHelperMapModal requestCoordinates={request.requestLocation} close={() => { setMapModal(false); }} />
     return <Modal isVisible={mv} >
         <View style={styles.outerContainer}>
             <View style={styles.innerContainer}>
@@ -58,7 +62,7 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children }) => {
                         <Image style={styles.clientImage} source={{ uri: request.clientImage }} />
                         <View style={styles.clientInfoTextContainer}>
                             <Text style={styles.clientName}>{request.clientName.firstName} {request.clientName.lastName}</Text>
-                            <TouchableOpacity style={styles.phoneNumberContainer} onPress={() => { }}>
+                            <TouchableOpacity style={styles.phoneNumberContainer} onPress={() => { Linking.openURL(`tel:${request.clientNumber}`) }}>
                                 <Text style={styles.clientPhoneNumber}>{request.clientNumber}</Text>
                                 <Entypo name="phone" size={16} color="black" />
                             </TouchableOpacity>
@@ -70,12 +74,25 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children }) => {
                 </View>
 
                 <View style={styles.middleRow}>
-                    <Text style={styles.fieldName}>
-                        {"Location Name: "}
-                        <Text style={styles.fieldContent}>
-                            location from map
+                    <TouchableOpacity
+                        style={{ flexDirection: 'row', alignItems: 'center' }}
+                        onPress={() => {
+                            setMapModal(true);
+                        }}
+                    >
+                        <Text style={styles.fieldName}>
+                            {"Location Name: "}
+
+                            <Text style={styles.fieldContent}>
+                                location from map
+                            </Text>
                         </Text>
-                    </Text>
+                        <View style={{ marginLeft: '2%', justifyContent: 'center', alignItems: 'center' }}>
+
+                            <Feather name="map-pin" size={18} color="black" />
+                        </View>
+                    </TouchableOpacity>
+
                     <Text style={styles.fieldName}>
                         {"Price Range: "}
                         <Text style={styles.fieldContent}>
