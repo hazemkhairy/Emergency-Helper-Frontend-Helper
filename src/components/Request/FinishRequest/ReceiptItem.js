@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         height: '100%',
         fontSize: 12,
+        width:'20%',
     },
     nameInput: {
         borderWidth: 0.2,

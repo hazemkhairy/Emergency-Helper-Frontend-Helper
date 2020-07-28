@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Dimensions, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import Modal from 'react-native-modal';
@@ -56,48 +56,50 @@ const CancelModal = ({ mv, close }) => {
             modalVisible={errorModal}
         />
     return <Modal isVisible={mv} >
-        <View style={styles.outerContainer}>
-            <View style={styles.closeRow}>
-                <TouchableOpacity
-                    onPress={() => { close() }}
-                >
-                    <AntDesign
-                        name="close"
-                        size={20}
-                        color="black"
-                    />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.innerContainer}>
-                <View style={styles.titleRow}>
-                    <Text numberOfLines={2} style={styles.titleText}>
-                        Are you sure you want to cancel?
-                    </Text>
-                </View>
-                <View style={styles.inputRow}>
-                    <TextInput
-                        style={reasonError ? { ...styles.input, ...styles.errorInput } : styles.input}
-                        value={reason}
-                        onChangeText={(t) => { setReason(t) }}
-                        placeholderTextColor={reasonError ? 'red' : "#78849E"}
-                        multiline
-                        placeholder={"Tell Us what happened"}
-                    />
-                    <Text style={styles.errorText}>{reasonError}</Text>
-                </View>
-                <View style={styles.infoRow}>
-                    <Text style={styles.infoText}>
-                        You might be charged the visit payment if you exceeded the minimum time for cancelling.
-                    </Text>
-                </View>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={() => { handleSubmit() }}>
-                        <Text style={styles.buttonText}>Confirm</Text>
+        <KeyboardAvoidingView behavior={"padding"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles.outerContainer}>
+                <View style={styles.closeRow}>
+                    <TouchableOpacity
+                        onPress={() => { close() }}
+                    >
+                        <AntDesign
+                            name="close"
+                            size={20}
+                            color="black"
+                        />
                     </TouchableOpacity>
                 </View>
+                <View style={styles.innerContainer}>
+                    <View style={styles.titleRow}>
+                        <Text numberOfLines={2} style={styles.titleText}>
+                            Are you sure you want to cancel?
+                    </Text>
+                    </View>
+                    <View style={styles.inputRow}>
+                        <TextInput
+                            style={reasonError ? { ...styles.input, ...styles.errorInput } : styles.input}
+                            value={reason}
+                            onChangeText={(t) => { setReason(t) }}
+                            placeholderTextColor={reasonError ? 'red' : "#78849E"}
+                            multiline
+                            placeholder={"Tell Us what happened"}
+                        />
+                        <Text style={styles.errorText}>{reasonError}</Text>
+                    </View>
+                    <View style={styles.infoRow}>
+                        <Text style={styles.infoText}>
+                            You might be charged the visit payment if you exceeded the minimum time for cancelling.
+                    </Text>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.button} onPress={() => { handleSubmit() }}>
+                            <Text style={styles.buttonText}>Confirm</Text>
+                        </TouchableOpacity>
+                    </View>
 
+                </View>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     </Modal>
 }
 
@@ -107,8 +109,8 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         borderColor: 'rgba(0, 0, 0, 0.1)',
         overflow: 'hidden',
-        flex: 1,
-        maxHeight: Dimensions.get('screen').height * 0.4,
+
+        height: Dimensions.get('screen').height * 0.4,
         paddingTop: '3%',
         paddingHorizontal: '5%',
         borderWidth: 1

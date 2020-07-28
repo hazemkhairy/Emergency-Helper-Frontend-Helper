@@ -203,7 +203,7 @@ const SignUp = ({ navigation }) => {
                     error={password_error != ' '}
                 />
                 <Text style={signUpStyle.textError}>{password_error}</Text>
-                <PasswordStrengthBar password={password} />
+                {/* <PasswordStrengthBar password={password} /> */}
                 <Input
                     autoCapitalize="none"
                     autoCorrect={false}

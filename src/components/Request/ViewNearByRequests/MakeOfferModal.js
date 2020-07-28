@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions, KeyboardAvoidingView } from 'react-native';
 import Modal from 'react-native-modal';
 import { AntDesign } from '@expo/vector-icons';
 import { sendOffer } from '../../../utils/OfferUtils';
@@ -71,83 +71,86 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
     return <Modal
         isVisible={true}
         animationIn="fadeIn"
-
+        
     >
-        <View style={styles.container} >
-            <View style={styles.closeRow}>
-                <TouchableOpacity
+        <KeyboardAvoidingView behavior={"padding"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
 
-                    onPress={() => { close() }}
-                >
-                    <AntDesign
-                        name="close"
-                        size={20}
-                        color="black"
-                    />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.body}>
-                <View style={styles.titleContainer}>
+            <View style={styles.container}  >
+                <View style={styles.closeRow}>
+                    <TouchableOpacity
 
-                    <Text style={styles.titleText}>Make an Offer for </Text>
-                    <Text style={styles.clientName}>{clientName} </Text>
-                </View>
-                <View style={styles.priceRow}>
-                    <TextInput
-                        placeholder="From"
-                        style={priceError ? { ...styles.priceInput, ...styles.errorTextInput } : styles.priceInput}
-                        keyboardType="numeric"
-                        value={from}
-                        onChangeText={(text) => { setFrom(text) }}
-                        placeholderTextColor='#78849E'
-                    />
-                    <Text style={styles.currancyStyle}>
-                        ~
-                    </Text>
-                    <TextInput
-                        placeholder="To"
-                        style={priceError ? { ...styles.priceInput, ...styles.errorTextInput } : styles.priceInput}
-                        keyboardType="numeric"
-                        value={to}
-                        onChangeText={(text) => { setTo(text) }}
-                        placeholderTextColor='#78849E'
-                    />
-                    <Text style={styles.currancyStyle}>
-                        EGP
-                    </Text>
-                </View>
-                <Text adjustsFontSizeToFit style={styles.errorMessageText}>{priceError}</Text>
-                <View style={styles.descriptionRow}>
-                    <TextInput
-                        scrollEnabled={false}
-                        placeholder="Type your offer here"
-                        style={descriptionError ? { ...styles.descriptionInput, ...styles.errorTextInput } : styles.descriptionInput}
-                        multiline
-                        numberOfLines={4}
-                        value={description}
-                        placeholderTextColor='#78849E'
-                        onChangeText={(text) => { setDescription(text) }}
-                    />
-                    <Text style={styles.errorMessageText}>{descriptionError}</Text>
-                </View>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                        <Text style={styles.buttonText}>Submit</Text>
+                        onPress={() => { close() }}
+                    >
+                        <AntDesign
+                            name="close"
+                            size={20}
+                            color="black"
+                        />
                     </TouchableOpacity>
                 </View>
+                <View style={styles.body}>
+                    <View style={styles.titleContainer}>
+
+                        <Text style={styles.titleText}>Make an Offer for </Text>
+                        <Text style={styles.clientName}>{clientName} </Text>
+                    </View>
+                    <View style={styles.priceRow}>
+                        <TextInput
+                            placeholder="From"
+                            style={priceError ? { ...styles.priceInput, ...styles.errorTextInput } : styles.priceInput}
+                            keyboardType="numeric"
+                            value={from}
+                            onChangeText={(text) => { setFrom(text) }}
+                            placeholderTextColor='#78849E'
+                        />
+                        <Text style={styles.currancyStyle}>
+                            ~
+                    </Text>
+                        <TextInput
+                            placeholder="To"
+                            style={priceError ? { ...styles.priceInput, ...styles.errorTextInput } : styles.priceInput}
+                            keyboardType="numeric"
+                            value={to}
+                            onChangeText={(text) => { setTo(text) }}
+                            placeholderTextColor='#78849E'
+                        />
+                        <Text style={styles.currancyStyle}>
+                            EGP
+                    </Text>
+                    </View>
+                    <Text adjustsFontSizeToFit style={styles.errorMessageText}>{priceError}</Text>
+                    <View style={styles.descriptionRow}>
+                        <TextInput
+                            placeholder="Type your offer here"
+                            style={descriptionError ? { ...styles.descriptionInput, ...styles.errorTextInput } : styles.descriptionInput}
+                            multiline
+                            numberOfLines={4}
+                            value={description}
+                            placeholderTextColor='#78849E'
+                            onChangeText={(text) => { setDescription(text) }}
+                        />
+                        <Text style={styles.errorMessageText}>{descriptionError}</Text>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                            <Text style={styles.buttonText}>Submit</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     </Modal>
 }
 const styles = StyleSheet.create({
     modal: {
         flex: 1,
-        minHeight: 100
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     container: {
         backgroundColor: 'white',
-        maxHeight: Dimensions.get('screen').height * 0.45,
-        flex: 1,
+        height: Dimensions.get('screen').height * 0.45,
+        width:'100%',
         borderRadius: 45,
         alignItems: 'center'
     },
@@ -215,6 +218,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         textAlignVertical: 'top',
         width: '100%',
+        height: '100%',
     },
     buttonContainer: {
         justifyContent: 'center',

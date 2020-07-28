@@ -2,9 +2,13 @@ import backendAxios from '../services/backendAxios';
 
 export const getNearByRequests = async (location) => {
 
-    const ret = await backendAxios.post('Helper/ViewNearByRequests', location);
-
-    return ret.data.payload;
+    return await backendAxios.post('Helper/ViewNearByRequests', location).then
+        (
+            res => res.data.payload
+        )
+        .catch(
+            err => { throw err }
+        )
 }
 
 export const getCurrentRequestInfo = async () => {

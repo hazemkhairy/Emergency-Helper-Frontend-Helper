@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Dimensions, FlatList } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Dimensions, FlatList, KeyboardAvoidingView } from 'react-native';
 import Modal from 'react-native-modal';
 
 import { AntDesign } from '@expo/vector-icons';
@@ -76,49 +76,52 @@ const FillReceiptModal = ({ modalVisible, close, submit }) => {
     }
     return (
         <Modal isVisible={modalVisible} >
-            <View style={styles.outerContainer}>
-                <View style={styles.innerContainer}>
+            <KeyboardAvoidingView behavior={"padding"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
 
-                    <View style={styles.closeRow}>
-                        <TouchableOpacity
-                            onPress={() => { close() }}
-                        >
-                            <AntDesign
-                                name="close"
-                                size={20}
-                                color="black"
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.titleRow}>
-                        <Text style={styles.titleText}>Fill out customer's receipt</Text>
-                    </View>
-                    <View style={styles.itemsRow}>
-                        <FlatList
-                            extraData={refresh}
-                            keyExtractor={() => getUUID()}
-                            data={items}
-                            renderItem={
-                                ({ item, index }) => {
-                                    return <View style={styles.itemRow}>
-                                        <ReceiptItem
-                                            index={index}
-                                            removeable={index > 0}
-                                            addItem={() => { addItem(index) }}
-                                            removeItem={() => { removeItem(index) }}
-                                        />
-                                    </View>
+                <View style={styles.outerContainer}>
+                    <View style={styles.innerContainer}>
+
+                        <View style={styles.closeRow}>
+                            <TouchableOpacity
+                                onPress={() => { close() }}
+                            >
+                                <AntDesign
+                                    name="close"
+                                    size={20}
+                                    color="black"
+                                />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.titleRow}>
+                            <Text style={styles.titleText}>Fill out customer's receipt</Text>
+                        </View>
+                        <View style={styles.itemsRow}>
+                            <FlatList
+                                extraData={refresh}
+                                keyExtractor={() => getUUID()}
+                                data={items}
+                                renderItem={
+                                    ({ item, index }) => {
+                                        return <View style={styles.itemRow}>
+                                            <ReceiptItem
+                                                index={index}
+                                                removeable={index > 0}
+                                                addItem={() => { addItem(index) }}
+                                                removeItem={() => { removeItem(index) }}
+                                            />
+                                        </View>
+                                    }
                                 }
-                            }
-                        />
-                    </View>
-                    <View style={styles.buttonRow}>
-                        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-                            <Text style={styles.buttonText}>Submit</Text>
-                        </TouchableOpacity>
+                            />
+                        </View>
+                        <View style={styles.buttonRow}>
+                            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+                                <Text style={styles.buttonText}>Submit</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         </Modal>
     );
 };

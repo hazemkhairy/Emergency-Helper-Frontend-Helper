@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TextInput, KeyboardAvoidingView } from 'react-native';
 import Modal from 'react-native-modal';
 import RatingComponent from '../../global/RatingComponent'
 import { AntDesign } from '@expo/vector-icons';
@@ -25,54 +25,57 @@ const RateClientModal = ({ modalVisible, close }) => {
     }
 
     const handleSubmit = () => {
-        if (validInput()) {
-            close({ rate, feedback: description })
-        }
+        close({ rate, feedback: description })
+
     }
     return <Modal isVisible={modalVisible} >
-        <View style={styles.outerContainer}>
-            <View style={styles.innerContainer}>
+        <KeyboardAvoidingView behavior={"padding"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
 
-                <View style={styles.closeRow}>
-                    <TouchableOpacity
-                        onPress={() => { close() }}
-                    >
-                        <AntDesign
-                            name="close"
-                            size={20}
-                            color="black"
-                        />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.titleRow}>
-                    <Text style={styles.titleText}>Rate the Client</Text>
-                </View>
-                <View style={styles.inputRow}>
+            <View style={styles.outerContainer}>
+                <View style={styles.innerContainer}>
 
-                    <View style={styles.ratingRow}>
-                        <RatingComponent value={rate} setValue={setRate} />
+                    <View style={styles.closeRow}>
+                        <TouchableOpacity
+                            onPress={() => { close() }}
+                        >
+                            <AntDesign
+                                name="close"
+                                size={20}
+                                color="black"
+                            />
+                        </TouchableOpacity>
                     </View>
-                    <View style={styles.textInputRow}>
-
-                        <TextInput
-                            placeholder="Tell us your feedback"
-                            style={descriptionError ? { ...styles.descriptionInput, ...styles.errorTextInput } : styles.descriptionInput}
-                            multiline
-                            numberOfLines={4}
-                            value={description}
-                            placeholderTextColor={descriptionError ? 'red' : '#78849E'}
-                            onChangeText={(text) => { setDescription(text) }}
-                        />
-                        <Text style={styles.errorMessageText}>{descriptionError}</Text>
+                    <View style={styles.titleRow}>
+                        <Text style={styles.titleText}>Rate the Client</Text>
                     </View>
-                </View>
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={styles.button} onPress={() => { handleSubmit() }}>
-                        <Text style={styles.buttonText}>Submit</Text>
-                    </TouchableOpacity>
+                    <View style={styles.inputRow}>
+
+                        <View style={styles.ratingRow}>
+                            <RatingComponent value={rate} setValue={setRate} />
+                        </View>
+                        <View style={styles.textInputRow}>
+
+                            <TextInput
+                                returnKeyType="done"
+                                placeholder="Tell us your feedback"
+                                style={descriptionError ? { ...styles.descriptionInput, ...styles.errorTextInput } : styles.descriptionInput}
+                                multiline
+                                numberOfLines={4}
+                                value={description}
+                                placeholderTextColor={descriptionError ? 'red' : '#78849E'}
+                                onChangeText={(text) => { setDescription(text) }}
+                            />
+                            <Text style={styles.errorMessageText}>{descriptionError}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity style={styles.button} onPress={() => { handleSubmit() }}>
+                            <Text style={styles.buttonText}>Submit</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     </Modal>
 }
 
@@ -128,6 +131,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         textAlignVertical: 'top',
         width: '100%',
+        height: '100%'
     },
     buttonRow: {
         flex: 2,

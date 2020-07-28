@@ -28,6 +28,14 @@ const NearByRequestScreen = () => {
                 }
             }
         )
+        .catch(
+            (err)=>{
+                setRequests([]);
+                setCategory("Error")
+                console.log(err.response)
+                throw err ;
+            }
+        )
     }
     useEffect(
         () => {
