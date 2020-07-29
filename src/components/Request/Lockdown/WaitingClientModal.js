@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 
 const WaitingClientModal = ({  title, subTitle }) => {
-    let mount = true;
+    let mount = useRef(true);
 
 
     useEffect(
         () => {
-            return () => { mount = false; }
+            return () => { mount.current = false; }
         }, []
     )
-    return <Modal isVisible={mount} >
+    return <Modal isVisible={mount.current} >
         <View style={styles.outerContainer}>
             <View style={styles.innerContainer}>
                 <View style={styles.titleRow}>

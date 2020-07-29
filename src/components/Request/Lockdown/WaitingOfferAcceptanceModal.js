@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { getCurrentOffer } from '../../../utils/LockdownUtils';
 
-const WaitingOfferAcceptanceModal = ({ lockdown }) => {
-    if (!lockdown.isLockedDown)
-        return null;
-    let mount = true;
+const WaitingOfferAcceptanceModal = () => {
+
+    let mount = useRef(true);
 
     const [timeLeft, setTimeLeft] = useState(new Date(0, 0, 0, 0, 0, 0, 1));
     let [offer, setOffer] = useState({});
-    
+
     const getOffer = () => {
         getCurrentOffer().then(
             (res) => {
-                if (mount)
+                if (mount.current)
                     setOffer(res);
             }
         )
-        .catch(
-            (err)=>{
-                console.log(err)
-            }
-        )
+            .catch(
+                (err) => {
+                    console.log(err)
+                }
+            )
     }
     useEffect(
         () => {
@@ -30,7 +29,7 @@ const WaitingOfferAcceptanceModal = ({ lockdown }) => {
                 () => {
                     let ms = new Date() - new Date(offer.createdAt)
                     ms = offer.expiryDuration - ms;
-                    if (mount && ms >= 0) {
+                    if (mount.current && ms >= 0) {
                         setTimeLeft(new Date(0, 0, 0, 0, 0, 0, ms));
                         clearTimeout(timerId)
                     }
@@ -43,12 +42,11 @@ const WaitingOfferAcceptanceModal = ({ lockdown }) => {
     )
     useEffect(
         () => {
-            mount = true;
             getOffer();
-            return () => { mount = false; }
+            return () => { mount.current = false; }
         }, []
     )
-    return <Modal isVisible={lockdown.isLockedDown} >
+    return <Modal isVisible={mount.current} >
         <View style={styles.outerContainer}>
             <View style={styles.innerContainer}>
 

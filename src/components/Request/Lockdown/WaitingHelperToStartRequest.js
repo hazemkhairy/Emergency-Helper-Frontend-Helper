@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import ActiveRequestInfoModal from './ActiveRequestInfoModal'
 import CancelModal from '../FinishRequest/CancelModal';
@@ -8,14 +8,18 @@ const WaitingHelperToStartRequest = () => {
     const [cancelModal, setCancelModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    let mount = true;
+    let mount = useRef(true);
+    useEffect(
+        () => {
+            return () => { mount.current = false };
+        }, []
+    )
     const handleStartRequest = async () => {
-        if (mount)
+        if (mount.current)
             setLoading(true)
         await startRequest();
-        if (mount)
+        if (mount.current)
             setLoading(false);
-
     }
     const handleCancelRequest = async () => {
         setCancelModal(true)

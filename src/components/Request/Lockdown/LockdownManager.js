@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import LoadingModal from '../../global/LoadingModal'
 import { getLockdownStatus } from '../../../utils/LockdownUtils';
 import WaitingOfferAcceptanceModal from './WaitingOfferAcceptanceModal';
 import WaitingClientModal from './WaitingClientModal';
@@ -9,49 +8,46 @@ import WaitingHelperToFinishRequest from './WaitingHelperToFinishRequest';
 
 const WAITING_FOR_OFFER_RESPONSE = 'WAITING_FOR_OFFER_RESPONSE';
 const WAITING_FOR_HELPER_START = 'WAITING_FOR_HELPER_START';
-const WAITING_FOR_CLIENT_APPROVAL= 'WAITING_FOR_CLIENT_APPROVAL';
+const WAITING_FOR_CLIENT_APPROVAL = 'WAITING_FOR_CLIENT_APPROVAL';
 const WAITING_FOR_FINISH_REQUEST = 'WAITING_FOR_FINISH_REQUEST';
 const WAITING_FOR_ADMIN_APPROVAL = 'WAITING_FOR_ADMIN_APPROVAL';
 
 const LockdownManager = () => {
-
-    const [loading, setLoading] = useState(true);
     const [lockdown, setLockdown] = useState({ isLockedDown: false });
-    let mount = true;
-    const x = async () => {
-        setLoading(true);
-        await compareLockdown();
-        setLoading(false);
-    }
+    let mount = useRef(true);
+
     useEffect(
         () => {
-
-            x();
+            compareLockdown();
             setRefresh();
-
-            return () => { mount = false };
+            return () => { mount.current = false };
         },
         []
     )
+    let lastLockdown = useRef({ isLockedDown: false });
     const compareLockdown = async () => {
-        return getLockdownStatus().then(
+        return await getLockdownStatus().then(
             (res) => {
-                if (mount && (!res.isLockedDown || res.type != lockdown.type)) {
+                if (mount.current && (res.type != lastLockdown.current.type)) {
                     setLockdown(res)
+                    lastLockdown.current = res
                 }
             }
         )
             .catch(
                 (err) => {
-                    if (mount)
+                    //handle error
+                    if (mount.current) {
+
                         setLockdown({ isLockedDown: false });
+                    }
                 }
             )
     }
     const setRefresh = () => {
         let timerId = setInterval(
             () => {
-                if (mount)
+                if (mount.current)
                     compareLockdown();
                 else
                     clearInterval(timerId);
@@ -59,10 +55,7 @@ const LockdownManager = () => {
             , 5000
         )
     }
-    if (loading) {
-        return <LoadingModal modalVisible={loading} />
-    }
-    else if (!lockdown.isLockedDown) {
+    if (!lockdown.isLockedDown) {
         return <View></View>;
     }
     switch (lockdown.type) {
@@ -80,7 +73,7 @@ const LockdownManager = () => {
         }
         case WAITING_FOR_FINISH_REQUEST: {
             return <WaitingHelperToFinishRequest />
-            }
+        }
         default:
             return <Text>LOOOL</Text>
     }

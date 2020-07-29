@@ -71,9 +71,11 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
     return <Modal
         isVisible={true}
         animationIn="fadeIn"
-        
+
     >
-        <KeyboardAvoidingView behavior={"padding"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+        <KeyboardAvoidingView
+            behavior={"postion"}
+            style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
 
             <View style={styles.container}  >
                 <View style={styles.closeRow}>
@@ -126,7 +128,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                             multiline
                             numberOfLines={4}
                             value={description}
-                            placeholderTextColor='#78849E'
+                            placeholderTextColor={descriptionError ? 'red' : '#78849E'}
                             onChangeText={(text) => { setDescription(text) }}
                         />
                         <Text style={styles.errorMessageText}>{descriptionError}</Text>
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         height: Dimensions.get('screen').height * 0.45,
-        width:'100%',
+        width: '100%',
         borderRadius: 45,
         alignItems: 'center'
     },
@@ -188,7 +190,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     priceInput: {
-        borderWidth: 0.2,
+        borderWidth: 0.3,
         borderColor: '#707070',
         borderRadius: 12,
         paddingVertical: '3%',
@@ -210,7 +212,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     descriptionInput: {
-        borderWidth: 0.2,
+        borderWidth: 0.3,
         borderColor: '#707070',
         borderRadius: 12,
         paddingVertical: Dimensions.get('screen').height * 0.01,

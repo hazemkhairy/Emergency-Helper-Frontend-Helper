@@ -29,7 +29,7 @@ const RateClientModal = ({ modalVisible, close }) => {
 
     }
     return <Modal isVisible={modalVisible} >
-        <KeyboardAvoidingView behavior={"padding"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+        <KeyboardAvoidingView behavior={"position"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
 
             <View style={styles.outerContainer}>
                 <View style={styles.innerContainer}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, Linking } from 'react-native';
 import Modal from 'react-native-modal';
 import { Entypo } from '@expo/vector-icons';
@@ -9,17 +9,17 @@ import RequestAndHelperMapModal from '../../Map/RequestAndHelperMapModal'
 const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
     if (!mv)
         return null;
-    let mount = true;
+    let mount = useRef(true);
     const [request, setRequest] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mapModal, setMapModal] = useState(false);
     const getRequestInfo = () => {
 
-        if (mount) {
+        if (mount.current) {
             setLoading(true);
             getCurrentRequestInfo().then(
                 res => {
-                    if (mount) {
+                    if (mount.current) {
                         setRequest(res);
                         setLoading(false);
                     }
@@ -38,9 +38,8 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
 
     useEffect(
         () => {
-            mount = true;
             getRequestInfo();
-            return () => { mount = false; }
+            return () => { mount.current = false; }
         }, []
     )
     if (loading || !request)
