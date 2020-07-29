@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { getCurrentLocation } from '../../utils/LocationUtils'
 import ScreenHeader from '../../components/global/ScreenHeader';
@@ -8,11 +8,11 @@ const NearByRequestScreen = () => {
     const [currentLocation, setCurrentLocation] = useState(null);
     const [requests, setRequests] = useState(null);
     const [category, setCategory] = useState('');
-
+    let mount = useRef(true);
     const getUserLocation = () => {
         getCurrentLocation().then(
             location => {
-                if (location && location.coords) {
+                if (mount.current && location && location.coords) {
                     setCurrentLocation(location.coords);
                 }
             }
@@ -21,25 +21,29 @@ const NearByRequestScreen = () => {
     const getRequests = () => {
         return getNearByRequests(currentLocation).then(
             (res) => {
-                if (res) {
+                if (mount.current && res) {
 
                     setRequests(res.requests)
                     setCategory(res.category)
                 }
             }
         )
-        .catch(
-            (err)=>{
-                setRequests([]);
-                setCategory("Error")
-                console.log(err.response)
-                throw err ;
-            }
-        )
+            .catch(
+                (err) => {
+                    if (mount.current) {
+
+                        setRequests([]);
+                        setCategory("Error")
+                    }
+                    console.log(err.response)
+                    throw err;
+                }
+            )
     }
     useEffect(
         () => {
             getUserLocation();
+            return () => { mount.current = false }
         },
         []
     )
