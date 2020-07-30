@@ -128,7 +128,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
                             multiline
                             numberOfLines={4}
                             value={description}
-                            placeholderTextColor={descriptionError ? 'red' : '#78849E'}
+                            placeholderTextColor={'#78849E'}
                             onChangeText={(text) => { setDescription(text) }}
                         />
                         <Text style={styles.errorMessageText}>{descriptionError}</Text>

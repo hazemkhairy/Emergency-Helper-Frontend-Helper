@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat'
     },
     titleRow: {
-        flex: 1,
+        flex: 2,
         alignItems: 'center'
     },
     titleText: {

@@ -73,7 +73,7 @@ const CancelModal = ({ mv, close }) => {
                 </View>
                 <View style={styles.innerContainer}>
                     <View style={styles.titleRow}>
-                        <Text numberOfLines={2} style={styles.titleText}>
+                        <Text style={styles.titleText}>
                             Are you sure you want to cancel?
                     </Text>
                     </View>
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleText: {
-        fontSize: 20,
+        fontSize: 20 * (375 / Dimensions.get('screen').width),
         fontFamily: 'Montserrat_SemiBold',
         color: '#132641',
         textAlign: 'center',
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     },
     errorText: {
         color: 'red',
-        fontSize: 14 * (Dimensions.get('screen').width / 375),
+        fontSize: 14 * (375 / Dimensions.get('screen').width),
         fontFamily: 'Montserrat_SemiBold',
         textAlign: 'center'
     }
