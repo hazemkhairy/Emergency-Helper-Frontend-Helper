@@ -46,19 +46,19 @@ const styles = StyleSheet.create({
         flex: 1,
         shadowColor: "#C2C9D1",
         shadowOffset: {
-            width: 0,
-            height: 3,
+            width: 4,
+            height: 5,
         },
-        shadowOpacity: 0.58,
-        shadowRadius: 1.00,
+        shadowOpacity: 0.8,
+        shadowRadius: 4.00,
 
         elevation: 10,
         borderRadius: 40,
-
+        borderWidth: 1,
+        borderColor: 'rgba(194,201,209,0.4)',
         backgroundColor: 'white',
         paddingHorizontal: '2%',
-        paddingVertical: '4%',
-        overflow: 'hidden'
+        paddingVertical: '4%'
     },
     topHalf: {
         flexDirection: 'row',

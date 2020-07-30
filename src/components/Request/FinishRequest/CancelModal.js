@@ -56,7 +56,9 @@ const CancelModal = ({ mv, close }) => {
             modalVisible={errorModal}
         />
     return <Modal isVisible={mv} >
-        <KeyboardAvoidingView behavior={"padding"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS == "android" ? "postion" : "padding"}
+            style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.outerContainer}>
                 <View style={styles.closeRow}>
                     <TouchableOpacity

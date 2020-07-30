@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
 import Modal from 'react-native-modal';
 import { AntDesign } from '@expo/vector-icons';
 import { sendOffer } from '../../../utils/OfferUtils';
@@ -74,7 +74,7 @@ const MakeOfferModal = ({ modalVisibility, close, clientName, requestID }) => {
 
     >
         <KeyboardAvoidingView
-            behavior={"postion"}
+            behavior={Platform.OS == "android" ? "postion" : "padding"}
             style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
 
             <View style={styles.container}  >

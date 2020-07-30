@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         minHeight: 0.23 * Dimensions.get('window').height,
         flex: 1,
         margin: '3%',
-        marginBottom: '6%'
+        marginBottom: '5%'
     }
 });
 
