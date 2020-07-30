@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 
     },
     priceInput: {
-        borderWidth: 0.2,
+        borderWidth: 0.3,
         borderColor: '#707070',
         borderRadius: 12,
         paddingVertical: '3%',
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         width:'20%',
     },
     nameInput: {
-        borderWidth: 0.2,
+        borderWidth: 0.3,
         borderColor: '#707070',
         borderRadius: 12,
         paddingVertical: '3%',

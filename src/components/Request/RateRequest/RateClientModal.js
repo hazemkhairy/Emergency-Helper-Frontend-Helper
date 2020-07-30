@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: '15%'
     },
     descriptionInput: {
-        borderWidth: 0.2,
+        borderWidth: 0.3,
         borderColor: '#707070',
         borderRadius: 12,
         paddingVertical: Dimensions.get('screen').height * 0.01,
