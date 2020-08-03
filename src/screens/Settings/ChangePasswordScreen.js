@@ -66,20 +66,7 @@ const ChangePasswordScreen = ({ navigation }) => {
     }
     return error;
   };
-  ChangePasswordScreen.navigationOptions = (props) => {
-    return {
-      title: '',
-      headerTransparent: true,
-      headerLeft: () => {
-        return (
-          <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
-          </HeaderButtons>
-        )
-      },
-
-    }
-  }
+  
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>
@@ -146,7 +133,20 @@ const ChangePasswordScreen = ({ navigation }) => {
     </View>
   );
 };
+ChangePasswordScreen.navigationOptions = (props) => {
+  return {
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+        </HeaderButtons>
+      )
+    },
 
+  }
+}
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",
