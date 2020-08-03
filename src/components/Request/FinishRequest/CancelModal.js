@@ -75,14 +75,14 @@ const CancelModal = ({ mv, close }) => {
                     <View style={styles.titleRow}>
                         <Text style={styles.titleText}>
                             Are you sure you want to cancel?
-                    </Text>
+                     </Text>
                     </View>
                     <View style={styles.inputRow}>
                         <TextInput
                             style={reasonError ? { ...styles.input, ...styles.errorInput } : styles.input}
                             value={reason}
                             onChangeText={(t) => { setReason(t) }}
-                            placeholderTextColor={reasonError ? 'red' : "#78849E"}
+                            placeholderTextColor={"#78849E"}
                             multiline
                             placeholder={"Tell Us what happened"}
                         />
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 12,
         borderColor: '#707070',
-        borderWidth: 0.2,
+        borderWidth: 0.3,
         backgroundColor: 'white',
         color: '#132641',
         fontSize: 12,
