@@ -22,12 +22,12 @@ const First = ({ navigation }) => {
                 </Text>
             </View>
 
-            <View style={styles.buttonbackground1}>
+            <View style={styles.LoginBackground}>
                 <TouchableOpacity style={styles.LoginButton} onPress={() => navigation.navigate('SignInScreen')}>
                     <Text style={styles.loginTextStyle}>LOG IN</Text>
                 </TouchableOpacity>
-            </View>
-            <View style={styles.buttonbackground2}>
+                {/* </View> */}
+                {/* <View style={styles.buttonbackground2}> */}
                 <TouchableOpacity style={styles.SignUpButton} onPress={() => navigation.navigate('SignUpScreen')}>
                     <Text style={styles.SignUpTextStyle}>SIGN UP</Text>
                 </TouchableOpacity>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     Backgroundstyle: {
         flex: 1,
         resizeMode: 'stretch',
-        height: '90%',
+        height: '93%',
         backgroundColor: '#241332'
     },
     main: {
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     loginTextStyle: {
         color: 'white',
         fontSize: 14,
-        fontWeight: '500',
         justifyContent: 'center',
         alignItems: 'center',
         fontFamily: 'Montserrat_SemiBold',
@@ -79,38 +78,36 @@ const styles = StyleSheet.create({
     },
     LoginButton: {
         backgroundColor: '#7598BA',
-        height: '100%',
-        borderTopLeftRadius: 120,
-        justifyContent: "center",
-        alignItems: 'center'
-
-    },
-    SignUpButton: {
-        backgroundColor: '#132641',
-        height: '100%',
+        height: '49%',
         borderTopLeftRadius: 120,
         justifyContent: "center",
         alignItems: 'center',
 
     },
+    SignUpButton: {
+        backgroundColor: '#132641',
+        height: '53%',
+        borderTopLeftRadius: 120,
+        justifyContent: "center",
+        alignItems: 'center',
+        overflow: 'hidden'
+    },
     SignUpTextStyle: {
         color: 'white',
         fontSize: 14,
-        fontWeight: '500',
         fontFamily: 'Montserrat_SemiBold',
+        marginBottom: 10
+
+    },
+    LoginBackground: {
+        borderTopLeftRadius: 90,
+        backgroundColor: '#7598BA',
+        height: '22%',
+        overflow: 'hidden'
 
 
     },
-    buttonbackground1: {
-        borderTopLeftRadius: 100,
-        backgroundColor: '#7598BA',
-        height: '10%'
 
-    },
-    buttonbackground2: {
-        backgroundColor: '#7598BA',
-        height: '10%'
-    }
 });
 
 export default First;

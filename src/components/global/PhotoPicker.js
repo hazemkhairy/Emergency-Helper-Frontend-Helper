@@ -4,6 +4,7 @@ import Input from './Input';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { PhotoInfo } from '../../Modules/GlobalModels'
+import normalize from 'react-native-normalize'
 const getNameFromUri = (uri) => {
     if (uri == '') {
         return '';
@@ -21,7 +22,6 @@ const PhotoPicker = (props) => {
     const _pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
-            base64: true,
             quality: 0.5
         });
         if (result.cancelled)
@@ -50,6 +50,7 @@ const PhotoPicker = (props) => {
                     editable={false}
                     value={image.name ? image.name : ''}
                     error={props.error}
+                    // multiline={true}
                 />
             </View>
         </View>);
@@ -59,7 +60,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row-reverse',
         alignItems: 'center',
-       
+
+
+
     },
     input: {
         flexGrow: 1,
@@ -67,19 +70,22 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        zIndex: 0,
-        bottom: 0,
+        zIndex: 1,
+        bottom: normalize(9.9),
         backgroundColor: 'white',
-        padding: 2,
-        height: Dimensions.get('window').height > 800 ? 30 : 30,
-        marginRight:'7%'
-       
+        height: 20,
+        marginRight: '7%',
+
+
+
     },
     text: {
         color: '#132641',
         textAlign: 'center',
-        fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat_SemiBold',
         fontSize: 14,
+
+
     }
 });
 

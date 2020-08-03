@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import globalStyle from '../../../Styles/Global/globalStyle';
 import signUpStyle from '../../../Styles/signUpStyle';
 import { useSelector, useDispatch } from 'react-redux';
 import { SaveSignUpDataAction, ClearSignUpAction } from '../../../store/User/SignUp-Helper/actions';
 import AuthHeader from './AuthHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import PasswordStrengthBar from '../../../components/global/PasswordStrengthBar';
 import Input from '../../../components/global/Input';
 const SignUp = ({ navigation }) => {
 
@@ -36,7 +35,7 @@ const SignUp = ({ navigation }) => {
         }
 
         else {
-            const valid = /^[A-Za-z]+$/;
+            const valid =/^[A-Za-z ]+$/;
             if (valid.test(firstName) === true) {
                 setFirstname_error(" ")
             }
@@ -51,7 +50,7 @@ const SignUp = ({ navigation }) => {
             setLastname_error("Please Enter your Last Name")
         }
         else {
-            const valid = /^[A-Za-z]+$/;
+            const valid = /^[A-Za-z ]+$/;
             if (valid.test(lastName) === true) {
                 setLastname_error(" ")
             }
@@ -134,97 +133,100 @@ const SignUp = ({ navigation }) => {
 
 
     return (
-        <KeyboardAwareScrollView>
-        <AuthHeader
-            continueButtonPress={() => { submit() }}
-            signUpButtonPress={() => { }}
-            signInButtonPress={() => { navigation.navigate('SignInScreen'), disptach(ClearSignUpAction()) }}
-            backButtonPress={() => { navigation.navigate('Home'), disptach(ClearSignUpAction()) }}
-            active={2}
-            signin={2}
-        >
-            <Input
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="First Name"
-                value={firstName}
-                onChangeText={(text) => setFirstName(text)}
-                style={signUpStyle.firstnameinput}
-                error={firstname_error != ' '}
-            />
+        <KeyboardAwareScrollView bounces={false}>
+            <AuthHeader
+                continueButtonPress={() => { submit() }}
+                signUpButtonPress={() => { }}
+                signInButtonPress={() => { navigation.navigate('SignInScreen'), disptach(ClearSignUpAction()) }}
+                backButtonPress={() => { navigation.navigate('Home'), disptach(ClearSignUpAction()) }}
+                active={2}
+                signin={2}
+            >
+                <Input
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    placeholder="First Name"
+                    value={firstName}
+                    onChangeText={(text) => setFirstName(text)}
+                    style={signUpStyle.firstnameinput}
+                    error={firstname_error != ' '}
+                    autoCapitalize="words"
+                />
 
-            <Text style={signUpStyle.textError}>{firstname_error}</Text>
+                <Text style={signUpStyle.textError}>{firstname_error}</Text>
 
-            <Input
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="Last Name"
-                value={lastName}
-                onChangeText={(text) => setLastName(text)}
-                style={signUpStyle.input}
-                error={lastname_error != ' '}
-            />
-            <Text style={signUpStyle.textError}>{lastname_error}</Text>
-            <Input
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="Phone Number"
-                keyboardType={"numeric"}
-                value={phoneNumber}
-                onChangeText={(text) => setPhoneNumber(text)}
-                style={signUpStyle.input}
-                error={phonenumber_error != ' '}
-            />
+                <Input
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChangeText={(text) => setLastName(text)}
+                    style={signUpStyle.input}
+                    error={lastname_error != ' '}
+                    autoCapitalize="words"
+                />
+                <Text style={signUpStyle.textError}>{lastname_error}</Text>
+                <Input
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    placeholder="Phone Number"
+                    keyboardType={"numeric"}
+                    value={phoneNumber}
+                    onChangeText={(text) => setPhoneNumber(text)}
+                    style={signUpStyle.input}
+                    error={phonenumber_error != ' '}
+                />
 
-            <Text style={signUpStyle.textError}>{phonenumber_error}</Text>
+                <Text style={signUpStyle.textError}>{phonenumber_error}</Text>
 
-            <Input
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="Email"
-                keyboardType={"email-address"}
-                value={email}
-                onChangeText={(text) => setEmail(text)}
-                style={signUpStyle.input}
-                error={email_error != ' '}
-            />
-            <Text style={signUpStyle.textError}>{email_error}</Text>
-
-
-            <Input
-                placeholder="Password"
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry={true}
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-                style={signUpStyle.input}
-                error={password_error != ' '}
-            />
-            <Text style={signUpStyle.textError}>{password_error}</Text>
-            <Input
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="Confrim Password"
-                secureTextEntry={true}
-                value={confirmPassword}
-                onChangeText={(text) => setConfirmPassword(text)}
-                style={signUpStyle.input}
-                error={confirmpassword_error != ' '}
-            />
-
-            <Text style={signUpStyle.textError}>{confirmpassword_error}</Text>
+                <Input
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    placeholder="Email"
+                    keyboardType={"email-address"}
+                    value={email.toLowerCase()}
+                    onChangeText={(text) => setEmail(text)}
+                    style={signUpStyle.input}
+                    error={email_error != ' '}
+                />
+                <Text style={signUpStyle.textError}>{email_error}</Text>
 
 
-            <View >
-                <Text style={signUpStyle.ClickingText}>By clicking continue you are agreeing to our</Text>
+                <Input
+                    placeholder="Password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    secureTextEntry={true}
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    style={signUpStyle.input}
+                    error={password_error != ' '}
+                />
+                <Text style={signUpStyle.textError}>{password_error}</Text>
+                {/* <PasswordStrengthBar password={password} /> */}
+                <Input
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    placeholder="Confrim Password"
+                    secureTextEntry={true}
+                    value={confirmPassword}
+                    onChangeText={(text) => setConfirmPassword(text)}
+                    style={signUpStyle.input}
+                    error={confirmpassword_error != ' '}
+                />
 
-                <TouchableOpacity >
-                    <Text style={signUpStyle.termsAndConditionsText}>Terms and Conditions</Text>
-                </TouchableOpacity>
-            </View>
+                <Text style={signUpStyle.textError}>{confirmpassword_error}</Text>
 
-        </AuthHeader>
+
+                <View >
+                    <Text style={signUpStyle.ClickingText}>By clicking continue you are agreeing to our</Text>
+
+                    <TouchableOpacity >
+                        <Text style={signUpStyle.termsAndConditionsText}>Terms and Conditions</Text>
+                    </TouchableOpacity>
+                </View>
+
+            </AuthHeader>
 
         </KeyboardAwareScrollView>
 

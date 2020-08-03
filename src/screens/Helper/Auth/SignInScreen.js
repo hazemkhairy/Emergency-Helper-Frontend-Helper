@@ -4,7 +4,6 @@ import { Button } from 'react-native-elements';
 import { signInAction, clearSignInStateAction } from '../../../store/User/SignIn-Helper/actions';
 import { SignInUser } from '../../../Modules/User/UserModule';
 import { useDispatch, useSelector } from 'react-redux';
-import globalStyle from '../../../Styles/Global/globalStyle';
 import signInStyle from '../../../Styles/signInStyle';
 import AuthHeader from './AuthHeader'
 import Input from '../../../components/global/Input';
@@ -78,7 +77,7 @@ const SignInScreen = ({ navigation }) => {
   return (
     <View>
       <View>
-        <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()), navigation.navigate('MainScreen') }} message="Sign In successfully" />
+        <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()), navigation.navigate('MainScreen') }} message="Signed In successfully" />
         <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message={requestState.errorMessage ? requestState.errorMessage : 'Wrong Email or Password'} />
         <LoadingModal modalVisible={requestState.pending} />
         <AuthHeader
@@ -94,11 +93,12 @@ const SignInScreen = ({ navigation }) => {
             placeholder="Email"
             placeholderTextColor='#B9B3BD'
             autoCorrect={false}
-            value={email}
+            value={email.toLowerCase()}
             autoCapitalize='none'
             onChangeText={(text) => setEmail(text)}
             style={signInStyle.emailinput}
             error={email_error != ' '}
+            autoFocus={true}
           />
           <View>
             {
@@ -116,6 +116,7 @@ const SignInScreen = ({ navigation }) => {
             autoCapitalize='none'
             style={signInStyle.input}
             error={password_error != ' '}
+           
           />
           <View>
             {

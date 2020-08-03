@@ -1,8 +1,7 @@
-
 export class PhotoInfo {
-    constructor(uri = '', name = '', base64 = '') {
+    constructor(uri = '', name = '', type = '') {
         this.uri = uri;
         this.name = name;
-        this.base64 = base64
+        this.type = type;
     }
-}
+} 

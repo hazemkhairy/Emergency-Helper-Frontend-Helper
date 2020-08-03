@@ -14,7 +14,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-    
     switch (action.type) {
         case Save_Sign_Up_Data:
             const neww = { ...state, user: { ...action.payload } }
