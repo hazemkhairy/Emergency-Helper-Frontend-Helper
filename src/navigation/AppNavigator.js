@@ -16,7 +16,6 @@ import WalletScreen from '../screens/WalletScreen'
 import AboutUsScreen from '../screens/AboutUs/AboutUsScreen'
 import HistoryScreen from '../screens/HistoryScreen';
 import SupportScreen from '../screens/Support';
-import SettingsScreen from '../screens/Settings';
 import TermsOfUseScreen from '../screens/AboutUs/TermsOfUseScreen'
 const ApplicationNav=  createStackNavigator(
     {

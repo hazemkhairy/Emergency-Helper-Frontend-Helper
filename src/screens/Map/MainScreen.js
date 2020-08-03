@@ -9,25 +9,25 @@ import MenuHeaderButton from '../../components/global/MenuHeaderButton';
 import FindRequestButton from '../../components/Request/ViewNearByRequests/FindRequestButton'
 import LockdownManager from '../../components/Request/Lockdown/LockdownManager';
 const MainScreen = ({ navigation }) => {
-    
+
     return <View style={{ flex: 1 }}>
         <Text>Main Screen</Text>
-        <LockdownManager/>
+        <LockdownManager />
         <Button title="Log Out" onPress={
             () => {
                 logOut();
                 navigation.navigate('PreConfigScreen')
             }
         } />
-          <Button title="History Screen" onPress={()=>{navigation.navigate('HistoryScreen')}}></Button>
-          <Button title="Support Ticket Screen" onPress={()=>{navigation.navigate('SupportTicketScreen')}}></Button>
+        <Button title="History Screen" onPress={() => { navigation.navigate('HistoryScreen') }}></Button>
+        <Button title="Support Ticket Screen" onPress={() => { navigation.navigate('SupportTicketScreen') }}></Button>
 
-         <MainButton
-        onPress={() => {
-          navigation.navigate("SettingsScreen");
-        }}
-      >
-        Settings
+        <MainButton
+            onPress={() => {
+                navigation.navigate("SettingsScreen");
+            }}
+        >
+            Settings
       </MainButton>
 
 
@@ -35,7 +35,7 @@ const MainScreen = ({ navigation }) => {
             <FindRequestButton />
         </View>
     </View>
-    
+
 
 }
 MainScreen.navigationOptions = (props) => {
