@@ -35,7 +35,7 @@ const PasswordStrengthBar = (props) => {
 
   return (
     <View style={styles.passwordLength}>
-      <BarPasswordStrengthDisplay
+      <BarPasswordStrengthDisplay 
         password={props.password}
         meterType='bar'
         levels={levels}

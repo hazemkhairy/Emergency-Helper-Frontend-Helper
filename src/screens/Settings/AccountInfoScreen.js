@@ -19,6 +19,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import normalize from 'react-native-normalize';
 import MainHeader from '../../components/global/MainHeader';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 
 const AccountInfoScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
@@ -149,7 +151,7 @@ const AccountInfoScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>
-      <MainHeader headerText={'Account Info'}></MainHeader>
+        <MainHeader headerText={'Account Info'}></MainHeader>
         <LoadingModal modalVisible={loading} />
         <SettingsModal
           modalVisible={modalVisible}
@@ -210,10 +212,10 @@ const AccountInfoScreen = ({ navigation }) => {
                 placeholder={
                   gender
                     ? {
-                        label: gender,
-                        value: gender,
-                        color: "red",
-                      }
+                      label: gender,
+                      value: gender,
+                      color: "red",
+                    }
                     : { label: "Gender", value: "Gender", color: "red" }
                 }
                 value={gender}
@@ -253,13 +255,16 @@ const AccountInfoScreen = ({ navigation }) => {
 };
 AccountInfoScreen.navigationOptions = (props) => {
   return {
-    headerStyle: {
-      shadowColor: 'transparent',
-      elevation: 0,
-      backgroundColor: '#7598BA'
-
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+        </HeaderButtons>
+      )
     },
-    headertransparent: true,
+
   }
 }
 const styles = StyleSheet.create({
@@ -280,7 +285,7 @@ const styles = StyleSheet.create({
     top: normalize(90),
     alignSelf: "center",
   },
-  
+
   photoPicker: {
     alignSelf: "center",
   },
@@ -296,7 +301,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 200 / 2,
     marginTop: "5%",
-    borderColor:'#132641',
+    borderColor: '#132641',
     borderWidth: 0.2,
   },
   datePicker: {

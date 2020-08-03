@@ -6,12 +6,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import normalize from 'react-native-normalize';
 import MainHeader from '../../components/global/MainHeader';
 import SubHeaderText from '../../components/global/SubHeaderText';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 
 
 const SettingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-
       <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>
         <MainHeader headerText={'Settings'} name={'cog'}></MainHeader>
         <SubHeaderText SubHeaderText={'Settings'}></SubHeaderText>
@@ -47,21 +48,24 @@ const SettingsScreen = ({ navigation }) => {
           <Text style={styles.settingsTXT}>Change Password</Text>
           <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
         </TouchableOpacity>
-          
-     
+
+
       </KeyboardAwareScrollView>
     </View >
   );
 };
 SettingsScreen.navigationOptions = (props) => {
   return {
-    headerStyle: {
-      shadowColor: 'transparent',
-      elevation: 0,
-      backgroundColor: '#7598BA'
-
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}   >
+          <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
+        </HeaderButtons>
+      )
     },
-    headertransparent: true,
+
   }
 }
 const styles = StyleSheet.create({

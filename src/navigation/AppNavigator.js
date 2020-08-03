@@ -15,31 +15,36 @@ import { Dimensions } from 'react-native';
 import WalletScreen from '../screens/WalletScreen'
 import AboutUsScreen from '../screens/AboutUs/AboutUsScreen'
 import HistoryScreen from '../screens/HistoryScreen';
-import SupportScreen from '../screens/Support';
-import TermsOfUseScreen from '../screens/AboutUs/TermsOfUseScreen'
-const ApplicationNav=  createStackNavigator(
+import TermsOfUseScreen from '../screens/AboutUs/TermsOfUseScreen';
+import NearByRequestsScreen from '../screens/Request/NearByRequestsScreen'
+const ApplicationNav = createStackNavigator(
     {
-        MainScreen:{
-            screen :MainScreen
+        MainScreen: {
+            screen: MainScreen
         },
-        HistoryScreen:{
-            screen:HistoryScreen
-        }, HistoryScreen:{
-            screen:HistoryScreen
+        HistoryScreen: {
+            screen: HistoryScreen
+        }, HistoryScreen: {
+            screen: HistoryScreen
         },
-        SupportScreen:{
-            screen:SupportScreen
+        SupportTicketScreen: {
+            screen: SupportTicketScreen
         },
-        WalletScreen:{
-            screen:WalletScreen
+        WalletScreen: {
+            screen: WalletScreen
         },
-        SettingsScreen:{
-            screen:SettingsScreen
+        SettingsScreen: {
+            screen: SettingsScreen
         },
-        AboutUsScreen:{
-            screen:AboutUsScreen
+        AboutUsScreen: {
+            screen: AboutUsScreen
         },
-        TermsOfUseScreen
+        TermsOfUseScreen,
+        AccountInfoScreen,
+        ProfessionInfoScreen,
+        ChangePasswordScreen,
+        TicketScreen,
+        NearByRequestsScreen
     }
 )
 const MainNav = createDrawerNavigator(
@@ -60,7 +65,7 @@ const MainNav = createDrawerNavigator(
             }
 
         },
-        SupportScreen: {
+        SupportTicketScreen: {
             screen: ApplicationNav,
             navigationOptions: {
                 drawerLabel: 'Support',
@@ -90,13 +95,13 @@ const MainNav = createDrawerNavigator(
                 drawerIcon: <Feather name="info" size={20} style={{ color: '#132641', opacity: 0.8 }}></Feather>
             }
         },
-       
-       
+
+
     },
-  
+
 
     {
-        contentComponent: props => <SideDrawer   {...props} onItemPress={({ route, focused }) => { props.navigation.navigate(route) }} />
+        contentComponent: props => { return (props.navigation.state.isDrawerOpen) ? <SideDrawer   {...props} onItemPress={({ route, focused }) => { props.navigation.navigate(route) }} /> : null }
         , contentOptions: {
             activeTintColor: '',
             activeBackgroundColor: 'Transparent',

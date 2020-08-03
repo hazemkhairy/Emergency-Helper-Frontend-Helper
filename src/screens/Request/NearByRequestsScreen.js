@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { getCurrentLocation } from '../../utils/LocationUtils'
 import ScreenHeader from '../../components/global/ScreenHeader';
 import { getNearByRequests } from '../../utils/RequestUtils'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 import NearByRequestsList from '../../components/Request/ViewNearByRequests/NearByRequestsList'
 const NearByRequestScreen = () => {
     const [currentLocation, setCurrentLocation] = useState(null);
@@ -72,6 +74,20 @@ const NearByRequestScreen = () => {
         </View>
     )
 }
+NearByRequestScreen.navigationOptions = (props) => {
+    return {
+      title: '',
+      headerTransparent: true,
+      headerLeft: () => {
+        return (
+          <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+            <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+          </HeaderButtons>
+        )
+      },
+  
+    }
+  }
 const styles = StyleSheet.create({
     container: {
         marginLeft: Dimensions.get('window').width * 0.064,

@@ -3,7 +3,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
   View,
 } from "react-native";
 
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: "4%",
     paddingHorizontal: "20%",
-    alignSelf:'center',
+    alignSelf: 'center',
     marginBottom: "5%",
   },
   buttonText: {

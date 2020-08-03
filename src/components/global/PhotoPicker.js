@@ -50,7 +50,7 @@ const PhotoPicker = (props) => {
                     editable={false}
                     value={image.name ? image.name : ''}
                     error={props.error}
-                    // multiline={true}
+                // multiline={true}
                 />
             </View>
         </View>);
