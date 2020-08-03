@@ -35,8 +35,6 @@ const ApplicationNav=  createStackNavigator(
             screen:AboutUsScreen
         },
         TermsOfUseScreen
-
-       
     }
 )
 const MainNav = createDrawerNavigator(
