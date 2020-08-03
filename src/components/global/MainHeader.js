@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         justifyContent: 'center',
         alignSelf: 'center',
+        marginTop: '7%',
         marginTop: '22%',
 
     },

@@ -8,6 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^2.4.1",
+    "react-native-date-input": "^1.0.11",
     "@react-native-community/masked-view": "0.1.10",
     "@use-expo/font": "^1.0.1",
     "axios": "^0.19.2",
@@ -25,6 +27,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-maps": "0.27.1",
     "react-native-modal": "^11.5.6",
+    "react-native-modal-datetime-picker": "^8.7.1",
     "react-native-multi-select-picker": "^1.0.11",
     "react-native-normalize": "^1.0.1",
     "react-native-password-strength-meter": "0.0.3",

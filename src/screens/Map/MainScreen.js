@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { logOut } from '../../utils/Helper'
+import MainButton from "../../components/global/MainButton";
+
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import MenuHeaderButton from '../../components/global/MenuHeaderButton';
 
@@ -17,6 +19,14 @@ const MainScreen = ({ navigation }) => {
                 navigation.navigate('PreConfigScreen')
             }
         } />
+         <MainButton
+        onPress={() => {
+          navigation.navigate("SettingsScreen");
+        }}
+      >
+        Settings
+      </MainButton>
+
 
         <View style={{ alignItems: 'center', width: '100%', justifyContent: 'flex-end', height: '100%', position: 'absolute' }}>
             <FindRequestButton />
