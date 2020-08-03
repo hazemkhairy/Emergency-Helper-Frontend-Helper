@@ -1,10 +1,10 @@
+
 import React,{useEffect,useState} from 'react';
 import {  Text,View,StyleSheet,FlatList,Dimensions } from 'react-native';
 import HistoryCard from '../components/Support&History/historyCard'
 import MainHeader from '../components/global/MainHeader'
 import SubHeaderText from '../components/global/SubHeaderText'
 import {viewHistory} from '../utils/History'
-
 const History = () => {
 
   const [history, setHistory] = useState([]);
@@ -23,8 +23,6 @@ const History = () => {
     getHistory();
   }, []);
   
-  
-
   return (
     
     <View style={styles.container}>
