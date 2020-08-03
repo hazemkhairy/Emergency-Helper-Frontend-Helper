@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import normalize from 'react-native-normalize';
 
-const MainHeader = (props) => {
+const ScreenHeader = (props) => {
     let HeaderText = props.headerText;
     let Name = props.name
     let containerStyle = { ...styles.container, ...props.style };
@@ -29,26 +29,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         justifyContent: 'center',
         alignSelf: 'center',
-        marginTop: '7%',
-        marginTop: '22%',
+        marginTop: '25%',
 
     },
     text: {
         color: 'white',
         fontSize: normalize(40) *
             Math.min(
-                Dimensions.get("window").height / 820.0,
-                Dimensions.get("window").width / 390.0
+                Dimensions.get("window").height / 900.0,
+                Dimensions.get("window").width / 500.0
             ),
         marginLeft: '5%',
         fontFamily: 'Montserrat_Bold'
-
     },
 
     Icon: {
         color: '#FFFFFF',
-        marginTop: '2%'
+        marginTop: '3%'
     }
 });
 
-export default MainHeader;
+export default ScreenHeader;
