@@ -5,6 +5,8 @@ import React from 'react';
 import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import SideDrawer from '../components/global/SideDrawer';
 import MainScreen from '../screens/Map/MainScreen'
+import SupportTicketScreen from '../screens/SupportTicketScreen';
+import TicketScreen from '../screens/TicketScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen'
 import AccountInfoScreen from '../screens/Settings/AccountInfoScreen'
 import ProfessionInfoScreen from '../screens/Settings/ProfessionInfoScreen'
