@@ -6,13 +6,21 @@ import LoadingModal from '../../global/LoadingModal';
 import { getCurrentRequestInfo } from '../../../utils/RequestUtils';
 import { Feather } from '@expo/vector-icons';
 import RequestAndHelperMapModal from '../../Map/RequestAndHelperMapModal'
+import ChatModal from '../../../screens/HelperChat'
 const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
     if (!mv)
         return null;
+    const [requestModal,setRequestModal]=useState(mv)
     let mount = useRef(true);
+
     const [request, setRequest] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mapModal, setMapModal] = useState(false);
+    const [chatModal,setChatModal]=useState(false)
+ 
+    const onChat = () => {
+        setChatModal(true)
+    };
     const getRequestInfo = () => {
 
         if (mount.current) {
@@ -46,7 +54,11 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
         return <LoadingModal modalVisible={loading} />
     if (mapModal)
         return <RequestAndHelperMapModal requestCoordinates={request.requestLocation} close={() => { setMapModal(false); }} />
-    return <Modal isVisible={mv} >
+    if(chatModal)
+        return <ChatModal modalVisible={chatModal}
+        close={()=>setChatModal(false)}
+        />
+    return <Modal isVisible={requestModal} >
         <View style={styles.outerContainer}>
             <View style={styles.innerContainer}>
                 {
@@ -67,7 +79,7 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.chatContainer} onPress={() => { }}>
+                    <TouchableOpacity style={styles.chatContainer} onPress={() => {  onChat()}}>
                         <Text style={styles.chatText}>Chat</Text>
                     </TouchableOpacity>
                 </View>

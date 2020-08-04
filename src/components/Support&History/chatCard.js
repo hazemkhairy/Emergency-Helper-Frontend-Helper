@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Octicons'
 
-const ChatCard = ({ item }) => {
+const ChatCard = ({ item ,chat}) => {
    
     var day = new Date(item.date).getDate();
     var monthNames = [ 'January', 'February', 'March', 'April', 'May','June',
@@ -32,7 +32,7 @@ const ChatCard = ({ item }) => {
        }
     return(
         <View> 
-             <Text style={styles.nameStyle}> {item.senderName} ({item.senderRole})</Text>
+             {!chat? <Text style={styles.nameStyle}> {item.senderName} ({item.senderRole})</Text>:  null} 
              <View style={rowStyle}> 
                 <Icon name={'triangle-left'} color={'#E2E8ED'} style={styles.icon} /> 
                 <View style={[styles.container, bubbleStyle]}>
