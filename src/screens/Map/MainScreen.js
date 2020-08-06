@@ -5,12 +5,12 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import MenuHeaderButton from '../../components/global/MenuHeaderButton';
 import FindRequestButton from '../../components/Request/ViewNearByRequests/FindRequestButton'
 import LockdownManager from '../../components/Request/Lockdown/LockdownManager';
-import MapDisplay from '../../components/Map/MapDisplay';
+import UserLocationMapDisplay from '../../components/Map/UserLocationMapDisplay';
 const MainScreen = ({ navigation }) => {
 
     return <View style={{ flex: 1 }}>
         <LockdownManager />
-        {/* <MapDisplay/> */}
+        <UserLocationMapDisplay/>
         <View style={{ alignItems: 'center', width: '100%', justifyContent: 'flex-end', height: '100%', position: 'absolute' }}>
             <FindRequestButton />
         </View>
