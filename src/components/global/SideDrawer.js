@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import { DrawerItems } from 'react-navigation-drawer'
 import { Ionicons } from '@expo/vector-icons';
 import { logOut } from '../../utils/Helper';
 import SideDrawerProfile from "./SideDrawerProfile";
+import { BackHandler } from 'react-native';
+
 
 const SideDrawer = (props) => {
-
+    useEffect(() => {
+       ( BackHandler.addEventListener('hardwareBackPress', () => true))
+        return () =>
+            BackHandler.removeEventListener('hardwareBackPress', () => true)
+    }, [])
     return (
         <View>
             <SideDrawerProfile />
