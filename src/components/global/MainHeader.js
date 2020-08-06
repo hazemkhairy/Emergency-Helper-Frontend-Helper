@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         fontSize: normalize(40) *
             Math.min(
                 Dimensions.get("window").height / 820.0,
-                Dimensions.get("window").width / 390.0
+                Dimensions.get("window").width / 500.0
             ),
         marginLeft: '5%',
         fontFamily: 'Montserrat_Bold', marginTop: normalize(100),
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         //  marginTop: normalize(30),
         //  marginRight:normalize(10)
-        marginTop:Dimensions.get("window").height>820? '32%':Dimensions.get("window").height>720?'29%':'28%',
+        marginTop:Dimensions.get("window").height>820? '31%':Dimensions.get("window").height>720?'29%':'28%',
     }
 });
 
