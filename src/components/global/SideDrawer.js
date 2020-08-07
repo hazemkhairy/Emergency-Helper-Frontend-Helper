@@ -8,10 +8,13 @@ import { BackHandler } from 'react-native';
 
 
 const SideDrawer = (props) => {
+    const onBackPress = () => {
+       return props.navigation.navigate('MainScreen');
+      };
     useEffect(() => {
-       ( BackHandler.addEventListener('hardwareBackPress', () => true))
+       ( BackHandler.addEventListener('hardwareBackPress', onBackPress))
         return () =>
-            BackHandler.removeEventListener('hardwareBackPress', () => true)
+            BackHandler.removeEventListener('hardwareBackPress', onBackPress)
     }, [])
     return (
         <View>
