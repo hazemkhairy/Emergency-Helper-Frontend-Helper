@@ -51,8 +51,7 @@ const styles = StyleSheet.create({
         maxWidth:'94%',
     },
     leftStyle: {
-        borderWidth:0.8,
-        borderColor:'#E2E8ED',
+        backgroundColor:'#E2E8ED',
     },
     rightStyle: {
         backgroundColor:'#132641',

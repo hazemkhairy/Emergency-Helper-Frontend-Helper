@@ -14,10 +14,11 @@ const HelperChat = ({ close }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [active, setActive] = useState(false);
+  
 
   const [clientData, setClientData] = useState([]);
   const [loading,setloading]=useState(true)
-
+  //let time;
   const newMessage = async () => {
     if (active == true) {
      
@@ -25,7 +26,7 @@ const HelperChat = ({ close }) => {
       setMessage('')
       setActive(false)
       getMessages()
-      console.log(message)
+    
      
     }
   }
@@ -34,14 +35,14 @@ const HelperChat = ({ close }) => {
    
     await allMessages().then((result) => {
       setMessages(result);
-   
+     
      
     });
   };
-
   useEffect(() => {
-    getMessages();
-    setInterval(getMessages, 5000);
+    getMessages()
+   const time=setInterval(getMessages, 5000);
+   return () => clearInterval(time);
   }, []);
   useEffect( () => {
     getCurrentRequestInfo().then( (result) => {
@@ -54,12 +55,12 @@ if(loading)
   return <LoadingModal modalVisible={loading}  />
 
   return (
-    <Modal isVisible={true} style={{margin: 0}} animationIn="appear">
+    <Modal isVisible={true} style={{margin: 0}} >
     <View style={styles.container}>
       <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.90 }}>
         <View style={styles.headerContainer}>
           <View style={styles.BackButton}>
-            <TouchableOpacity onPress={() => {  close() }}>
+            <TouchableOpacity onPress={() => {   close() }}>
               <MaterialIcons name="arrow-back" size={25} color="white" />
             </TouchableOpacity>
           </View>
@@ -79,6 +80,7 @@ if(loading)
             keyboardShouldPersistTaps="handled"
             style={{ flex: 1 }}
             data={messages}
+            
             getItemLayout={(data, index) => ({
               length: 170,
               offset: 170 * index,

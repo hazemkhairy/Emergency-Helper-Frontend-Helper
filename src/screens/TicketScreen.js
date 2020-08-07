@@ -41,7 +41,7 @@ const TicketScreen = ({ navigation }) => {
   return (
 
     <View style={styles.container}>
-      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.82 }}>
+      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.90 }}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}> {category} </Text>
         </View>
@@ -69,7 +69,6 @@ const TicketScreen = ({ navigation }) => {
       <KeyboardAvoidingView
         style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}
         behavior={Platform.OS == "ios" ? 'position' : null}
-        keyboardVerticalOffset={Platform.OS == "ios" ? normalize(60) : 0}
       >
         <View style={styles.footer}>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
@@ -142,6 +141,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
     flex: 1,
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
   },
   footer: {
     borderWidth: 1,
