@@ -12,7 +12,6 @@ import AccountInfoScreen from '../screens/Settings/AccountInfoScreen'
 import ProfessionInfoScreen from '../screens/Settings/ProfessionInfoScreen'
 import ChangePasswordScreen from '../screens/Settings/ChangePasswordScreen'
 import { Dimensions } from 'react-native';
-import WalletScreen from '../screens/WalletScreen'
 import AboutUsScreen from '../screens/AboutUs/AboutUsScreen'
 import HistoryScreen from '../screens/HistoryScreen';
 import TermsOfUseScreen from '../screens/AboutUs/TermsOfUseScreen';
@@ -29,9 +28,6 @@ const ApplicationNav = createStackNavigator(
         },
         SupportTicketScreen: {
             screen: SupportTicketScreen
-        },
-        WalletScreen: {
-            screen: WalletScreen
         },
         SettingsScreen: {
             screen: SettingsScreen
@@ -72,13 +68,6 @@ const MainNav = createDrawerNavigator(
                 drawerIcon: <MaterialIcons name="people" size={20} style={{ color: '#132641', opacity: 0.8 }}></MaterialIcons>
             }
 
-        },
-        WalletScreen: {
-            screen: ApplicationNav,
-            navigationOptions: {
-                drawerLabel: 'Wallet',
-                drawerIcon: <FontAwesome name="money" size={20} style={{ color: '#132641', opacity: 0.8 }}></FontAwesome>
-            }
         },
         SettingsScreen: {
             screen: ApplicationNav,
