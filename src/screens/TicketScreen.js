@@ -41,15 +41,13 @@ const TicketScreen = ({ navigation }) => {
   return (
 
     <View style={styles.container}>
-      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.90 }}>
+      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.91 }}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerText}> {category} </Text>
         </View>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1,marginTop:'2%' }}>
           <FlatList
-            inverted
             keyboardShouldPersistTaps="handled"
-            style={{ flex: 1 }}
             data={messages}
             keyExtractor={(item, index) => "key" + index}
             showsVerticalScrollIndicator={true}
@@ -134,7 +132,7 @@ const styles = StyleSheet.create({
         Dimensions.get("window").height / 900.0,
         Dimensions.get("window").width / 500.0
       ),
-    paddingTop: '15%',
+    marginTop:Dimensions.get("window").height<850?'15%':'20%',
     fontFamily: 'Montserrat_Bold'
   },
 
