@@ -32,7 +32,7 @@ const NearByRequestsItem = ({ request, openModal }) => {
                 <Text style={styles.description}>
                     <Text style={{ fontFamily: 'Montserrat_Medium', color: '#687486' }}>
 
-                        Problem's description:
+                        {"Problem's description: "}
                     </Text>
                     {request.description}
                 </Text>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'rgba(194,201,209,0.4)',
         backgroundColor: 'white',
-        paddingHorizontal: '2%',
+        paddingHorizontal: '6%',
         paddingVertical: '4%'
     },
     topHalf: {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     bottomHalf: {
         paddingTop: '2%',
-        paddingLeft: '5%',
+        paddingLeft: '2%',
         flex: 9
     },
     clientImage: {

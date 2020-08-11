@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 
-const WaitingClientModal = ({  title, subTitle }) => {
+const WaitingClientModal = ({ title, subTitle }) => {
     let mount = useRef(true);
 
 
     useEffect(
         () => {
+            mount.current = true;
             return () => { mount.current = false; }
         }, []
     )

@@ -2,14 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { getCurrentLocation } from '../../utils/LocationUtils'
 import ScreenHeader from '../../components/global/ScreenHeader';
-import { getNearByRequests } from '../../utils/RequestUtils'
+import { getNearByRequests } from '../../utils/RequestUtils';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/global/HeaderButton'
-import NearByRequestsList from '../../components/Request/ViewNearByRequests/NearByRequestsList'
-const NearByRequestScreen = () => {
+import NearByRequestsList from '../../components/Request/ViewNearByRequests/NearByRequestsList';
+import ErrorModal from '../../components/global/ErrorModal';
+const NearByRequestScreen = ({ navigation }) => {
     const [currentLocation, setCurrentLocation] = useState(null);
     const [requests, setRequests] = useState(null);
     const [category, setCategory] = useState('');
+    const [needAdminApproval, setNeedAdminApproval] = useState(false);
+
     let mount = useRef(true);
     const getUserLocation = () => {
         getCurrentLocation().then(
@@ -32,16 +35,18 @@ const NearByRequestScreen = () => {
         )
             .catch(
                 (err) => {
+                    if (err.response.status == "401")
+                        setNeedAdminApproval(true);
                     if (mount.current) {
 
                         setRequests([]);
                         setCategory("Error")
                     }
-                    console.log(err.response)
-                    throw err;
+                    
                 }
             )
     }
+
     useEffect(
         () => {
             getUserLocation();
@@ -58,6 +63,12 @@ const NearByRequestScreen = () => {
         },
         [currentLocation]
     )
+    if (needAdminApproval)
+        return <ErrorModal
+            message={"Cannot get request before admin approve your application, Please wait for admin approval"}
+            modalVisible={needAdminApproval}
+            closeModal={() => { navigation.goBack() }}
+        />
     return (
         <View style={{ backgroundColor: 'white', flex: 1 }}>
             <ScreenHeader headerText="Nearby Requests" />
@@ -76,18 +87,18 @@ const NearByRequestScreen = () => {
 }
 NearByRequestScreen.navigationOptions = (props) => {
     return {
-      title: '',
-      headerTransparent: true,
-      headerLeft: () => {
-        return (
-          <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-            <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
-          </HeaderButtons>
-        )
-      },
-  
+        title: '',
+        headerTransparent: true,
+        headerLeft: () => {
+            return (
+                <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+                    <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+                </HeaderButtons>
+            )
+        },
+
     }
-  }
+}
 const styles = StyleSheet.create({
     container: {
         marginLeft: Dimensions.get('window').width * 0.064,
