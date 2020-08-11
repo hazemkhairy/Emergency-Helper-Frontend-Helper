@@ -31,9 +31,6 @@ const SignInScreen = ({ navigation }) => {
     }
   }
   )
-  const token = useSelector((state) => {
-    return state.signInReducer.token
-  })
   const validInput = () => {
     let thereIsNoError = true;
     if (email == "") {

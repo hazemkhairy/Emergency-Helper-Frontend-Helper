@@ -3,7 +3,7 @@ import { Start_Sign_In, Failed_Sign_In, Success_Sign_In, Clear_Sign_In_State } f
 const initialState = {
     signInStarted: false,
     error: false,
-    success: false
+    success: false, errorMessage: ''
 }
 
 export default (state = initialState, action) => {
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
         case Success_Sign_In:
             return { ...initialState, success: true };
         case Failed_Sign_In:
-            return { ...initialState, error: true, };
+            return { ...initialState, error: true, errorMessage: action.payload };
     }
     return state;
 }
