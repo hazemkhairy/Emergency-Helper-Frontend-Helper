@@ -119,6 +119,7 @@ const ProfessionInfoScreen = ({ navigation }) => {
                       ? {
                         label: category,
                         value: category,
+                        color: 'red',
                       }
                       : { label: "Category", value: "Category" }
                   }
