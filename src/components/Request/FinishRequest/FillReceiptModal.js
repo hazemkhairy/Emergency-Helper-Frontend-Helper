@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { validNumber } from '../../../utils/CommonUtils';
 import {
     addItemToReceipt,
-    clearReceipt,
     deleteItemFromReceipt,
     setItems,
 } from '../../../store/Request/FillReceipt/action'

@@ -10,9 +10,12 @@ const MainScreen = ({ navigation }) => {
 
     return <View style={{ flex: 1 }}>
         <LockdownManager />
-        <UserLocationMapDisplay/>
+        <UserLocationMapDisplay />
         <View style={{ alignItems: 'center', width: '100%', justifyContent: 'flex-end', height: '100%', position: 'absolute' }}>
-            <FindRequestButton />
+            <View style={{ marginBottom: '5%' }}>
+
+                <FindRequestButton />
+            </View>
         </View>
     </View>
 
