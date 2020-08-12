@@ -12,7 +12,7 @@ const History = () => {
 
   const [history, setHistory] = useState([]);
   const [reloading, setReloading] = useState(false);
-
+ 
   const getHistory = async () => {
     setReloading(true);
     setHistory([]);

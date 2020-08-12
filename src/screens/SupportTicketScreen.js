@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '85%',
     alignSelf: 'center',
+    marginBottom:'3%'
   },
   supportText: {
     fontSize: 24,
@@ -100,6 +101,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
+   
   },
   newText: {
     fontSize: 18,

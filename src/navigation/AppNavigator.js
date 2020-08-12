@@ -16,6 +16,7 @@ import AboutUsScreen from '../screens/AboutUs/AboutUsScreen'
 import HistoryScreen from '../screens/HistoryScreen';
 import TermsOfUseScreen from '../screens/AboutUs/TermsOfUseScreen';
 import NearByRequestsScreen from '../screens/Request/NearByRequestsScreen'
+import HelperChat from '../screens/HelperChat'
 const ApplicationNav = createStackNavigator(
     {
         MainScreen: {
@@ -40,7 +41,8 @@ const ApplicationNav = createStackNavigator(
         ProfessionInfoScreen,
         ChangePasswordScreen,
         TicketScreen,
-        NearByRequestsScreen
+        NearByRequestsScreen,
+        HelperChat
     }
 )
 const MainNav = createDrawerNavigator(
