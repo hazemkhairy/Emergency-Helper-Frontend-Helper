@@ -51,7 +51,7 @@ const LockdownManager = () => {
                 else
                     clearInterval(timerId);
             }
-            , 5000
+            , 1000
         )
     }
     if (!lockdown.isLockedDown) {
