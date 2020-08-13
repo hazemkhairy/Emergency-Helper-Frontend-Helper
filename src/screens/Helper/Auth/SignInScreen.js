@@ -126,6 +126,9 @@ const SignInScreen = ({ navigation }) => {
         <View style={signInStyle.forgetPasswordView}>
           <Button type='clear' title='FORGOT PASSWORD' titleStyle={signInStyle.buttonforget}
             onPress={() => { }}
+            onPress={() => { 
+              navigation.navigate("ForgetPasswordScreen");
+            }}
           />
         </View>
       </View>
