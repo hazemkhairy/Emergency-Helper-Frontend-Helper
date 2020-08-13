@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import RatingComponent from '../global/RatingComponent'
 import RatingModal from '../Request/RateRequest/RateClientModal'
 
-const historyCard = ({ item }) => {
+const historyCard = ({ item,refresh }) => {
     const [open,setOpen]=useState(false)
     const [rateModal, setRateModal] = useState(false);
 
@@ -46,11 +46,14 @@ const historyCard = ({ item }) => {
             rateButton=true
             
         
-    
+            const closeModal=()=>{
+                refresh()
+                setRateModal(false)
+            }
 
     return (
         <View  style={styles.container}>
-             <RatingModal modalVisible={rateModal} requestID={item._id} close={()=>setRateModal(false)}/>
+             <RatingModal modalVisible={rateModal} requestID={item._id} close={()=>closeModal()}/>
             <View style={styles.buttonContainer}>
                 <View>
                 <Text style={styles.date}>{date}</Text>
@@ -64,9 +67,10 @@ const historyCard = ({ item }) => {
                 {
                   open==true?<Text style={styles.details}>{item.description}</Text>:null
                 }
+                <View style={styles.columContainer}>
                 <Text  style={styles.price}>{totalprice} EGP</Text>
                 {canceled ?<Text  style={styles.canceledText}>Canceled</Text>:
-                rateButton? <TouchableOpacity onPress={()=>setRateModal(!rateModal)}>
+                rateButton? <TouchableOpacity style={styles.ratebuttonStyle} onPress={()=>setRateModal(!rateModal)}>
                <Text style={styles.rateStyle}>Rate</Text>
                </TouchableOpacity>: 
                <RatingComponent  maxRating={5}
@@ -77,6 +81,7 @@ const historyCard = ({ item }) => {
                    rated={true}
                    />
             }
+            </View>
         </View>
     )
     
@@ -103,7 +108,8 @@ const styles = StyleSheet.create({
     date: {
         fontSize: 13,
         fontFamily: 'Montserrat_Bold', 
-        color:'#132641'
+        color:'#132641',
+        marginBottom:'2%'
     },
     clientName:
     {
@@ -111,6 +117,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         color: '#132641',
         opacity:0.5,
+        marginBottom:'2%'
       
     },
     categoryName:
@@ -118,7 +125,7 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontFamily: 'Montserrat',
         color: '#B1B7C0',
-        marginBottom:'6%'
+        marginBottom:'2%'
     },
     buttonContainer:{
         flexDirection: 'row',
@@ -132,8 +139,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         color: '#132641',
         opacity:0.6,
-        right:'8%',
-        bottom: '20%', 
         alignSelf: "flex-end",
     },
     details:{
@@ -148,9 +153,6 @@ const styles = StyleSheet.create({
         color: '#132641',
         opacity:0.5,
         fontFamily: 'Montserrat',
-        right:'11%',
-        position: "absolute", 
-        bottom: '7%', 
         alignSelf: "flex-end",
     },
     svgStyle:{
@@ -161,19 +163,27 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         right:'11%',
-        position: "absolute", 
-        bottom: '9%', 
         alignSelf: "flex-end",
     },
     rateStyle:
     {
         fontSize: 12,
-        color: '#132641',
+        color: '#FFFFFF',
         fontFamily: 'Montserrat',
-        right:'11%',
-        position: "absolute", 
-        bottom: '7%', 
+    },
+    ratebuttonStyle:{
+        backgroundColor:'#132641',
+        borderRadius: 30,
+        height:25,
+        width: "17%",
+        alignItems: 'center',
+        justifyContent:'center',
         alignSelf: "flex-end",
+    },
+    columContainer:{
+        flexDirection:'column',
+        bottom:'7%',
+        right:'8%',
     }
 })
 

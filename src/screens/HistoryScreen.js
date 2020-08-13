@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, FlatList, Dimensions } from 'react-native';
 import HistoryCard from '../components/Support&History/historyCard'
@@ -11,14 +10,13 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 const History = () => {
 
   const [history, setHistory] = useState([]);
-  const [reloading, setReloading] = useState(false);
  
   const getHistory = async () => {
-    setReloading(true);
-    setHistory([]);
+
+  
     await viewHistory().then((result) => {
       setHistory(result);
-      setReloading(false);
+     
     });
   };
 
@@ -36,12 +34,10 @@ const History = () => {
           data={history}
           keyExtractor={(item, index) => 'key' + index}
           showsVerticalScrollIndicator={false}
-          refreshing={reloading}
-          onRefresh={() => getHistory()}
           renderItem={({ item, index }) => {
             return (
               <View >
-                <HistoryCard item={item} />
+                <HistoryCard item={item} refresh={()=>getHistory()}/>
               </View>
             )
           }}
@@ -83,3 +79,7 @@ const styles = StyleSheet.create({
 })
 
 export default History;
+
+
+
+
