@@ -6,8 +6,13 @@ import MenuHeaderButton from '../../components/global/MenuHeaderButton';
 import FindRequestButton from '../../components/Request/ViewNearByRequests/FindRequestButton'
 import LockdownManager from '../../components/Request/Lockdown/LockdownManager';
 import UserLocationMapDisplay from '../../components/Map/UserLocationMapDisplay';
+import { listenForNotifications, registerPushNotification } from '../../utils/PushNotificationUtils'
 const MainScreen = ({ navigation }) => {
-
+    const handleNotification = () => {
+        registerPushNotification();
+        listenForNotifications(navigation);
+    }
+    handleNotification();
     return <View style={{ flex: 1 }}>
         <LockdownManager />
         <UserLocationMapDisplay />
