@@ -76,16 +76,16 @@ const ForgetPasswordScreen = ({ navigation }) => {
         <LoadingModal modalVisible={loading} />
         <View style={styles.blueBackground}>
 
-          <TouchableOpacity
-            onPress={() => { navigation.navigate('SignInScreen') }}
-            style={styles.backButton} >
-            <Text>
-              <Icon name="arrowleft" style={styles.backIcon} />
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => { navigation.navigate('SignInScreen') }}
+          style={styles.backButton} >
+          <Text>
+            <Icon name="arrowleft" style={styles.backIcon} />
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.header}>Forget Password</Text>
         <View style={styles.form}>
           <Input
@@ -178,9 +178,8 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat_SemiBold",
   },
   backButton: {
-    marginLeft: '7%',
+    marginLeft: '10%',
     width: 25,
-    marginTop: '12%',
     overflow: 'hidden'
 
   },

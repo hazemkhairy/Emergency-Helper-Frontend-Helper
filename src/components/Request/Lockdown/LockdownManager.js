@@ -51,12 +51,12 @@ const LockdownManager = () => {
                 else
                     clearInterval(timerId);
             }
-            , 1000
+            , 5000
         )
     }
     if (!lockdown.isLockedDown) {
         return <View></View>;
-    } 
+    }
     switch (lockdown.type) {
         case WAITING_FOR_OFFER_RESPONSE: {
             return <WaitingOfferAcceptanceModal lockdown={lockdown} />
