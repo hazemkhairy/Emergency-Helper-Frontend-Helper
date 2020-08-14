@@ -7,6 +7,9 @@ import { getCurrentRequestInfo } from '../../../utils/RequestUtils';
 import { Feather } from '@expo/vector-icons';
 import RequestAndHelperMapModal from '../../Map/RequestAndHelperMapModal';
 import ChatModal from '../../../screens/HelperChat';
+import normalize from "react-native-normalize";
+import Star from 'react-native-vector-icons/Foundation';
+
 const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
     if (!mv)
         return null;
@@ -17,7 +20,8 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
     const [loading, setLoading] = useState(false);
     const [mapModal, setMapModal] = useState(false);
     const [chatModal, setChatModal] = useState(false)
-
+   
+    
     const onChat = () => {
         setChatModal(true)
     };
@@ -29,6 +33,7 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
                 res => {
                     if (mount.current) {
                         setRequest(res);
+                    
                         setLoading(false);
                     }
                 }
@@ -43,7 +48,12 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
         }
 
     }
-
+    
+    let rated=0
+    if(request){
+    const rate = request.clientRate
+     rated = (Math.round(rate * 100) / 100).toFixed(2);
+    }
     useEffect(
         () => {
             getRequestInfo();
@@ -77,6 +87,10 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
                                 <Text style={styles.clientPhoneNumber}>{request.clientNumber}</Text>
                                 <Entypo name="phone" size={16} color="black" />
                             </TouchableOpacity>
+                            <View style={styles.rateContainer}>
+              <Text style={styles.ratenumberStyle}>{rated}</Text>
+              <Star name="star" style={styles.starStyle} />
+            </View>
                         </View>
                     </View>
                     <TouchableOpacity style={styles.chatContainer} onPress={() => { onChat() }}>
@@ -224,7 +238,24 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: 'Montserrat_Bold'
     },
-
+    rateContainer: {
+        flexDirection: 'row',
+        left: normalize(188),
+        position: 'absolute',
+        top: normalize(-10),
+    
+      },
+      starStyle: {
+        color: '#132641',
+        fontSize: 17,
+        marginLeft: 5,
+        top: -1
+      },
+      ratenumberStyle: {
+        fontFamily: "Montserrat_Medium",
+        color: '#132641',
+        fontSize: 13
+      }
 });
 
 export default ActiveRequestInfoModal;
