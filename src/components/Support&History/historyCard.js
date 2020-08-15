@@ -23,6 +23,14 @@ const historyCard = ({ item, refresh }) => {
     if (hours == 0) {
         hours = 12;
     }
+    if(hours<10)
+    {
+        hours='0'+hours
+    }
+    if(min<10)
+    {
+        min='0'+min
+    }
     let date = day + '/' + month + '/' + year + ' ' + hours + ':' + min + ' ' + a
     const fullname = item.clientName;
     const clientName = fullname.split(' ').slice(0, 2).join(' ')
