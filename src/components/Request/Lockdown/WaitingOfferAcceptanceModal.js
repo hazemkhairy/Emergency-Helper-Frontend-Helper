@@ -42,6 +42,8 @@ const WaitingOfferAcceptanceModal = () => {
     )
     useEffect(
         () => {
+
+            mount.current = true;
             getOffer();
             return () => { mount.current = false; }
         }, []
@@ -60,7 +62,7 @@ const WaitingOfferAcceptanceModal = () => {
                         {timeLeft.getMinutes()}
                         :
                         {timeLeft.getSeconds() <= 9 ? '0' : ''}
-                        {timeLeft.getSeconds()} Minutes
+                        {timeLeft.getSeconds()}
                     </Text>
 
                 </View>
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0, 0, 0, 0.1)',
         overflow: 'hidden',
         flex: 1,
-        maxHeight: Dimensions.get('screen').height * 0.4,
+        maxHeight: Dimensions.get('screen').height * 0.3,
         paddingTop: '3%',
         paddingHorizontal: '5%',
         borderWidth: 1
@@ -85,12 +87,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     titleRow: {
-        flex: 1,
+        flex: 5,
         justifyContent: 'center',
         alignItems: 'center',
     },
     timeRow: {
-        flex: 1,
+        flex: 3,
         justifyContent: 'space-around',
         alignItems: 'center',
     },

@@ -9,11 +9,12 @@ const First = ({ navigation }) => {
 
             <View style={styles.main}>
                 <Text style={styles.text1}>
-                    Welcome
+                    Welcome to
                 </Text>
                 <Text style={styles.text}>
-                    to Lift Up
+                 Emergency Helper
                 </Text>
+               
                 <Text style={styles.text2}>
                     The best way to find quick help.
                 </Text>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Dimensions, FlatList, KeyboardAvoidingView } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Dimensions, FlatList, KeyboardAvoidingView, Platform } from 'react-native';
 import Modal from 'react-native-modal';
 
 import { AntDesign } from '@expo/vector-icons';
@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { validNumber } from '../../../utils/CommonUtils';
 import {
     addItemToReceipt,
-    clearReceipt,
     deleteItemFromReceipt,
     setItems,
 } from '../../../store/Request/FillReceipt/action'
@@ -76,7 +75,9 @@ const FillReceiptModal = ({ modalVisible, close, submit }) => {
     }
     return (
         <Modal isVisible={modalVisible} >
-            <KeyboardAvoidingView behavior={"padding"} style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "android" ? "postion" : "padding"}
+                style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
 
                 <View style={styles.outerContainer}>
                     <View style={styles.innerContainer}>

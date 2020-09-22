@@ -1,60 +1,99 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, Dimensions, TextInput, TouchableOpacity, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import normalize from "react-native-normalize";
 import ChatCard from '../components/Support&History/chatCard'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
-import { getTicketsMessages, addMessage } from '../utils/SupportTickets'
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import HeaderButton from '../components/global/HeaderButton';
-
-const TicketScreen = ({ navigation }) => {
+import { allMessages, sendMessage } from '../utils/HelperChat'
+import { getCurrentRequestInfo } from '../utils/RequestUtils';
+import { MaterialIcons } from '@expo/vector-icons';
+import LoadingModal from '../components/global/LoadingModal'
+import Modal from "react-native-modal";
+const HelperChat = ({ close }) => {
 
   const [messages, setMessages] = useState([]);
-  const [newMessage, setnewMessage] = useState('');
+  const [message, setMessage] = useState('');
   const [active, setActive] = useState(false);
+  
 
-  const category = navigation.state.params.props.category
-  const ticketID = navigation.state.params.props.id
-
-  const addNewMessage = async () => {
+  const [clientData, setClientData] = useState([]);
+  const [loading,setloading]=useState(true)
+  //let time;
+  const newMessage = async () => {
     if (active == true) {
-      addMessage(ticketID, newMessage)
-      setnewMessage('')
+     
+      sendMessage(message)
+      setMessage('')
       setActive(false)
       getMessages()
+    
+     
     }
   }
 
   const getMessages = async () => {
-    setMessages([]);
-    await getTicketsMessages(ticketID).then((result) => {
+   
+    await allMessages().then((result) => {
       setMessages(result);
+     
+     
     });
   };
-
   useEffect(() => {
-    getMessages();
+    getMessages()
+   const time=setInterval(getMessages, 5000);
+   return () => clearInterval(time);
   }, []);
-
+  useEffect( () => {
+    getCurrentRequestInfo().then( (result) => {
+        setClientData(result);
+        setloading(false)
+      })
+  }, []
+)
+if(loading)
+  return <LoadingModal modalVisible={loading}  />
 
   return (
-
+    <Modal isVisible={true} style={{margin: 0}} >
     <View style={styles.container}>
-      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.91 }}>
+      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.90 }}>
         <View style={styles.headerContainer}>
-          <Text style={styles.headerText}> {category} </Text>
+          <View style={styles.BackButton}>
+            <TouchableOpacity onPress={() => {   close() }}>
+              <MaterialIcons name="arrow-back" size={25} color="white" />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.image}
+              source={{
+                uri: clientData.clientImage,
+              }}
+            />
+            <Text style={styles.nameText}> {clientData.clientName.firstName} </Text>
+          </View>
         </View>
-        <View style={{ flex: 1,marginTop:'2%' }}>
+        <View style={{ flex: 1 }}>
           <FlatList
+            inverted
             keyboardShouldPersistTaps="handled"
+            style={{ flex: 1 }}
             data={messages}
+            
+            getItemLayout={(data, index) => ({
+              length: 170,
+              offset: 170 * index,
+              index,
+            })}
             keyExtractor={(item, index) => "key" + index}
             showsVerticalScrollIndicator={true}
             renderItem={({ item, index }) => {
               return (
                 <View>
-                  <ChatCard item={item} />
+                  <ChatCard item={item}
+                    chat={'Yes'}
+                  />
                 </View>
               );
             }}
@@ -63,7 +102,6 @@ const TicketScreen = ({ navigation }) => {
           />
         </View>
       </View>
-
       <KeyboardAvoidingView
         style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}
         behavior={Platform.OS == "ios" ? 'position' : null}
@@ -72,12 +110,12 @@ const TicketScreen = ({ navigation }) => {
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
             <View style={styles.inputContainer}>
               <TextInput
-                placeholder="Write your reply.."
+                placeholder="Write your reply…"
                 autoCorrect={false}
                 placeholderTextColor='#BCC5D3'
                 underlineColorAndroid='transparent'
                 onChangeText={(text) => {
-                  setnewMessage(text)
+                  setMessage(text)
                   {
                     if (/\S/.test(text)) {
                       setActive(true)
@@ -86,37 +124,28 @@ const TicketScreen = ({ navigation }) => {
                   }
                 }}
                 style={styles.input}
-                value={newMessage}
+                value={message}
                 multiline
               />
             </View>
           </TouchableWithoutFeedback>
           {!active ? <Icon name={'arrow-right-circle'} color={'#BCC5D3'} size={30} /> :
-            <TouchableOpacity onPress={() => addNewMessage()}>
+            <TouchableOpacity onPress={() => newMessage()}>
               <Icon name={'arrow-right-circle'} color={'#132641'} size={30} />
             </TouchableOpacity>}
         </View>
       </KeyboardAvoidingView>
     </View>
+    </Modal>
   );
 
 
 }
-TicketScreen.navigationOptions = (props) => {
-  return {
-    title: '',
-    headerTransparent: true,
-    headerLeft: () => {
-      return (
-        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
-        </HeaderButtons>
-      )
-    },
-
-  }
-}
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#FFFFFF',
+        flex: 1,
+      },
   headerContainer: {
     width: '100%',
     backgroundColor: '#7598BA',
@@ -124,7 +153,27 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 70,
     alignItems: 'center',
   },
-
+  BackButton: {
+    marginRight: '90%',
+    marginTop: '7%'
+  },
+  image: {
+    width: normalize(60),
+    height: normalize(60),
+    borderRadius: normalize(400 / 2),
+    resizeMode: "cover",
+  },
+  imageContainer: {
+    flexDirection: "row",
+    paddingVertical: normalize(5)
+  },
+  nameText: {
+    fontFamily: 'Montserrat_Bold',
+    fontSize: 20,
+    color: '#FFFFFF',
+    paddingVertical: normalize(15),
+    paddingHorizontal: normalize(10)
+  },
   headerText: {
     color: 'white',
     fontSize: normalize(40) *
@@ -132,16 +181,11 @@ const styles = StyleSheet.create({
         Dimensions.get("window").height / 900.0,
         Dimensions.get("window").width / 500.0
       ),
-    marginTop:Dimensions.get("window").height<850?'15%':'20%',
-    fontFamily: 'Montserrat_Bold'
+    paddingTop: '15%',
+    fontFamily: 'Montserrat_bold'
   },
 
-  container: {
-    backgroundColor: '#FFFFFF',
-    flex: 1,
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width,
-  },
+  
   footer: {
     borderWidth: 1,
     borderTopColor: '#E9EEF1',
@@ -152,7 +196,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     height: normalize(60),
-    paddingHorizontal: '5%',
+    paddingHorizontal: '5%'
   },
   inputContainer: {
     flex: 1,
@@ -161,9 +205,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     fontSize: 16,
     color: '#BCC5D3',
-    paddingHorizontal: '5%',
+    paddingHorizontal: '5%'
   },
-
 })
 
-export default TicketScreen;
+export default HelperChat;

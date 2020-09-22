@@ -27,6 +27,7 @@ const NearByRequestsList = ({ requests, refresh }) => {
             onRefresh={() => {
                 getNewRequests()
             }}
+            showsVerticalScrollIndicator={false}
             style={styles.list}
             data={requests}
             keyExtractor={(item, index) => { return item._id }}

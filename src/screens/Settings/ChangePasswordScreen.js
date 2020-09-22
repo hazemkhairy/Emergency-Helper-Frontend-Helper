@@ -9,6 +9,8 @@ import LoadingModal from "../../components/global/LoadingModal";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import normalize from 'react-native-normalize';
 import MainHeader from '../../components/global/MainHeader';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 
 const ChangePasswordScreen = ({ navigation }) => {
   const [oldPassword, setOldPassword] = useState("");
@@ -50,7 +52,7 @@ const ChangePasswordScreen = ({ navigation }) => {
       if (newPassword.length < 8) {
         setNewPassword_error("Must Be 8 Characters Or More");
         error = false;
-      } 
+      }
       else setNewPassword_error("");
     }
     if (confirmPassword == "") {
@@ -64,22 +66,11 @@ const ChangePasswordScreen = ({ navigation }) => {
     }
     return error;
   };
-  ChangePasswordScreen.navigationOptions = (props) => {
-    return {
-
-      headerStyle: {
-        shadowColor: 'transparent',
-        elevation: 0,
-        backgroundColor: '#7598BA'
   
-      },
-      headertransparent: true,
-    }
-  }
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>
-      <MainHeader headerText={'Change Password'}></MainHeader>
+        <MainHeader headerText={'Change Password'}></MainHeader>
 
         <LoadingModal modalVisible={loading} />
         <SettingsModal modalVisible={modalVisible} message={modalMessage} />
@@ -114,16 +105,16 @@ const ChangePasswordScreen = ({ navigation }) => {
             </View>
             <View marginTop="2.8%">
 
-            <NewInput
-              placeholder="Confirm password"
-              secureTextEntry={true}
-              placeholderTextColor="#B3B9C2"
-              autoCorrect={false}
-              autoCapitalize="none"
-              value={confirmPassword}
-              onChangeText={(text) => setConfirmPassword(text)}
-              errorText={confirmPassword_error}
-            />
+              <NewInput
+                placeholder="Confirm password"
+                secureTextEntry={true}
+                placeholderTextColor="#B3B9C2"
+                autoCorrect={false}
+                autoCapitalize="none"
+                value={confirmPassword}
+                onChangeText={(text) => setConfirmPassword(text)}
+                errorText={confirmPassword_error}
+              />
             </View>
           </View>
           <MainButton
@@ -142,7 +133,20 @@ const ChangePasswordScreen = ({ navigation }) => {
     </View>
   );
 };
+ChangePasswordScreen.navigationOptions = (props) => {
+  return {
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+        </HeaderButtons>
+      )
+    },
 
+  }
+}
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",

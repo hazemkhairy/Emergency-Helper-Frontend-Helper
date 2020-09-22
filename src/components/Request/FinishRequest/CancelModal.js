@@ -21,16 +21,8 @@ const CancelModal = ({ mv, close }) => {
             return () => { mount = false; }
         }, []
     )
-    const validInput = () => {
-        if (reason.trim().length) {
-            setReasonError('');
-            return true;
-        }
-        setReasonError('Please enter valid Text');
-        return false;
-    }
     const handleSubmit = async () => {
-        if (validInput()) {
+       
             setLoading(true)
             cancelRequest(reason).then(
                 () => {
@@ -45,7 +37,6 @@ const CancelModal = ({ mv, close }) => {
                             setErrorModal(true);
                     }
                 )
-        }
     }
     if (loading)
         return <LoadingModal modalVisible={loading} />
@@ -73,25 +64,19 @@ const CancelModal = ({ mv, close }) => {
                 </View>
                 <View style={styles.innerContainer}>
                     <View style={styles.titleRow}>
-                        <Text style={styles.titleText}>
+                        <Text style={styles.titleText} numberOfLines={2} >
                             Are you sure you want to cancel?
                      </Text>
                     </View>
                     <View style={styles.inputRow}>
                         <TextInput
-                            style={reasonError ? { ...styles.input, ...styles.errorInput } : styles.input}
+                            style={styles.input}
                             value={reason}
                             onChangeText={(t) => { setReason(t) }}
                             placeholderTextColor={"#78849E"}
                             multiline
                             placeholder={"Tell Us what happened"}
                         />
-                        <Text style={styles.errorText}>{reasonError}</Text>
-                    </View>
-                    <View style={styles.infoRow}>
-                        <Text style={styles.infoText}>
-                            You might be charged the visit payment if you exceeded the minimum time for cancelling.
-                    </Text>
                     </View>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button} onPress={() => { handleSubmit() }}>
@@ -129,20 +114,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     titleRow: {
-        flex: 3,
-        justifyContent: 'center',
+        flex: 4,
         alignItems: 'center',
     },
     titleText: {
-        fontSize: 20 * (375 / Dimensions.get('screen').width),
+        fontSize: 20 * (Dimensions.get('screen').width / 375),
+
         fontFamily: 'Montserrat_SemiBold',
         color: '#132641',
         textAlign: 'center',
         textAlignVertical: 'center'
     },
     inputRow: {
-        flex: 7,
-
+        flex: 6,
     },
     input: {
         flex: 1,

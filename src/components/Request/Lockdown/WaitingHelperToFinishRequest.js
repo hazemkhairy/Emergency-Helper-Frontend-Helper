@@ -4,7 +4,7 @@ import ActiveRequestInfoModal from './ActiveRequestInfoModal';
 import FillReceiptModal from '../FinishRequest/FillReceiptModal';
 import LoadingModal from '../../global/LoadingModal';
 import RateClientModal from '../RateRequest/RateClientModal';
-import { fillReceipt, rateRequest } from '../../../utils/RequestUtils'
+import { fillReceipt } from '../../../utils/RequestUtils'
 const WaitingHelperToFinishRequest = () => {
     const [infoModal, setInfoModal] = useState(true);
     const [receiptModal, setReceiptModal] = useState(false);
@@ -20,13 +20,9 @@ const WaitingHelperToFinishRequest = () => {
             setReceiptModal(!receiptModal);
         }
     }
-    const handleFinishRequest = async (f) => {
-        let rateres ;
-        if (f) {
-            rateres = await rateRequest(f);
-        }
-        let fillres = await fillReceipt(items);
-        
+    const handleFinishRequest = async () => {
+        await fillReceipt(items);
+
     }
     const openRate = () => {
         setReceiptModal(false);
@@ -52,8 +48,8 @@ const WaitingHelperToFinishRequest = () => {
         return <RateClientModal
             modalVisible={rateModal}
             close={
-                (f) => {
-                    handleFinishRequest(f);
+                () => {
+                    handleFinishRequest();
                     setRateModal(false);
                 }
             }

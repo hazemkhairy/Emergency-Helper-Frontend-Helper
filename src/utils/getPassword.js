@@ -16,3 +16,16 @@ export const changePassword = async (
     });
   return res;
 };
+export const resetPassword = async (email) => {
+  let res = await backendAxios
+    .post("Helper/ResetPassword", {
+      email: email,
+    })
+    .then((res) => {
+      return res.data.message;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+  return res;
+};

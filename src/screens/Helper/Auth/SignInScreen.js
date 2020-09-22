@@ -31,9 +31,6 @@ const SignInScreen = ({ navigation }) => {
     }
   }
   )
-  const token = useSelector((state) => {
-    return state.signInReducer.token
-  })
   const validInput = () => {
     let thereIsNoError = true;
     if (email == "") {
@@ -129,6 +126,9 @@ const SignInScreen = ({ navigation }) => {
         <View style={signInStyle.forgetPasswordView}>
           <Button type='clear' title='FORGOT PASSWORD' titleStyle={signInStyle.buttonforget}
             onPress={() => { }}
+            onPress={() => { 
+              navigation.navigate("ForgetPasswordScreen");
+            }}
           />
         </View>
       </View>

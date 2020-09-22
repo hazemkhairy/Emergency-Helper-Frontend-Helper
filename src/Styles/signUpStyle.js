@@ -35,7 +35,7 @@ export default StyleSheet.create({
  
   },
   form: {
-   height:'82%',
+   height:'75%',
   },
   textError: {
     color: '#b30000',

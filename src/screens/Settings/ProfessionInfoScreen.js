@@ -19,6 +19,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import normalize from "react-native-normalize";
 import MainHeader from "../../components/global/MainHeader";
 import { getAllCategories } from "../../utils/categories";
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 
 const ProfessionInfoScreen = ({ navigation }) => {
   const [frontID, setFrontID] = useState({});
@@ -115,9 +117,10 @@ const ProfessionInfoScreen = ({ navigation }) => {
                   placeholder={
                     category
                       ? {
-                          label: category,
-                          value: category,
-                        }
+                        label: category,
+                        value: category,
+                        color: 'red',
+                      }
                       : { label: "Category", value: "Category" }
                   }
                   value={category}
@@ -163,14 +166,18 @@ const ProfessionInfoScreen = ({ navigation }) => {
 };
 ProfessionInfoScreen.navigationOptions = (props) => {
   return {
-    headerStyle: {
-      shadowColor: "transparent",
-      elevation: 0,
-      backgroundColor: "#7598BA",
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+        </HeaderButtons>
+      )
     },
-    headertransparent: true,
-  };
-};
+
+  }
+}
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",
@@ -215,16 +222,16 @@ const styles = StyleSheet.create({
       Dimensions.get("window").height > 850
         ? "8%"
         : Dimensions.get("window").height < 600
-        ? "1%"
-        : "5%",
+          ? "1%"
+          : "5%",
   },
   skillInput: {
     marginTop: "8%",
     alignItems: "center",
   },
-  skillView:{
-width:'115%',
-right: normalize(25),
+  skillView: {
+    width: '115%',
+    right: normalize(25),
   },
 });
 const pickerSelectStyles = StyleSheet.create({

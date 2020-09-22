@@ -36,8 +36,8 @@ const AccountPicker = (props) => {
             <TouchableOpacity
                 onPress={_pickImage}
             >
-                
-                <Text style={{...styles.text, ...props.style}}>{props.text}</Text>
+
+                <Text style={{ ...styles.text, ...props.style }}>{props.text}</Text>
             </TouchableOpacity>
         </View>
     );

@@ -1,18 +1,30 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, Linking } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, Linking, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import { Entypo } from '@expo/vector-icons';
 import LoadingModal from '../../global/LoadingModal';
 import { getCurrentRequestInfo } from '../../../utils/RequestUtils';
 import { Feather } from '@expo/vector-icons';
-import RequestAndHelperMapModal from '../../Map/RequestAndHelperMapModal'
+import RequestAndHelperMapModal from '../../Map/RequestAndHelperMapModal';
+import ChatModal from '../../../screens/HelperChat';
+import normalize from "react-native-normalize";
+import Star from 'react-native-vector-icons/Foundation';
+
 const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
     if (!mv)
         return null;
+    const [requestModal, setRequestModal] = useState(mv)
     let mount = useRef(true);
+
     const [request, setRequest] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mapModal, setMapModal] = useState(false);
+    const [chatModal, setChatModal] = useState(false)
+   
+    
+    const onChat = () => {
+        setChatModal(true)
+    };
     const getRequestInfo = () => {
 
         if (mount.current) {
@@ -21,6 +33,7 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
                 res => {
                     if (mount.current) {
                         setRequest(res);
+                    
                         setLoading(false);
                     }
                 }
@@ -35,7 +48,12 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
         }
 
     }
-
+    
+    let rated=0
+    if(request){
+    const rate = request.clientRate
+     rated = (Math.round(rate * 100) / 100).toFixed(2);
+    }
     useEffect(
         () => {
             getRequestInfo();
@@ -46,7 +64,11 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
         return <LoadingModal modalVisible={loading} />
     if (mapModal)
         return <RequestAndHelperMapModal requestCoordinates={request.requestLocation} close={() => { setMapModal(false); }} />
-    return <Modal isVisible={mv} >
+    if (chatModal)
+        return <ChatModal modalVisible={chatModal}
+            close={() => setChatModal(false)}
+        />
+    return <Modal isVisible={requestModal} >
         <View style={styles.outerContainer}>
             <View style={styles.innerContainer}>
                 {
@@ -65,9 +87,13 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
                                 <Text style={styles.clientPhoneNumber}>{request.clientNumber}</Text>
                                 <Entypo name="phone" size={16} color="black" />
                             </TouchableOpacity>
+                            <View style={styles.rateContainer}>
+              <Text style={styles.ratenumberStyle}>{rated}</Text>
+              <Star name="star" style={styles.starStyle} />
+            </View>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.chatContainer} onPress={() => { }}>
+                    <TouchableOpacity style={styles.chatContainer} onPress={() => { onChat() }}>
                         <Text style={styles.chatText}>Chat</Text>
                     </TouchableOpacity>
                 </View>
@@ -98,18 +124,24 @@ const ActiveRequestInfoModal = ({ mv, inProgress, children, close }) => {
                             {request.priceRange.from} ~ {request.priceRange.to} EGP
                         </Text>
                     </Text>
-                    <Text style={styles.fieldName}>
-                        {"Accepted Offer: "}
-                        <Text style={styles.fieldContent}>
-                            {request.offerDescription}
+                    <ScrollView>
+
+                        <Text style={styles.fieldName}>
+                            {"Accepted Offer: "}
+                            <Text style={styles.fieldContent}>
+                                {request.offerDescription}
+                            </Text>
                         </Text>
-                    </Text>
-                    <Text style={styles.fieldName}>
-                        {"Problem’s description: "}
-                        <Text style={styles.fieldContent}>
-                            {request.requestDescription}
+                    </ScrollView>
+                    <ScrollView>
+
+                        <Text style={styles.fieldName}>
+                            {"Problem’s description: "}
+                            <Text style={styles.fieldContent}>
+                                {request.requestDescription}
+                            </Text>
                         </Text>
-                    </Text>
+                    </ScrollView>
                 </View>
                 <View style={styles.bottomRow}>
                     {children}
@@ -142,7 +174,8 @@ const styles = StyleSheet.create({
     },
     middleRow: {
         flex: 7,
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        
     },
     bottomRow: {
         flex: 2,
@@ -205,7 +238,24 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: 'Montserrat_Bold'
     },
-
+    rateContainer: {
+        flexDirection: 'row',
+        left: normalize(188),
+        position: 'absolute',
+        top: normalize(-10),
+    
+      },
+      starStyle: {
+        color: '#132641',
+        fontSize: 17,
+        marginLeft: 5,
+        top: -1
+      },
+      ratenumberStyle: {
+        fontFamily: "Montserrat_Medium",
+        color: '#132641',
+        fontSize: 13
+      }
 });
 
 export default ActiveRequestInfoModal;

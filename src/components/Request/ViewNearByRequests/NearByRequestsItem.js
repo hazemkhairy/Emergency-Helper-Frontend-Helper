@@ -1,10 +1,19 @@
 import React from 'react';
 import { Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-const NearByRequestsItem = ({ request, openModal }) => {
+import Star from 'react-native-vector-icons/Foundation';
+import normalize from 'react-native-normalize';
 
+const NearByRequestsItem = ({ request, openModal }) => {
+    const rate=request.clientRate
+    const rated=(Math.round(rate * 100) / 100).toFixed(2);
     return (
         <View style={styles.container}>
+              <View style={styles.rateContainer}>
+                                   <Text style={styles.ratenumberStyle}> {rated} </Text>
+                                   <Star name="star" style={styles.starStyle} />
+                                </View>
             <View style={styles.topHalf}>
+                
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
 
                     <Image
@@ -15,7 +24,9 @@ const NearByRequestsItem = ({ request, openModal }) => {
                     <Text style={styles.clientName}>
                         {request.clientName}
                     </Text>
+                  
                 </View>
+               
                 <TouchableOpacity
                     style={styles.makeOfferButton}
                     onPress={() => {
@@ -32,9 +43,9 @@ const NearByRequestsItem = ({ request, openModal }) => {
                 <Text style={styles.description}>
                     <Text style={{ fontFamily: 'Montserrat_Medium', color: '#687486' }}>
 
-                        Problem's description:
+                        {"Problem's description: "}
                     </Text>
-                    {request.description}
+                    {request.description}  
                 </Text>
             </View>
         </View>
@@ -43,7 +54,7 @@ const NearByRequestsItem = ({ request, openModal }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        //flex: 1,
         shadowColor: "#C2C9D1",
         shadowOffset: {
             width: 4,
@@ -51,14 +62,14 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.8,
         shadowRadius: 4.00,
-
         elevation: 10,
         borderRadius: 40,
         borderWidth: 1,
         borderColor: 'rgba(194,201,209,0.4)',
         backgroundColor: 'white',
-        paddingHorizontal: '2%',
-        paddingVertical: '4%'
+        paddingHorizontal: '8%',
+        paddingVertical: '6%',
+        //padding:'8%'
     },
     topHalf: {
         flexDirection: 'row',
@@ -68,7 +79,7 @@ const styles = StyleSheet.create({
     },
     bottomHalf: {
         paddingTop: '2%',
-        paddingLeft: '5%',
+        paddingLeft: '2%',
         flex: 9
     },
     clientImage: {
@@ -96,6 +107,23 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 11,
         fontFamily: 'Montserrat_SemiBold'
+    },
+    rateContainer:{
+        flexDirection:'row',
+        left:normalize(218),
+        position:'absolute',
+        top:12
+    },
+    starStyle:{
+        color:'#132641',
+        fontSize:17,
+        marginLeft:5,
+        top:-1
+    },
+    ratenumberStyle:{
+        fontFamily: "Montserrat_Medium",
+        color:'#132641',
+        fontSize:13
     }
 });
 

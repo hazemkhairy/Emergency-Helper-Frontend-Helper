@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, FlatList, Button } from 'react-native';
+import React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 import MainHeader from '../../components/global/MainHeader';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/global/HeaderButton'

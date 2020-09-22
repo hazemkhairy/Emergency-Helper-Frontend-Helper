@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
     errorText: {
         fontSize: 25, marginBottom: 5,
-        color: 'black',  fontFamily: 'Montserrat_SemiBold'
+        color: 'black', fontFamily: 'Montserrat_SemiBold'
 
     },
     messageText: {

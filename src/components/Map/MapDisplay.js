@@ -22,8 +22,8 @@ const MapDisplay = ({ points }) => {
             initialRegion={
                 {
                     ...points[0].coordinate,
-                    latitudeDelta: Math.abs(points[1].coordinate.latitude - points[0].coordinate.latitude) * 3,
-                    longitudeDelta: Math.abs(points[1].coordinate.longitude - points[0].coordinate.longitude) * 3,
+                    latitudeDelta: points[1] ? Math.abs(points[1].coordinate.latitude - points[0].coordinate.latitude) * 3 : 0.05,
+                    longitudeDelta: points[1] ? Math.abs(points[1].coordinate.longitude - points[0].coordinate.longitude) * 3 : 0.05
                 }
             }
         >

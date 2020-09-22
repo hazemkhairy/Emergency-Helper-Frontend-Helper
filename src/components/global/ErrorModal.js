@@ -78,11 +78,11 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 22,
         color: 'white',
-        fontFamily:'Montserrat_Medium'
+        fontFamily: 'Montserrat_Medium'
     },
     errorText: {
         fontSize: 25, marginBottom: 5,
-        color: 'black',  fontFamily: 'Montserrat_SemiBold'
+        color: 'black', fontFamily: 'Montserrat_SemiBold'
     },
     messageText: {
         marginLeft: 12,

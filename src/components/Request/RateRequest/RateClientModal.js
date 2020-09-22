@@ -3,31 +3,27 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TextInput, Keyboa
 import Modal from 'react-native-modal';
 import RatingComponent from '../../global/RatingComponent'
 import { AntDesign } from '@expo/vector-icons';
-
-const RateClientModal = ({ modalVisible, close }) => {
+import LoadingModal from '../../global/LoadingModal';
+import { rateRequest } from '../../../utils/RequestUtils'
+const RateClientModal = ({ modalVisible, close, requestID }) => {
     if (!modalVisible)
         return null;
     const [rate, setRate] = useState(3);
     const [description, setDescription] = useState('');
-    const [descriptionError, setDescriptionError] = useState('')
+    const [loading, setLoading] = useState(false);
 
-    const validInput = () => {
-        let valid = true;
-        if (description.trim().length == 0) {
-            valid = false;
-            setDescriptionError("Please enter Description")
-
-        }
-        else {
-            setDescriptionError("")
-        }
-        return valid
-    }
-
-    const handleSubmit = () => {
-        close({ rate, feedback: description })
+    const handleSubmit = async () => {
+        setLoading(true);
+        await rateRequest({ rate, feedback: description, requestID }).then(
+            () => {
+                setLoading(false);
+                close();
+            }
+        )
 
     }
+    if (loading)
+        return <LoadingModal modalVisible={loading} />
     return <Modal isVisible={modalVisible} >
         <KeyboardAvoidingView
             behavior={Platform.OS == "android" ? "postion" : "padding"}
@@ -60,14 +56,13 @@ const RateClientModal = ({ modalVisible, close }) => {
                             <TextInput
                                 returnKeyType="done"
                                 placeholder="Tell us your feedback"
-                                style={descriptionError ? { ...styles.descriptionInput, ...styles.errorTextInput } : styles.descriptionInput}
+                                style={styles.descriptionInput}
                                 multiline
                                 numberOfLines={4}
                                 value={description}
-                                placeholderTextColor={descriptionError ? 'red' : '#78849E'}
+                                placeholderTextColor={'#78849E'}
                                 onChangeText={(text) => { setDescription(text) }}
                             />
-                            <Text style={styles.errorMessageText}>{descriptionError}</Text>
                         </View>
                     </View>
                     <View style={styles.buttonRow}>

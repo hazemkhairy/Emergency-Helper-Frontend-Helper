@@ -19,7 +19,7 @@ export const signInAction = (user = new SignInUser()) => {
                 dispatch({ type: Success_Sign_In })
             })
             .catch(err => {
-                dispatch({ type: Failed_Sign_In })
+                dispatch({ type: Failed_Sign_In, payload: err.response.data.message })
             })
     }
 }
