@@ -12,7 +12,7 @@
     "@react-native-community/hooks": "^2.6.0",
     "@react-native-community/masked-view": "0.1.10",
     "@use-expo/font": "^1.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "email-validator": "^2.0.4",
     "expo": "^38.0.0",
     "expo-document-picker": "~8.2.1",
